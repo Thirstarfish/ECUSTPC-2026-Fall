@@ -1,0 +1,17 @@
+# Fdb version 4
+["xdvipdfmx"] 0 "Problem_Stellar_Valley.xdv" "Problem_Stellar_Valley.pdf" "Problem_Stellar_Valley" 0 -1
+  "Problem_Stellar_Valley.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "Problem_Stellar_Valley.pdf"
+  (rewritten before read)
+["xelatex"] 1772559313.47973 "Problem_Stellar_Valley.tex" "Problem_Stellar_Valley.xdv" "Problem_Stellar_Valley" 1772559314.34459 2
+  "Problem_Stellar_Valley.aux" 1772559313 32 3985256e7290058c681f74d7a3565a19 "xelatex"
+  "Problem_Stellar_Valley.tex" 1772559312 4049 0ffc2c1cf1f7fa7ad34cccf16f830941 ""
+  "d:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1763489878 42148 61becc7c670cd061bb319c643c27fdd4 ""
+  "d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1763493018 5639826 88842e47951b3294cbfa7739b4b2aefa ""
+  "d:/texlive/2025/texmf.cnf" 1763492864 713 e69b156964470283e0530f5060668171 ""
+  (generated)
+  "Problem_Stellar_Valley.aux"
+  "Problem_Stellar_Valley.log"
+  "Problem_Stellar_Valley.xdv"
+  (rewritten before read)

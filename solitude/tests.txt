@@ -1,0 +1,54 @@
+gen sample 1 > $
+gen sample 2 > $
+gen no-odd 1 1 1001 > $
+gen yes-pairs 2 2 1002 > $
+gen no-gcd 3 2 1003 > $
+gen no-residue 4 1004 > $
+gen yes-pairs 8 8 1011 > $
+gen yes-split 10 10 1012 > $
+gen yes-adjacent 12 12 1013 > $
+gen yes-ascending 16 16 1014 > $
+gen yes-descending 18 18 1015 > $
+gen no-odd 20 20 1016 > $
+gen no-residue 24 1017 > $
+gen mixed 80 20 80 50 1021 > $
+gen mixed 200 50 200 30 1022 > $
+gen mixed 300 60 300 70 1023 > $
+gen random 500 500 1031 > $
+gen random 777 777 1032 > $
+gen all 999 2 1033 > $
+gen all 1000 1000 1034 > $
+gen yes-pairs 1500 1500 2001 > $
+gen yes-split 1500 1500 2002 > $
+gen yes-ascending 1600 1600 2003 > $
+gen yes-descending 1600 1600 2004 > $
+gen no-odd 1700 1700 2005 > $
+gen no-residue 1800 2006 > $
+gen no-gcd 1999 1998 2007 > $
+gen mixed 2000 100 2000 50 2011 > $
+gen mixed 2500 250 2500 45 2012 > $
+gen mixed 3000 300 3000 55 2013 > $
+gen mixed 3500 700 3500 40 2014 > $
+gen mixed 4000 1000 4000 60 2015 > $
+gen yes-pairs 4096 4096 3001 > $
+gen yes-split 4096 4096 3002 > $
+gen yes-ascending 4096 4096 3003 > $
+gen yes-descending 4096 4096 3004 > $
+gen no-odd 4096 4096 3005 > $
+gen no-residue 4096 3006 > $
+gen yes-pairs 4998 4998 4001 > $
+gen yes-split 4998 4998 4002 > $
+gen yes-adjacent 5000 5000 4003 > $
+gen yes-ascending 5000 5000 4004 > $
+gen yes-descending 5000 5000 4005 > $
+gen all 5000 5000 4006 > $
+gen no-odd 5000 5000 4007 > $
+gen no-residue 5000 4008 > $
+gen no-gcd 4999 2 4009 > $
+gen no-gcd 4999 4998 4010 > $
+gen mixed 5000 1 5000 100 4011 > $
+gen mixed 5000 2 5000 100 4012 > $
+gen mixed 5000 20 5000 80 4013 > $
+gen mixed 5000 100 5000 65 4014 > $
+gen mixed 5000 500 5000 50 4015 > $
+gen mixed 5000 1000 5000 35 4016 > $

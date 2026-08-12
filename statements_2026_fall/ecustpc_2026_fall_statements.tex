@@ -1,0 +1,101 @@
+%!TEX program = xelatex
+\documentclass[titlepage,oneside]{ctexart}
+\usepackage{ecustpc} % 加载刚才定义的样式
+
+% 定义竞赛信息
+\title{2026 年秋季华东理工大学程序设计竞赛试题册}
+\author{ECUSTPC 2026 Fall Jury}
+\date{X, 2026}
+
+\begin{document}
+
+% 设置页眉内容：竞赛名称，日期
+\setcontestheader{2026 年秋季华东理工大学程序设计竞赛 正式赛}{2026 年 X 月 X 日}
+\pagestyle{fancy}
+
+\setlength{\headheight}{25.3186pt}
+
+\begin{titlepage}
+\begin{center}
+    \huge{\textbf{2026 年秋季华东理工大学程序设计竞赛}} \\ [10pt]
+    \huge{正式赛 \quad 试题册} \\ [10pt]
+    \Large{2026 年 X 月 X 日 X$\sim$X}
+\end{center}
+
+\vspace{2em}
+{\large\BF{试题列表}}
+
+\begin{table}[htbp]
+  \begin{center}
+    \large
+    \begin{tabular}{ccccc}
+      \toprule
+      题号 & 试题名称 & 时空限制 & 注释 \\
+      \midrule
+      \myboxi{\BF{\TT{A}}} & \BF{纽约提喻法} & X/X & \\
+      \myboxii{\BF{\TT{B}}} & \BF{AIMC 实验室} & X/X & \\
+      \myboxiii{\BF{\TT{C}}} & \BF{一分为二 2} & X/X & \\
+      \myboxiv{\BF{\TT{D}}} & \BF{单位距离！？} & X/X & \\
+      \myboxv{\BF{\TT{E}}} & \BF{占位标题 E} & X/X & \\
+      \myboxvi{\BF{\TT{F}}} & \BF{凸包} & X/X & \\
+      \myboxvii{\BF{\TT{G}}} & \BF{星之彼端} & X/X & 通信题 \\
+      \myboxviii{\BF{\TT{H}}} & \BF{一般攻击魔法} & X/X & \\
+      \myboxix{\BF{\TT{I}}} & \BF{天外来物} & X/X & \\
+      \myboxx{\BF{\TT{J}}} & \BF{时间谜题 2} & X/X & \\
+      \myboxxi{\BF{\TT{K}}} & \BF{永世沙漏} & X/X & \\
+      \myboxxii{\BF{\TT{L}}} & \BF{净化行动 3} & X/X & \\
+      \myboxiii{\BF{\TT{M}}} & \BF{星光站} & X/X & \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{table}
+
+试题册共包含 13 道试题和 X 页.
+
+若您的试题册缺页请立刻联系志愿者。
+
+请务必认真阅读位于比赛文件附件中的赛事规则和技术规则。
+
+赛事开始前请勿翻阅试题册，亦请勿触碰鼠标和键盘。
+
+请注意黑白打印的试题册可能会丢失部分需要颜色展现的信息。
+
+\textit{写在题目描述前的斜体文字 是 Feature Text（风味文本），和题目无关，包括这句话。}
+\end{titlepage}
+
+\linespread{1.0}
+\setlength{\parskip}{0\baselineskip}
+\normalsize
+
+\newpage
+\setcounter{page}{1}
+
+\input{Problem_A_Synecdoche}
+\newpage
+\input{Problem_B_AIMC_Lab}
+\newpage
+\input{Problem_C_Split_Array}
+\newpage
+\input{Problem_D_Unit_Distance}
+\newpage
+\input{Problem_E_Square_Free}
+\newpage
+\input{Problem_F_Quadratic_Inequalities}
+\newpage
+\input{Problem_G_Poles_Apart}
+\newpage
+\input{Problem_H_Light_Reflection}
+\newpage
+\input{Problem_I_Crystal_Collection}
+\newpage
+\input{Problem_J_Time_Puzzle}
+\newpage
+\input{Problem_K_Stable_Directions}
+\newpage
+\input{Problem_L_Purification}
+\newpage
+\input{Problem_M_Starlight_Station}
+\newpage
+\intentionalblankpage
+
+\end{document}

@@ -1,0 +1,109 @@
+gen 1 1 1 11 > $
+gen 1 1 2 12 > $
+gen 2 1 1 13 > $
+gen 1 2 1 14 > $
+gen 1 1 20 15 > $
+gen 20 1 1 16 > $
+gen 1 20 1 17 > $
+gen 2 2 2 18 > $
+gen-adv 1 1 1 19 2 > $
+gen-adv 1 1 8 20 3 > $
+gen-adv 2 2 2 21 1 > $
+gen-adv 2 2 2 22 4 > $
+gen 1 1 20 31 > $
+gen 20 1 1 32 > $
+gen 1 20 1 33 > $
+gen 1 10 10 34 > $
+gen 10 1 10 35 > $
+gen 10 10 1 36 > $
+gen-adv 1 1 20 37 0 > $
+gen-adv 1 20 20 38 3 > $
+gen-adv 20 20 1 39 2 > $
+gen-adv 20 1 20 40 1 > $
+gen-adv 1 7 13 41 4 > $
+gen-adv 2 1 20 42 5 0 1000 > $
+gen 3 3 3 51 > $
+gen 4 4 4 52 > $
+gen 5 5 5 53 > $
+gen-adv 3 3 3 54 0 > $
+gen-adv 3 3 3 55 1 > $
+gen-adv 3 3 3 56 2 > $
+gen-adv 3 3 3 57 3 > $
+gen-adv 3 3 3 58 4 > $
+gen-adv 4 4 4 59 0 > $
+gen-adv 4 4 4 60 2 > $
+gen-adv 4 4 4 61 3 > $
+gen-adv 5 5 5 62 1 > $
+gen-adv 5 5 5 63 4 > $
+gen-adv 5 5 5 64 5 100 200 > $
+gen-adv 6 6 6 65 0 > $
+gen-adv 6 6 6 66 3 > $
+gen-adv 5 4 6 67 4 > $
+gen-adv 6 5 4 68 2 > $
+gen 8 8 8 71 > $
+gen 10 10 8 72 > $
+gen 10 8 10 73 > $
+gen 12 12 5 74 > $
+gen 7 9 11 75 > $
+gen-adv 8 8 8 76 0 > $
+gen-adv 8 8 8 77 1 > $
+gen-adv 8 8 8 78 2 > $
+gen-adv 8 8 8 79 3 > $
+gen-adv 8 8 8 80 4 > $
+gen-adv 10 10 8 81 0 > $
+gen-adv 10 10 8 82 2 > $
+gen-adv 10 10 8 83 3 > $
+gen-adv 12 11 6 84 4 > $
+gen-adv 9 9 9 85 0 > $
+gen-adv 9 9 9 86 1 > $
+gen-adv 9 9 9 87 3 > $
+gen-adv 11 11 6 88 2 > $
+gen-adv 13 13 4 89 0 > $
+gen-adv 7 7 16 90 4 > $
+gen-adv 14 14 4 91 3 > $
+gen-adv 10 10 8 92 5 500000000 1000000000 > $
+gen 20 20 20 101 > $
+gen-adv 20 20 20 102 0 > $
+gen-adv 20 20 20 103 1 > $
+gen-adv 20 20 20 104 2 > $
+gen-adv 20 20 20 105 3 > $
+gen-adv 20 20 20 106 4 > $
+gen-adv 20 20 20 107 5 999999000 1000000000 > $
+gen 20 20 19 108 > $
+gen 19 20 20 109 > $
+gen 20 19 20 110 > $
+gen-adv 20 20 18 111 2 > $
+gen-adv 18 20 20 112 3 > $
+gen-adv 16 16 16 113 0 > $
+gen-adv 16 16 16 114 4 > $
+gen-adv 20 18 16 115 2 > $
+gen-adv 17 17 17 116 3 > $
+gen-adv 15 15 15 117 0 > $
+gen-adv 15 15 15 118 2 > $
+gen-adv 20 20 20 119 5 0 1 > $
+gen-adv 20 20 20 120 5 1 2 > $
+gen-adv 20 20 20 131 1 > $
+gen-adv 20 20 20 132 3 > $
+gen-adv 12 12 12 133 1 > $
+gen-adv 12 12 12 134 3 > $
+gen-adv 10 10 10 135 5 0 1 > $
+gen-adv 10 10 10 136 5 0 2 > $
+gen-adv 8 8 8 137 5 1000000000 1000000000 > $
+gen-adv 8 8 8 138 5 0 0 > $
+gen-adv 6 6 6 139 5 0 1 > $
+gen-adv 5 5 5 140 5 1 1 > $
+gen-adv 20 20 20 141 5 0 0 > $
+gen-adv 19 19 19 142 1 > $
+gen-adv 18 18 18 143 3 > $
+gen-adv 14 14 14 144 4 > $
+gen-anti 8 8 8 201 0 > $
+gen-anti 10 10 10 202 0 > $
+gen-anti 12 12 12 203 1 > $
+gen-anti 15 15 10 204 1 > $
+gen-anti 10 10 10 205 2 > $
+gen-anti 12 12 12 206 2 > $
+gen-anti 20 20 20 207 0 > $
+gen-anti 20 20 20 209 2 > $
+gen-anti 16 16 16 210 4 > $
+gen-anti 18 18 18 211 4 > $
+gen-anti 20 20 20 212 4 > $

@@ -1,0 +1,128 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ecustpc}[2025/10/21 ECUST Programming Contest Style]
+
+% --- 核心宏包 ---
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{emptypage}
+\RequirePackage{xeCJK}
+\RequirePackage{graphicx}
+\RequirePackage{amssymb,amsmath,amsthm}
+\RequirePackage{pifont}
+\RequirePackage{subcaption}
+\RequirePackage{picinpar}
+\RequirePackage{lastpage}
+\RequirePackage{tabularx,array,booktabs,multirow}
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{hyperref}
+\RequirePackage{listings}
+\RequirePackage{colortbl}
+
+\usetikzlibrary{arrows.meta,positioning}
+
+% --- 页面布局 ---
+\geometry{a4paper,hmargin=0.75in,vmargin=1in}
+\setlength{\headheight}{24pt}
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{0.3ex}
+
+% --- 字体配置 (根据需要修改) ---
+\setmonofont{Fira Code} % 确保本地安装了 Fira Code
+
+% --- 颜色定义 ---
+\definecolor{Line1}{HTML}{FFFF00}
+\definecolor{Line2}{HTML}{0066FF}
+\definecolor{Line3}{HTML}{9966FF}
+\definecolor{Line4}{HTML}{33CC33}
+\definecolor{Line5}{HTML}{FF5050}
+\definecolor{Line6}{HTML}{99CCFF}
+\definecolor{Line7}{HTML}{CCCCCC}
+\definecolor{Line8}{HTML}{333333}
+\definecolor{Line9}{HTML}{FFCC66}
+\definecolor{Line10}{HTML}{CC00CC}
+\definecolor{Line11}{HTML}{CCFF66}
+\definecolor{Line12}{HTML}{3DC3B6}
+
+
+% --- 辅助命令 ---
+\newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
+\newcommand{\TT}[1]{{\ttfamily #1}}
+\newcommand{\IT}[1]{{\itfamily #1}}
+\newcommand{\BF}[1]{\textbf{#1}}
+\newcommand{\BS}[1]{\boldsymbol{#1}}
+\newcommand{\Tsingle}[1]{\hspace{0em}{\ttfamily #1}\hspace{0.58em}}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathrm{i}}
+\newcommand{\MT}{\mathrm{T}}
+\DeclareMathOperator{\xor}{xor}
+\DeclareMathOperator{\nand}{and}
+
+% --- 题目彩色标签 (tcolorbox) ---
+% 使用循环或通用宏简化定义
+\newcommand{\contestbox}[2]{%
+  \newtcbox{#1}{on line, arc = 0pt, outer arc = 1pt,
+    colback = #2, colframe = #2,
+    boxsep = 0pt, left = 3pt, right = 3pt, top = 3pt, bottom = 3pt,
+    boxrule = 0pt, bottomrule = 1pt, toprule = 1pt, leftrule = 1pt, rightrule = 1pt}
+}
+\newcommand{\contestboxwhite}[2]{% % 文字为白色的版本
+  \newtcbox{#1}{on line, arc = 0pt, outer arc = 1pt,
+    colback = #2, colframe = #2, coltext=white,
+    boxsep = 0pt, left = 3pt, right = 3pt, top = 3pt, bottom = 3pt,
+    boxrule = 0pt, bottomrule = 1pt, toprule = 1pt, leftrule = 1pt, rightrule = 1pt}
+}
+
+\contestbox{\myboxi}{Line1}   \contestboxwhite{\myboxii}{Line2}  \contestboxwhite{\myboxiii}{Line3}
+\contestbox{\myboxiv}{Line4}  \contestboxwhite{\myboxv}{Line5}   \contestbox{\myboxvi}{Line6}
+\contestbox{\myboxvii}{Line7} \contestboxwhite{\myboxviii}{Line8} \contestbox{\myboxix}{Line9}
+\contestboxwhite{\myboxx}{Line10}  \contestbox{\myboxxi}{Line11} \contestbox{\myboxxii}{Line12}
+
+
+% --- 代码样式配置 ---
+\definecolor{mygreen}{RGB}{34,139,34}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{myred}{RGB}{178,34,34}
+
+\lstset{
+    tabsize = 2,
+    basicstyle = \small\ttfamily, 
+    columns=fullflexible,       
+    numbers=none,
+    frame=l,
+    breaklines=true, 
+    backgroundcolor=\color{white},
+    keywordstyle=\color{mygreen},
+    commentstyle=\color{mygray},
+    stringstyle=\color{myred}\ttfamily,
+    showstringspaces=false,
+    language=c++,
+    xleftmargin=0.5cm,
+}
+
+% --- 章节格式 ---
+\renewcommand{\thesection}{试题 \hspace{-0.5em}}
+\renewcommand{\thesubsection}{\hspace{-1em}}
+
+% --- 刻意留白页 ---
+\newcommand{\intentionalblankpage}{%
+  \clearpage\null\vfill
+  \begin{center}{\large 此页为保证阅读顺畅，刻意留白}\end{center}
+  \vfill\clearpage
+}
+
+% --- 页眉页脚设置宏 ---
+\newcommand{\setcontestheader}[2]{
+  \fancyhf{}
+  \fancyfoot[C]{\bfseries{第 \thepage 页 \quad 共 \pageref{LastPage} 页}}
+  \fancyhead[C]{\textsf{#1 \\ #2}}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\endinput

@@ -1,0 +1,146 @@
+\section[H. 剪切线]{\myboxviii{      \BF{\TT{H}}} 剪切线}
+
+\textit{运行时间限制}   1 second
+
+\textit{内存使用限制} 1 Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+\begin{quote}
+   \textit{【数据|【数据}
+
+   \textit{删除】|删除】}
+\end{quote}
+
+
+\subsection{题目描述}
+
+小 T 已经登神，他已经进入了高维的空间。
+
+在一个 $d$ 维的高维长方体中，每一维的长度分别为 $n_1$, $n_2$, $\ldots$, $n_d$, 而这个长方体由 $\prod_{i=1}^{n} n_i = n_1n_2\ldots n_d$ 个小正方体组成, 每个小正方体的坐标分别为 $(a_1, a_2, \ldots, a_{d})$, 其中 $a_i$ 为整数且 $1 \le a_i \le n_i$.
+
+小 T 选出了其中的 $m$ 个小正方体做了标记，其坐标分别为 $(c_{1, 1}, c_{1, 2}, \ldots, c_{1, d})$, $(c_{2, 1}, c_{2, 2}, \ldots, c_{2, d})$, $\ldots$, $(c_{m, 1}, c_{m, 2}, \ldots, c_{m, d})$, 同时每个被标记的小正方体都有一个分值 $p_1$, $p_2$, $\ldots$, $p_m$，同时他也生成了两个叫做 Alpha 和 Beta 的智能机器来做游戏。
+
+从 Alpha 开始, Alpha 和 Beta 会依次轮流进行如下的操作，其中每次的操作都是给定的：
+
+\begin{itemize}
+   \item 当前回合的智能机器 $C$ 会选择一个维度 $D$,  记当前长方体在这个维数下的剩余长度为 $n_D'$, 智能机器同时会选择一个象征方向和层数的数 $k$, 保证 $0 < |k| < n_D'$,  将将高维长方体劈成两块并舍去其中的一块，具体如下：
+   \begin{itemize}
+      \item 若 $k > 0$, 则当前的长方体的第 $D$ 维的前 $|k|$ 层会被劈开并舍去；
+      \item 若 $k < 0$, 则当前的长方体的第 $D$ 维的后 $|k|$ 层会被劈开并舍去；
+   \end{itemize}
+   \item 当前回合的智能机器 $C$ 劈开并舍去的小长方体中，其中每有一个被做标记的小正方体便得到其对应的分值。
+\end{itemize}
+
+上述的操作共进行了 $q$ 次, 请帮助小 T 计算出操作结束后 Alpha 和 Beta 所得的分数.
+
+\subsection{输入格式}
+
+第一行输入一个整数 $T$ ($1 \le T \le 10^5$), 表示数据组数。
+
+每组数据第一行输入 3 个整数 $d$, $m$, $q$($1 \le d \le 10$, $1 \le m \le 2 \times 10^5$, $1 \le q \le 2 \times 10^5$), 分别表示长方体的维数，做了标记的小正方体的数量和智能机器所进行操作的次数。
+
+接下来一行输入 $d$ 个整数 $d_1$, $d_2$, $\ldots$, $d_{n}$,($1 \le n_i \le 10^9$), 分别表示高维长方体每一维的长度。
+
+接下来一行输入 $m$ 个整数 $p_1$, $p_2$, $\ldots$, $p_n$($1 \le p_i \le 10^9$), 分别表示每个小正方体的分值。
+
+接下来 $m$ 行每行输入 $d$ 个整数 $c_{i, 1}$, $c_{i, 2}$, $\ldots$, $c_{i, d}$ 其中 $1 \le c_{i, j} \le n_j$, 表示这个被做了标记的小正方体的坐标。
+
+接下来 $q$ 行每行输入两个整数 $D$ 和 $k$, 其中 $1 \le D \le d$, 分别表示当前回合的智能机器所选的维度和所选的象征方向和层数的数，具体含义如题意中所述。
+
+保证每次操作都是合法的，即不会出现操作的维度长度不足的情况。
+
+保证所有测试数据输入中的 $\sum (n \cdot d) \le 2 \times 10^6$, $\sum q \le  3 \times 10^5$.
+
+\subsection{输出格式}
+
+每组数据输出一行两个整数 $score_A$ 和 $score_B$, 分别操作结束后表示 Alpha 和 Beta 所得的分值。
+
+\subsection{样例 1}
+\begin{minipage}{\linewidth}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard input}]
+2
+2 4 2
+1 1 1 1
+4 4
+4 1
+3 3
+2 3
+2 1
+1 -2
+2 1
+1 3 3
+12 34 56
+100
+20
+50
+90
+1 -2
+1 3
+1 4
+\end{lstlisting}
+   \end{minipage}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard output}]
+2 1
+0 0
+\end{lstlisting}
+   \end{minipage}
+\end{minipage}
+
+
+\subsection{样例 1 解释}
+
+对于第 1 组样例，此时长方体是一个 $2$ 维的，令上下方向表示第 $1$ 维，左右方向表示第 $2$ 维，则其中被做了标记的小正方体用其对应的分数表示，如下所示：
+\begin{table}[htbp]
+      \begin{center}
+         \begin{tabular}{|c|c|c|c|c|}
+          \hline
+          & 1 & 2 & 3 & 4 \\ \hline
+          1 & .& .& .& . \\\hline
+          2 & 1 & .& 1&. \\\hline
+          3 &   .& .& 1 &.\\ \hline
+          4 & 1 &. &. & .\\\hline
+          % \hline
+        \end{tabular}
+      \end{center}
+\end{table}
+
+
+第一次操作由 Alpha 进行，操作后的长方体如下所示：
+
+\begin{table}[htbp]
+      \begin{center}
+         \begin{tabular}{|c|c|c|c|c|}
+          \hline
+          & 1 & 2 & 3 & 4 \\ \hline
+          1 & .& .& .& . \\\hline
+          2 & 1 & .& 1&. \\\hline
+          % \hline
+        \end{tabular}
+      \end{center}
+\end{table}
+\vspace{-2ex}
+此时 Alpha 得 $2$ 分。
+
+第二次操作由 Beta 进行，操作后的长方体如下所示：
+
+\begin{table}[htbp]
+      \begin{center}
+         \begin{tabular}{|c|c|c|c|}
+          \hline
+          &  2 & 3 & 4 \\ \hline
+          1 &  .& .& . \\\hline
+          2 & .& 1&. \\\hline
+          % \hline
+        \end{tabular}
+      \end{center}
+\end{table}
+\vspace{-2ex}
+此时 Beta 得 $1$ 分，操作结束后 Alpha 和 Beta 所得的分数 分别为 $2$ 分和 $1$ 分。
+
+
+

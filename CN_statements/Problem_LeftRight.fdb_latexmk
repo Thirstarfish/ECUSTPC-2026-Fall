@@ -1,0 +1,20 @@
+# Fdb version 4
+["xdvipdfmx"] 1773171518.27313 "Problem_LeftRight.xdv" "Problem_LeftRight.pdf" "Problem_LeftRight" 1773171518.7806 0
+  "Problem_LeftRight.xdv" 1773171518 3660 25d4f2022b6699bcf81e4b4dae07aaac "xelatex"
+  (generated)
+  "Problem_LeftRight.pdf"
+  (rewritten before read)
+["xelatex"] 1773171517.38045 "Problem_LeftRight.tex" "Problem_LeftRight.xdv" "Problem_LeftRight" 1773171518.77979 2
+  "Problem_LeftRight.aux" 1772727642 32 3985256e7290058c681f74d7a3565a19 "xelatex"
+  "Problem_LeftRight.tex" 1773171515 7450 c76c0ffa3d3977cad1c5240203ad6664 ""
+  "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1763490712 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "d:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1763490264 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "d:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm" 1763490264 768 d7b9a2629a0c353102ad947dc9221d49 ""
+  "d:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1763489878 42148 61becc7c670cd061bb319c643c27fdd4 ""
+  "d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1763493018 5639826 88842e47951b3294cbfa7739b4b2aefa ""
+  "d:/texlive/2025/texmf.cnf" 1763492864 713 e69b156964470283e0530f5060668171 ""
+  (generated)
+  "Problem_LeftRight.aux"
+  "Problem_LeftRight.log"
+  "Problem_LeftRight.xdv"
+  (rewritten before read)

@@ -1,0 +1,75 @@
+\section[J. 时间谜题 2]{\myboxx{      \BF{\TT{J}}} 时间谜题 2}
+
+\textit{运行时间限制}   X second
+
+\textit{内存使用限制} X Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+
+\begin{quote}
+	\textit{"对无数时间线建立可持久化字典树即可实现对历史的版本控制"，一位青铜龙朋友总是这么告诉我。我对此深信不疑，以至于忘记了自己倒数的心跳。}
+\end{quote}
+
+\subsection{题目描述}
+
+星鱼为了证明他上课从不迟到，坚称自己是在 $7{:}110$ 踏进了 $8{:}00$ 开始上课的教室。这启发我们去定义一种"广义时间表示法"。
+
+在广义时间表示法中，时间被记为 $A{:}B$（$A, B$ 均为非负整数）。
+
+我们定义广义时间之间存在两种\BF{等价关系}：
+
+\begin{enumerate}
+	\item 对于任意 $B \ge 60$，$A{:}B$ 与 $(A + 1){:}(B - 60)$ 是表示同一个时刻的等价时间。
+	\item 对于任意 $A \ge 24$，$A{:}B$ 与 $(A - 24){:}B$ 是表示同一个时刻的等价时间。
+\end{enumerate}
+
+我们称一个时间 $h{:}m$ 是"标准时间"，当且仅当它满足 $0 \le h < 24$ 且 $0 \le m < 60$。
+
+现在给定一个广义时间，请你求出与它等价的唯一"标准时间"。
+
+\subsection{输入格式}
+
+第一行输入一个整数 $T$ ($1 \le T \le 10^5$)，表示测试数据的数量。
+
+每组测试数据输入一行两个整数 $A$ 和 $B$ ($0 \le A, B \le 10^9$)，表示一个广义时间 $A{:}B$。
+
+\subsection{输出格式}
+
+对于每组测试数据，输出一行两个整数 $h$ 和 $m$，表示与给定广义时间等价的标准时间 $h{:}m$。
+
+\subsection{样例 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+5
+7 110
+25 30
+0 0
+23 59
+100 200
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+8 50
+1 30
+0 0
+23 59
+7 20
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{样例 1 解释}
+
+对于第 $1$ 组测试数据，$7{:}110 \to 8{:}50$（应用规则 1，$110 = 60 + 50$）。
+
+对于第 $2$ 组测试数据，$25{:}30 \to 1{:}30$（应用规则 2，$25 = 24 + 1$）。
+
+对于第 $3$ 组测试数据，$0{:}0$ 本身就是标准时间。
+

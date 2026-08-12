@@ -1,0 +1,69 @@
+\section[A. 纽约提喻法]{\myboxi{      \BF{\TT{A}}} 纽约提喻法}
+
+\textit{运行时间限制}   X second
+
+\textit{内存使用限制} X Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+
+\begin{quote}
+	\textit{And they say there is no fate, but there is, it's what you create.}
+
+	\textit{And even though the world goes on for eons and eons...}
+
+	\textit{...you are only here for a fraction of a fraction of a second.}
+\end{quote}
+
+\subsection{题目描述}
+
+凯顿对"命运"有了自己的理解，他不再借助戏剧，而想用一串字符来提喻自己的人生。然而，当他尝试构建这个提喻时，为了追求纯粹、忠于自我的原创表达，他再度陷入了自我指涉的无限循环。于是这一次，凯顿将选择权交给了你，由你来描绘他的人生。
+
+凯顿的提喻是一个长度为 $L$ 的字符串，记为 $T$。称 $T$ 是\BF{合法}的，当且仅当它同时满足以下三个条件：
+
+\begin{enumerate}
+	\item $T$ 仅由小写英文字母组成。
+	\item 对于每个 $i = 1, 2, \ldots, K$，字符串 $T$ 的第 $p_i$ 个字符必须等于给定的字符 $c_i$。这里 $p_i$ 是位置下标，满足 $1 \le p_i \le L$，$c_i$ 为小写字母。
+	\item 对于每个 $i = 1, 2, \ldots, N$，给定的字符串 $s_i$ \BF{不能}作为 $T$ 的连续子串出现。
+\end{enumerate}
+
+现在给定 $L$、$K$ 组位置约束 $(p_i, c_i)$ 以及 $N$ 个禁止子串 $s_i$，请你计算所有合法字符串 $T$ 的总数，并将结果对 $998\,244\,353$ 取模后输出。
+
+\subsection{输入格式}
+
+第一行输入三个整数 $L$, $K$, $N$ ($1 \le L \le 10^9$, $0 \le K \le 10$, $0 \le N \le 50$)，分别表示字符串长度、位置约束数量和禁止子串数量。
+
+随后 $K$ 行，每行输入一个整数 $p_i$ 和一个小写字母 $c_i$ ($1 \le p_i \le L$)，表示一个位置约束。保证所有 $p_i$ 互不相同。
+
+随后 $N$ 行，每行输入一个非空字符串 $s_i$，表示一个禁止子串。
+
+保证所有 $s_i$ 的长度之和不超过 $100$（即 $\sum_{i=1}^N \vert{}s_i\vert{} \le 100$）。
+
+\subsection{输出格式}
+
+对于每组测试数据，输出一行一个整数，表示合法字符串的总数对 $998\,244\,353$ 取模后的结果。
+
+\subsection{样例 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+3 1 1
+2 b
+ab
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+650
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{样例 1 解释}
+
+字符串长度为 $3$，第 $2$ 个字符必须是 \TT{b}，且不能包含子串 \TT{ab}。合法的字符串形如 \TT{?b?}，其中第 $1$ 个和第 $3$ 个位置可以是除 \TT{a} 以外的任意小写字母，共 $25 \times 26 = 650$ 种。
+

@@ -1,0 +1,138 @@
+\section[G. 星之彼端]{\myboxvii{      \BF{\TT{G}}} 星之彼端}
+
+\textit{运行时间限制}   X second
+
+\textit{内存使用限制} X Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+
+\begin{quote}
+	\textit{今夜天空深远宁静，我们望的是同一颗星星吗？}
+\end{quote}
+
+\BF{这是一道通信题。}
+
+\subsection{题目描述}
+
+给定一个无向连通图 $G = (V, E)$，其中 $|V| = 2000$, $|E| = 43\,600$。图 $G$ 不包含重边和自环，并且保证由以下方式生成：初始时，图 $G$ 包含 $|V|$ 个点且没有任何边。随后，生成器将重复执行以下操作 $|E|$ 次：在当前所有尚未被边连接的点对中，等概率地随机选取一对点，并在它们之间添加一条无向边。
+
+本题只有两个测试点。在所有测试点中，图 $G$ 的结构是\BF{公开且固定的}。图的完整内容可以在附件graph.txt中获得，但由于图过大，题面不再列出完整的边集。
+
+具体来说，该文件的第一行包含两个整数 $|V|$ 和 $|E|$。
+
+接下来 $|E|$ 行，每行包含两个整数 $u, v$，表示顶点 $u$ 和 $v$ 之间有一条无向边 ($1 \le u, v \le |V|$)。
+
+你的程序将被运行两次：
+
+\BF{第一次运行}
+
+你需要在图 $G$ 中选择 $n$ 个诱导四元环并输出。这些诱导四元环可以拥有共同的顶点。
+
+\begin{itemize}
+	\item \BF{诱导四元环的定义：}选定图 $G$ 中的 $4$ 个点，这 $4$ 个点之间\BF{恰好}存在 $4$ 条边，且构成一个简单的环（即内部不能有对角线相连）。
+\end{itemize}
+
+\BF{第二次运行}
+
+评测机将获取你在第一次运行中输出的所有四元环。你需要回答 $q$ 次询问。对于每一个询问，评测机会挑选一个四元环，任选其中一个点并删除，然后输出剩余三个点的编号。你需要回答这三个点来自于你在第一次运行中输出的第几个四元环。
+
+\subsection{输入格式}
+
+\BF{第一次运行}
+
+第一行包含一个字符串 \TT{send}。
+
+第二行包含一个整数 $n$（在样例中中，$n = 1$；在另一组测试数据中，$n = 200\,000$），表示需要输出的诱导四元环数量。
+
+第三行包含两个整数 $|V|$ 和 $|E|$。
+
+接下来 $|E|$ 行，每行包含两个整数 $u, v$，表示顶点 $u$ 和 $v$ 之间有一条无向边 ($1 \le u, v \le |V|$)。
+
+\BF{第二次运行}
+
+第一行包含一个字符串 \TT{receive}。
+
+第二行包含两个整数 $|V|$ 和 $|E|$。
+
+接下来 $|E|$ 行，每行包含两个整数 $u, v$，表示顶点 $u$ 和 $v$ 之间有一条无向边 ($1 \le u, v \le |V|$)。
+
+第 $|E| + 3$ 行包含一个整数 $q$ ($q = 4n$)：接收到的顶点集合数量。
+
+接下来的 $q$ 行，每行包含 $3$ 个整数，代表评测机从你第一次运行输出的某个四元环中删除一个顶点后得到的顶点集合。
+
+\subsection{输出格式}
+
+\BF{第一次运行}
+
+输出 $n$ 行。第 $i$ 行输出 $4$ 个整数 $v_1, v_2, v_3, v_4$，代表你为第 $i$ 个诱导四元环的四个顶点编号。
+
+\BF{第二次运行}
+
+输出 $q$ 行。对于每一组接收到的顶点集合，输出一个整数 $i$ ($1 \le i \le n$)，表示该集合属于第 $i$ 个四元环。
+
+\subsection{样例 1}
+
+\BF{第一次运行}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+send
+1
+2000 43600
+1 13
+1 45
+...
+1999 2000
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+1 13 246 1408
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+\BF{第二次运行}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+receive
+2000 43600
+1 13
+1 45
+...
+1999 2000
+4
+1 13 246
+1 246 1408
+13 246 1408
+1 13 1408
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+1
+1
+1
+1
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{样例 1 解释}
+
+由于公开图的完整数据过大，样例省略了图中的一些边。
+
+你可以在附件中查看完整的样例数据。其中，1.in、1.out分别包含第一次运行完整的样例输入和输出，2.in、2.out分别包含第二次运行完整的样例输入和输出。
+
+在第一次运行中，程序选择了四元环 $1\text{-}13\text{-}246\text{-}1408$ 并输出。
+
+在第二次运行中，评测机依次删除了四元环 $1\text{-}13\text{-}246\text{-}1408$ 的四个顶点，得到了四个三元组，程序正确地识别出它们都来自第 $1$ 个四元环。
+
+

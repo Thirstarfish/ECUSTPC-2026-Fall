@@ -1,0 +1,69 @@
+\section[I. 天外来物]{\myboxix{      \BF{\TT{I}}} 天外来物}
+
+\textit{运行时间限制}   X second
+
+\textit{内存使用限制} X Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+
+\begin{quote}
+	\textit{在燥热的季节，一颗流星划过天际，留下光亮的拖尾。}
+	
+	\textit{我循着光奔跑的那个夜晚，便是故事的开端。}
+\end{quote}
+
+\subsection{题目描述}
+
+有 $n$ 颗水晶，从左到右编号为 $1$ 到 $n$。第 $i$ 颗水晶初始时含有 $a_i$ 单位的能量。你可以按照任意顺序依次采集这 $n$ 颗水晶。
+
+当你采集编号为 $i$ 的水晶时：
+
+\begin{itemize}
+	\item 你获得该水晶当前所含的能量值，并累加到总得分中。
+	\item 如果编号为 $i - 1$ 和 $i + 1$ 的水晶存在且还未被采集，它（们）的能量值会变成原来的相反数。
+\end{itemize}
+
+注意，水晶的编号不会随采集发生变化。
+
+采集完所有 $n$ 颗水晶后，可能的最大总得分是多少？
+
+\subsection{输入格式}
+
+第一行输入一个整数 $T$ ($1 \le T \le 10^4$)，表示测试数据的数量。
+
+每组测试数据第一行输入一个整数 $n$ ($1 \le n \le 2 \times 10^5$)，表示水晶的数量。
+
+第二行输入 $n$ 个整数 $a_1, a_2, \ldots, a_n$ ($-10^9 \le a_i \le 10^9$)，表示每颗水晶初始的能量值。
+
+保证所有测试数据的 $\sum n \le 2 \times 10^5$。
+
+\subsection{输出格式}
+
+对于每组测试数据，输出一行一个整数，表示可能的最大总得分。
+
+\subsection{样例 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+2
+5
+1 2 3 4 5
+9
+9 -9 8 -2 4 -4 3 -5 3
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+15
+47
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+\subsection{样例 1 解释}
+
+对于第一组数据，按照编号 $3 \to 5\to 1\to 2\to 4$ 的顺序采集可以使得最大得分达到 $15$ 。可以证明这是最大值。
