@@ -326,14 +326,19 @@
       "Bash(powershell -Command ' *)",
       "Read(//d/texlive/2026/texmf-var/fonts/conf/**)",
       "Bash(fc-cache -fv)",
-      "Bash(xelatex -interaction=nonstopmode ecustpc_2026_spring_statements.tex)"
+      "Bash(xelatex -interaction=nonstopmode ecustpc_2026_spring_statements.tex)",
+      "Bash(mkdir -p Crystal_Collection)",
+      "Bash(mkdir -p Crystal_Collection/solution)",
+      "Bash(python3)"
     ],
     "additionalDirectories": [
       "\\tmp",
       "c:\\Users\\jizhi\\.claude\\projects\\c--Users-jizhi\\memory",
       "C:\\Users\\jizhi\\Desktop\\ecustpc\\array",
       "C:\\Users\\jizhi\\Desktop\\ecustpc\\CN_statements",
-      "D:\\texlive\\2026\\texmf-var\\fonts\\conf"
+      "D:\\texlive\\2026\\texmf-var\\fonts\\conf",
+      "c:\\Users\\jizhi\\Desktop\\ecustpc\\Crystal_Collection",
+      "c:\\Users\\jizhi\\Desktop\\ecustpc\\Crystal_Collection\\solution"
     ]
   }
 }
