@@ -1,6 +1,0 @@
-PWD C:/Users/kethg/Documents/tex/ECUSTPC_2026_Spring/CN_statements
-INPUT d:/texlive/2025/texmf.cnf
-INPUT d:/texlive/2025/texmf-dist/web2c/texmf.cnf
-INPUT d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT Problem_Floodlight.tex
-OUTPUT Problem_Floodlight.log

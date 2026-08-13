@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  12 AUG 2026 19:10
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  13 AUG 2026 17:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1202,7 +1202,7 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Microsoft
 (fontspec)             YaHei/BI/OT:script=hani;language=dflt;"
 
- [1] (./Problem_B_AIMC_Lab.tex [2] [3]) [4] [5] (./Problem_C_Split_Array.tex) [6] (./Problem_D_Unit_Distance.tex) [7] (./Problem_E_Square_Free.tex) [8] (./Problem_F_Quadratic_Inequalities.tex) [9] (./Problem_G_Poles_Apart.tex [10]) [11] (./Problem_H_Light_Reflection.tex [12]) [13] (./Problem_I_Crystal_Collection.tex) [14] (./Problem_J_Time_Puzzle.tex) [15] (./Problem_K_Stable_Directions.tex) [16] (./Problem_L_Purification.tex [17]) [18] (./Problem_M_Starlight_Station.tex [19]) [20] [21
+ [1] (./Problem_B_AIMC_Lab.tex [2] [3]) [4] (./Problem_C_Split_Array.tex) [5] (./Problem_D_Unit_Distance.tex) [6] (./Problem_E_Square_Free.tex) [7] (./Problem_F_Quadratic_Inequalities.tex) [8] (./Problem_G_Poles_Apart.tex [9]) [10] (./Problem_H_Light_Reflection.tex) [11] (./Problem_I_Crystal_Collection.tex) [12] (./Problem_J_Time_Puzzle.tex) [13] (./Problem_K_Stable_Directions.tex) [14] (./Problem_L_Purification.tex [15]) [16] (./Problem_M_Starlight_Station.tex [17]) [18] [19
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1215,12 +1215,12 @@ Package rerunfilecheck Info: File `ecustpc_2026_fall_statements.out' has not cha
 (rerunfilecheck)             Checksum: AB8C5C2651EE124B18D52B35EA5737C4;7619.
  ) 
 Here is how much of TeX's memory you used:
- 34256 strings out of 467805
- 762827 string characters out of 5426925
- 1402451 words of memory out of 5000000
- 62705 multiletter control sequences out of 15000+600000
- 641475 words of font info for 148 fonts, out of 8000000 for 9000
+ 34259 strings out of 467805
+ 763294 string characters out of 5426925
+ 1401451 words of memory out of 5000000
+ 62710 multiletter control sequences out of 15000+600000
+ 641459 words of font info for 146 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,12n,123p,1268b,1267s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ecustpc_2026_fall_statements.pdf (22 pages).
+Output written on ecustpc_2026_fall_statements.pdf (20 pages).
