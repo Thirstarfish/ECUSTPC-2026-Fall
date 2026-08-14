@@ -2,6 +2,9 @@
 
 easy,easy-medium,medium,medium-hard,hard
 
+#### 难度预估
+JF < CIL < HDA < MEK < BG
+
 ## 被正式采用的题目
 
 ### 1. MH ac自动机+矩阵快速幂
@@ -20,7 +23,7 @@ easy,easy-medium,medium,medium-hard,hard
 
 #### solution
 
-如标题。
+对所有禁止字串建AC自动机，即可得到对于 $T$ 在AC自动机上每个节点状态的转移矩阵。在所有不确定具体字母的连续段中，可以用矩阵快速幂来加速转移。
 
 ### 2. H 网络流
 
