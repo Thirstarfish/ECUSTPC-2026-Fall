@@ -1,0 +1,15 @@
+generator 1 806405334 > $
+generator 2 1401600382 > $
+generator 3 756657006 > $
+generator 4 1575183098 > $
+generator 4 1832282235 > $
+generator 4 974333580 > $
+generator 5 1215614745 > $
+generator 6 1954994561 > $
+generator 6 1238560792 > $
+generator 6 2068727076 > $
+generator 7 155330269 > $
+generator 7 935520542 > $
+generator 8 1706808219 > $
+generator 9 634892686 > $
+generator 10 1116110535 > $

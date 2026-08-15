@@ -512,8 +512,8 @@
   \begin{array}{c|c}
     \text{填法}&\text{内部配对}\\ \hline
     \texttt{.}&U-D,\ L-R\\
-    \texttt{/}&U-R,\ D-L\\
-    \text{反斜杠}&U-L,\ D-R
+    \texttt{/}&U-L,\ D-R\\
+    \text{反斜杠}&U-R,\ D-L
   \end{array}
   \]
   原本为空的格子暂时把四个端口连成 $K_4$。在此松弛图中从起点 BFS 到终点。
@@ -524,8 +524,8 @@
   \[
   \begin{array}{c|c}
     U-D\text{ 或 }L-R&\texttt{.}\\
-    U-R\text{ 或 }D-L&\texttt{/}\\
-    U-L\text{ 或 }D-R&\text{反斜杠}
+    U-L\text{ 或 }D-R&\texttt{/}\\
+    U-R\text{ 或 }D-L&\text{反斜杠}
   \end{array}
   \]
   就填入对应状态；未经过的空格统一填 \TT{.}。
