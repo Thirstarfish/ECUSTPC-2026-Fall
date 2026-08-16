@@ -1,12 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1786908434.28455 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1786908435.20429 0
-  "ecustpc_2026_fall_statements.xdv" 1786908433 302876 4ccdb033a460df21d174efc0204da8a5 "xelatex"
+["xdvipdfmx"] 1786922811.90366 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1786922812.84449 0
+  "ecustpc_2026_fall_statements.xdv" 1786922811 300996 c442b2258d7cd0e67343fbbd0294ed11 "xelatex"
   (generated)
   "ecustpc_2026_fall_statements.pdf"
   (rewritten before read)
-["xelatex"] 1786908431.26706 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1786908435.18804 0
+["xelatex"] 1786922808.51998 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1786922812.83024 0
   "Problem_A_Synecdoche.tex" 1786904784 2889 fa446d7ba6722839620d1f055b9d40dd ""
-  "Problem_B_AIMC_Lab.tex" 1786613898 4781 18b63180e6fca6ad7477afcc665a4cff ""
+  "Problem_B_AIMC_Lab.tex" 1786922734 4444 0e0be45f107afe0f378ed4c163e25897 ""
   "Problem_C_Split_Array.tex" 1786624260 1890 29270a916013a1e4979407a1c44c957a ""
   "Problem_D_Unit_Distance.tex" 1786614870 1958 dd0d1100fb6db7d5b92078e2d1e8e9a8 ""
   "Problem_E_Square_Free.tex" 1786530941 1508 bfe207e8719968b99ccea2d8bd0aa60f ""
@@ -219,8 +219,8 @@
   "d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1786475275 5962893 f080b9beb400f5ff5d0a3f740e6a6d8b ""
   "d:/texlive/2026/texmf.cnf" 1786474994 713 e69b156964470283e0530f5060668171 ""
   "ecustpc.sty" 1786476620 4217 c34e5424163cd1bbe9d77a5bd59ffb77 ""
-  "ecustpc_2026_fall_statements.aux" 1786908433 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
-  "ecustpc_2026_fall_statements.out" 1786908433 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
+  "ecustpc_2026_fall_statements.aux" 1786922811 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
+  "ecustpc_2026_fall_statements.out" 1786922811 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
   "ecustpc_2026_fall_statements.tex" 1786629311 2896 3ae1ed8fb182051c0ec743c3d3f2687f ""
   (generated)
   "ecustpc_2026_fall_statements.aux"
