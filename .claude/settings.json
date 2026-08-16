@@ -334,7 +334,9 @@
       "Read(//c/Users/jizhi/.codex/skills/polygon-problem-tools/**)",
       "Bash(mkdir -p Time_Puzzle Purification)",
       "Bash(cp Quadratic_Inequalities/testlib.h Time_Puzzle/testlib.h)",
-      "Bash(cp Quadratic_Inequalities/testlib.h Purification/testlib.h)"
+      "Bash(cp Quadratic_Inequalities/testlib.h Purification/testlib.h)",
+      "Bash(xelatex -interaction=nonstopmode -halt-on-error tutorial.tex)",
+      "Bash(echo \"exit code: $?\")"
     ],
     "additionalDirectories": [
       "\\tmp",
