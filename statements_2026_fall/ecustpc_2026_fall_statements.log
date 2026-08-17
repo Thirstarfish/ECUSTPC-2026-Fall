@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  17 AUG 2026 07:31
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  17 AUG 2026 19:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1217,7 +1217,7 @@ Package rerunfilecheck Info: File `ecustpc_2026_fall_statements.out' has not cha
 Here is how much of TeX's memory you used:
  34240 strings out of 467805
  761889 string characters out of 5426925
- 1401450 words of memory out of 5000000
+ 1401451 words of memory out of 5000000
  62691 multiletter control sequences out of 15000+600000
  641459 words of font info for 146 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
