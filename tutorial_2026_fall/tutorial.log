@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  17 AUG 2026 03:21
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.8.12)  19 AUG 2026 02:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1081,7 +1081,8 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box148
 \tcb@temp=\box149
 \tcb@temp=\box150
-) (d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerfontthemeprofessionalfonts.sty) (./College.sty (d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty) (d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerinnerthemecircles.sty))
+) (d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerfontthemeprofessionalfonts.sty) (./College.sty (d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerouterthemesmootheamerouterthemesmoothbars.sty)
+(d:/texlive/2026/texmf-dist/tex/latex/beamer/beamerinnerthemecircles.sty))
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "Fira Code/I" (it probably
@@ -1091,7 +1092,8 @@ Package fontspec Info:
 Package fontspec Info: 
 (fontspec)             Font family 'FiraCode(0)' created for font 'Fira Code'
 (fontspec)             with options
-(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=WordSpace].
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
+Space].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
@@ -1129,12 +1131,16 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Microsoft
 (fontspec)             YaHei/BI/OT:script=hani;language=dflt;"
 
- (./tutorial.aux)
-\openout1 = `tutorial.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+(./tutorial.aux)
+Runaway argument?
+{\headcommand {\slid 
+! File ended while scanning use of \@writefile.
+<inserted text> 
+                \par 
+l.64 \begin{document}
+                     
+? cmsy/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
@@ -1429,10 +1435,10 @@ Package rerunfilecheck Info: File `tutorial.out' has not changed.
 (rerunfilecheck)             Checksum: 03CADF8326E94544C2F7B488B9D4BA50;3609.
  ) 
 Here is how much of TeX's memory you used:
- 35349 strings out of 467805
- 803180 string characters out of 5426925
- 1325727 words of memory out of 5000000
- 63753 multiletter control sequences out of 15000+600000
+ 35361 strings out of 467805
+ 804004 string characters out of 5426925
+ 1325919 words of memory out of 5000000
+ 63765 multiletter control sequences out of 15000+600000
  667467 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,20n,123p,583b,984s stack positions out of 10000i,1000n,20000p,200000b,200000s

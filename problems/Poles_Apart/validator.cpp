@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     int run = inf.readInt(0, 0, "run");
     inf.readEoln();
-    int n = inf.readInt(1, 200000, "n");
+    int n = inf.readInt(200000, 200000, "n");
     inf.readEoln();
     int seed = inf.readInt(0, 1000000000, "seed");
     inf.readEoln();

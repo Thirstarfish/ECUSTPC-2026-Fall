@@ -1,22 +1,22 @@
 # Fdb version 4
-["xdvipdfmx"] 1786922811.90366 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1786922812.84449 0
-  "ecustpc_2026_fall_statements.xdv" 1786922811 300996 c442b2258d7cd0e67343fbbd0294ed11 "xelatex"
+["xdvipdfmx"] 1787075455.16435 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1787075456.15789 0
+  "ecustpc_2026_fall_statements.xdv" 1787075454 301012 a14923e692b478023e4ca639d6d92b11 "xelatex"
   (generated)
   "ecustpc_2026_fall_statements.pdf"
   (rewritten before read)
-["xelatex"] 1786922808.51998 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1786922812.83024 0
-  "Problem_A_Synecdoche.tex" 1786904784 2889 fa446d7ba6722839620d1f055b9d40dd ""
-  "Problem_B_AIMC_Lab.tex" 1786922734 4444 0e0be45f107afe0f378ed4c163e25897 ""
-  "Problem_C_Split_Array.tex" 1786624260 1890 29270a916013a1e4979407a1c44c957a ""
-  "Problem_D_Unit_Distance.tex" 1786614870 1958 dd0d1100fb6db7d5b92078e2d1e8e9a8 ""
-  "Problem_E_Square_Free.tex" 1786530941 1508 bfe207e8719968b99ccea2d8bd0aa60f ""
-  "Problem_F_Quadratic_Inequalities.tex" 1786803285 1773 942bcaff272cb82a37a8734544cad749 ""
-  "Problem_G_Poles_Apart.tex" 1786611412 4461 1e22b9b38d177a363949452a0933c7af ""
-  "Problem_H_Light_Reflection.tex" 1786803106 3621 0780b840a4fb5920309d8dad6f7a1f9a ""
-  "Problem_I_Crystal_Collection.tex" 1786613711 2093 0148888c53f5786ada1dbe1f5749a260 ""
-  "Problem_J_Time_Puzzle.tex" 1786529340 2312 393024a10e13d1afa63ff68660b07b30 ""
+["xelatex"] 1787075451.5805 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1787075456.14251 0
+  "Problem_A_Synecdoche.tex" 1786983095 2893 91d667725a9becc5218d2079d3ba7191 ""
+  "Problem_B_AIMC_Lab.tex" 1786983108 4442 b940e86f3c336f5e78fc567dcd602f00 ""
+  "Problem_C_Split_Array.tex" 1786983115 1894 50054a535cec434a2bd9279be37391cf ""
+  "Problem_D_Unit_Distance.tex" 1786983120 1962 47e22da67f296dae9b4bbebde401ae5c ""
+  "Problem_E_Square_Free.tex" 1786983131 1508 bfe207e8719968b99ccea2d8bd0aa60f ""
+  "Problem_F_Quadratic_Inequalities.tex" 1786983138 1777 053369061bda09db54103046d7c09a00 ""
+  "Problem_G_Poles_Apart.tex" 1787075414 4046 ef47024a7870ed4aa87244aadfc764a9 ""
+  "Problem_H_Light_Reflection.tex" 1786983155 3625 cac6a263be23b7b15fc82b67059f4b78 ""
+  "Problem_I_Crystal_Collection.tex" 1786983192 2096 195f3beff517d185e140a1b1f84447c1 ""
+  "Problem_J_Time_Puzzle.tex" 1786983180 2315 9258c5d8c5462c7c65168b22d9886332 ""
   "Problem_K_Stable_Directions.tex" 1786524250 1867 45d771388e18ba820a95054ec47413ad ""
-  "Problem_L_Purification.tex" 1786831436 3091 e549feb5099e65d14224046a3074ce7d ""
+  "Problem_L_Purification.tex" 1786983161 3095 a97c7e0b5d71e9f65af59e8303bc3fa2 ""
   "Problem_M_Starlight_Station.tex" 1786614780 4479 99bf1fee21fb872642e39ddfdb9a3f46 ""
   "c:/Windows/Fonts/msyh.ttc" 1733887071 19704352 1e10e74402e59d54499af795caf0b135 ""
   "d:/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1786470206 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -219,9 +219,9 @@
   "d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1786475275 5962893 f080b9beb400f5ff5d0a3f740e6a6d8b ""
   "d:/texlive/2026/texmf.cnf" 1786474994 713 e69b156964470283e0530f5060668171 ""
   "ecustpc.sty" 1786476620 4217 c34e5424163cd1bbe9d77a5bd59ffb77 ""
-  "ecustpc_2026_fall_statements.aux" 1786922811 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
-  "ecustpc_2026_fall_statements.out" 1786922811 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
-  "ecustpc_2026_fall_statements.tex" 1786629311 2896 3ae1ed8fb182051c0ec743c3d3f2687f ""
+  "ecustpc_2026_fall_statements.aux" 1787075454 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
+  "ecustpc_2026_fall_statements.out" 1787075454 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
+  "ecustpc_2026_fall_statements.tex" 1786983052 2946 2429bd75f25faa31ef1202995553190c ""
   (generated)
   "ecustpc_2026_fall_statements.aux"
   "ecustpc_2026_fall_statements.log"
