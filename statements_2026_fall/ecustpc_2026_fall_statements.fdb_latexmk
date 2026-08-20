@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1787075455.16435 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1787075456.15789 0
-  "ecustpc_2026_fall_statements.xdv" 1787075454 301012 a14923e692b478023e4ca639d6d92b11 "xelatex"
+["xdvipdfmx"] 1787227379.10634 "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements.pdf" "ecustpc_2026_fall_statements" 1787227380.12024 0
+  "ecustpc_2026_fall_statements.xdv" 1787227378 301252 9e605619e1702823ece0ef632b186e6f "xelatex"
   (generated)
   "ecustpc_2026_fall_statements.pdf"
   (rewritten before read)
-["xelatex"] 1787075451.5805 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1787075456.14251 0
+["xelatex"] 1787227375.73814 "ecustpc_2026_fall_statements.tex" "ecustpc_2026_fall_statements.xdv" "ecustpc_2026_fall_statements" 1787227380.10503 0
   "Problem_A_Synecdoche.tex" 1786983095 2893 91d667725a9becc5218d2079d3ba7191 ""
   "Problem_B_AIMC_Lab.tex" 1786983108 4442 b940e86f3c336f5e78fc567dcd602f00 ""
   "Problem_C_Split_Array.tex" 1786983115 1894 50054a535cec434a2bd9279be37391cf ""
@@ -16,7 +16,7 @@
   "Problem_I_Crystal_Collection.tex" 1786983192 2096 195f3beff517d185e140a1b1f84447c1 ""
   "Problem_J_Time_Puzzle.tex" 1786983180 2315 9258c5d8c5462c7c65168b22d9886332 ""
   "Problem_K_Stable_Directions.tex" 1786524250 1867 45d771388e18ba820a95054ec47413ad ""
-  "Problem_L_Purification.tex" 1786983161 3095 a97c7e0b5d71e9f65af59e8303bc3fa2 ""
+  "Problem_L_Purification.tex" 1787227344 3135 fcfc136030863371bbedcd6125681d98 ""
   "Problem_M_Starlight_Station.tex" 1786614780 4479 99bf1fee21fb872642e39ddfdb9a3f46 ""
   "c:/Windows/Fonts/msyh.ttc" 1733887071 19704352 1e10e74402e59d54499af795caf0b135 ""
   "d:/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1786470206 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -218,9 +218,9 @@
   "d:/texlive/2026/texmf-dist/web2c/texmf.cnf" 1786468297 43815 bcd8835056a2dfac260166a1c9541261 ""
   "d:/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1786475275 5962893 f080b9beb400f5ff5d0a3f740e6a6d8b ""
   "d:/texlive/2026/texmf.cnf" 1786474994 713 e69b156964470283e0530f5060668171 ""
-  "ecustpc.sty" 1786476620 4217 c34e5424163cd1bbe9d77a5bd59ffb77 ""
-  "ecustpc_2026_fall_statements.aux" 1787075454 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
-  "ecustpc_2026_fall_statements.out" 1787075454 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
+  "ecustpc.sty" 1787204826 4227 26bb5b3afd8dd12435102b06e48b9aa4 ""
+  "ecustpc_2026_fall_statements.aux" 1787227378 10881 88a0af498c36844f5d2e3a9d587f300c "xelatex"
+  "ecustpc_2026_fall_statements.out" 1787227378 7611 7601e9143a338f026ac1692405ae9fcf "xelatex"
   "ecustpc_2026_fall_statements.tex" 1786983052 2946 2429bd75f25faa31ef1202995553190c ""
   (generated)
   "ecustpc_2026_fall_statements.aux"
