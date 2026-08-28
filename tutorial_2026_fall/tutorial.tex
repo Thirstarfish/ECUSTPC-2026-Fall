@@ -33,26 +33,26 @@
   coltext=white,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,
   boxrule=0pt,bottomrule=1pt,toprule=1pt,leftrule=1pt,rightrule=1pt}}
 
-\definecolor{Line1}{HTML}{FFFF00}
-\definecolor{Line2}{HTML}{0066FF}
-\definecolor{Line3}{HTML}{9966FF}
-\definecolor{Line4}{HTML}{33CC33}
-\definecolor{Line5}{HTML}{FF5050}
-\definecolor{Line6}{HTML}{99CCFF}
-\definecolor{Line7}{HTML}{CCCCCC}
-\definecolor{Line8}{HTML}{333333}
-\definecolor{Line9}{HTML}{FFCC66}
-\definecolor{Line10}{HTML}{CC00CC}
-\definecolor{Line11}{HTML}{CCFF66}
-\definecolor{Line12}{HTML}{3DC3B6}
-\definecolor{Line13}{HTML}{F4C2C2}
-\contestbox{\myboxi}{Line1}       \contestboxwhite{\myboxii}{Line2}
-\contestboxwhite{\myboxiii}{Line3} \contestbox{\myboxiv}{Line4}
-\contestboxwhite{\myboxv}{Line5} \contestbox{\myboxvi}{Line6}
-\contestbox{\myboxvii}{Line7}    \contestboxwhite{\myboxviii}{Line8}
-\contestbox{\myboxix}{Line9}     \contestboxwhite{\myboxx}{Line10}
-\contestbox{\myboxxi}{Line11}    \contestbox{\myboxxii}{Line12}
-\contestbox{\myboxxiii}{Line13}
+\definecolor{Line1}{HTML}{000080}
+\definecolor{Line2}{HTML}{AF6BFF}
+\definecolor{Line3}{HTML}{FFA500}
+\definecolor{Line4}{HTML}{008000}
+\definecolor{Line5}{HTML}{CCCCCC}
+\definecolor{Line6}{HTML}{0000FF}
+\definecolor{Line7}{HTML}{FFD700}
+\definecolor{Line8}{HTML}{008B8B}
+\definecolor{Line9}{HTML}{FFCCCC}
+\definecolor{Line10}{HTML}{333333}
+\definecolor{Line11}{HTML}{90DDCC}
+\definecolor{Line12}{HTML}{EE0000}
+\definecolor{Line13}{HTML}{886699}
+
+\contestboxwhite{\myboxi}{Line1}   \contestboxwhite{\myboxii}{Line2}  \contestboxwhite{\myboxiii}{Line3}
+\contestboxwhite{\myboxiv}{Line4}  \contestbox{\myboxv}{Line5}   \contestboxwhite{\myboxvi}{Line6}
+\contestbox{\myboxvii}{Line7} \contestboxwhite{\myboxviii}{Line8} \contestbox{\myboxix}{Line9}
+\contestboxwhite{\myboxx}{Line10}  \contestbox{\myboxxi}{Line11} \contestboxwhite{\myboxxii}{Line12}
+\contestboxwhite{\myboxxiii}{Line13}
+
 
 \newcommand{\TT}[1]{{\ttfamily #1}}
 \newcommand{\BF}[1]{\textbf{#1}}
@@ -76,6 +76,7 @@
 \section{总体}
 \subsection{难度与知识点}
 \begin{frame}{难度预估}
+
   \begin{center}
   \large
   \begin{tabular}{cc}
@@ -83,10 +84,10 @@
     难度 & 题号 \\
     \midrule
     Easy & \myboxx{\BF{\TT{J}}}\ \myboxvi{\BF{\TT{F}}}\\
-    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxix{\BF{\TT{L}}}\ \myboxxii{\BF{\TT{H}}}\\
-    Medium & \myboxviii{\BF{\TT{I}}}\ \myboxiv{\BF{\TT{A}}}\ \myboxi{\BF{\TT{D}}}\\
-    MediumHard & \myboxxiii{\BF{\TT{E}}}\ \myboxv{\BF{\TT{B}}}\ \myboxxi{\BF{\TT{G}}}\\
-    Hard & \myboxii{\BF{\TT{M}}}\ \myboxvii{\BF{\TT{K}}}\\
+    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxxii{\BF{\TT{L}}}\ \myboxviii{\BF{\TT{H}}}\\
+    Medium & \myboxix{\BF{\TT{I}}}\ \myboxi{\BF{\TT{A}}}\ \myboxiv{\BF{\TT{D}}}\\
+    MediumHard & \myboxv{\BF{\TT{E}}}\ \myboxii{\BF{\TT{B}}}\ \myboxvii{\BF{\TT{G}}}\\
+    Hard & \myboxxiii{\BF{\TT{M}}}\ \myboxxi{\BF{\TT{K}}}\\
     \bottomrule
   \end{tabular}
   \end{center}
@@ -106,7 +107,7 @@
     \myboxiii{\BF{\TT{C}}} & 二分答案，线性DP &
     \myboxx{\BF{\TT{J}}} & 语法\\
     \myboxiv{\BF{\TT{D}}} & 构造 &
-    \myboxxi{\BF{\TT{K}}} & 凸包，旋转卡壳，线段树\\
+    \myboxxi{\BF{\TT{K}}} & 线段树维护凸包，旋转卡壳\\
     \myboxv{\BF{\TT{E}}} & 莫比乌斯反演，线性筛 &
     \myboxxii{\BF{\TT{L}}} & 拓扑排序\\
     \myboxvi{\BF{\TT{F}}} & 区间并 &
@@ -118,15 +119,16 @@
 \end{frame}
 
 % A
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line1}
+\section[A]{Problem A -- 纽约提喻法}
+\subsection{A 纽约提喻法}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxi{\BF{\TT{A}}} \BF{纽约提喻法}\end{center}
   长度 $L\le 10^{18}$ 的小写字符串中，至多 $500$ 个位置被指定字符；
   给出总长度不超过 $100$ 的禁止串，求合法字符串数。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line1}
-\section[A]{Problem A -- 纽约提喻法}
-\subsection{A 纽约提喻法}
 \begin{frame}{AC 自动机}
   要求字符串中不出现某些特定子串，是经典的 AC 自动机应用场景：
 
@@ -190,15 +192,16 @@
 \end{frame}}
 
 % B
+{\setbeamercolor{frametitle}{fg=white,bg=Line2}
+\section[B]{Problem B -- AIMC 实验室}
+\subsection{B AIMC 实验室}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxii{\BF{\TT{B}}} \BF{AIMC 实验室}\end{center}
   三维网格每个点选择 $0/1$ 态。除了单点奖励外，
   距离平方为 $1,3$ 的邻域在满足全异态条件、距离平方为 $2$ 的邻域在满足全同态条件也有奖励。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line2}
-\section[B]{Problem B -- AIMC 实验室}
-\subsection{B AIMC 实验室}
+
 \begin{frame}{二分图翻转}
   注意到每个点与曼哈顿距离为 1，3 的点需要全部不同才能获得奖励，而距离为 2 的点需要全部相同才能获得奖励。这是一个设计非常刻意的条件。
   
@@ -236,6 +239,9 @@
 \end{frame}}
 
 % C
+{\setbeamercolor{frametitle}{fg=white,bg=Line3}
+\section[C]{Problem C -- 一分为二 2}
+\subsection{C 一分为二 2}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxiii{\BF{\TT{C}}} \BF{一分为二 2}\end{center}
   任选切分点 $k$，得到
@@ -245,9 +251,7 @@
   从中选恰好 $m$ 个互不相邻元素，最大化所选元素的最小值。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line3}
-\section[C]{Problem C -- 一分为二 2}
-\subsection{C 一分为二 2}
+
 \begin{frame}{二分答案与前后缀}
   考虑二分答案。问题变成：新数组中能否取出互不相邻的 $m$ 个元素，使得其中最小的大于等于 $mid$。
 
@@ -274,6 +278,9 @@
 \end{frame}}
 
 % D
+{\setbeamercolor{frametitle}{fg=white,bg=Line4}
+\section[D]{Problem D -- 位距！？}
+\subsection{D 位距！？}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxiv{\BF{\TT{D}}} \BF{位距！？}\end{center}
   构造 $n\le5000$ 个平面点，点间距离至少 $10^{-4}$，
@@ -284,9 +291,7 @@
   对点的距离恰好为 $1$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line4}
-\section[D]{Problem D -- 位距！？}
-\subsection{D 位距！？}
+
 \begin{frame}{二进制超立方体投影}
   令 $K=\lceil\log_2n\rceil\le13$，$\varepsilon=2\times10^{-4}$，
   并定义单位向量
@@ -322,6 +327,9 @@
 \end{frame}}
 
 % E
+{\setbeamercolor{frametitle}{fg=black,bg=Line5}
+\section[E]{Problem E -- 根除}
+\subsection{E 根除}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxv{\BF{\TT{E}}} \BF{根除}\end{center}
   定义 $f(n)$ 为 $n=ab^2$ 中最小的 $a$。这就是 $n$ 的平方自由核。
@@ -332,9 +340,7 @@
   但至多 $10$ 个询问的右端点超过 $10^7$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line5}
-\section[E]{Problem E -- 根除}
-\subsection{E 根除}
+
 \begin{frame}{数论变形}
   令
   \[
@@ -391,6 +397,9 @@
 \end{frame}}
 
 % F
+{\setbeamercolor{frametitle}{fg=white,bg=Line6}
+\section[F]{Problem F -- 凸包}
+\subsection{F 凸包}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxvi{\BF{\TT{F}}} \BF{凸包}\end{center}
   给出 $n$ 个严格一元二次不等式
@@ -400,9 +409,7 @@
   判断是否存在同时满足它们的整数 $x$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line6}
-\section[F]{Problem F -- 凸包}
-\subsection{F 凸包}
+
 \begin{frame}{每条不等式都是区间限制}
   记 $q(x)=ax^2+bx+c$。
   \begin{itemize}
@@ -425,15 +432,16 @@
 \end{frame}}
 
 % G
+{\setbeamercolor{frametitle}{fg=black,bg=Line7}
+\section[G]{Problem G -- 星之彼端}
+\subsection{G 星之彼端}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxvii{\BF{\TT{G}}} \BF{星之彼端}\end{center}
   通信题。第一次运行选出 $200000$ 个诱导四元环；
   第二次收到其中一个环删去任意一点后的三元组，需恢复环编号。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line7}
-\section[G]{Problem G -- 星之彼端}
-\subsection{G 星之彼端}
+
 \begin{frame}{唯一解码条件}
   若任意两个输出的四元环至多共享两个顶点，则它们不会共享一个三元组。
   对每个选中环的四个三元组排序后建立哈希表
@@ -468,15 +476,16 @@
 \end{frame}}
 
 % H
+{\setbeamercolor{frametitle}{fg=white,bg=Line8}
+\section[H]{Problem H -- 一般攻击魔法}
+\subsection{H 一般攻击魔法}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxviii{\BF{\TT{H}}} \BF{一般攻击魔法}\end{center}
   空格子可填正斜杠镜、反斜杠镜或保持空，而已有的镜子不能改。
   判断能否令光线从给定边界端口射入后，恰好从目标端口射出并输出方案。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line8}
-\section[H]{Problem H -- 一般攻击魔法}
-\subsection{H 一般攻击魔法}
+
 \begin{frame}{把每个格子拆成四个端口}
   每个格子拆为 $U,D,L,R$ 四个节点；相邻格子对应节点连无向边：
   \[
@@ -513,15 +522,16 @@
 \end{frame}
 
 % I
+{\setbeamercolor{frametitle}{fg=black,bg=Line9}
+\section[I]{Problem I -- 天外来物}
+\subsection{I 天外来物}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxix{\BF{\TT{I}}} \BF{天外来物}\end{center}
   依任意顺序采集一条链上的水晶。采集一个点会翻转尚未采集的相邻点能量，
   求最大总能量。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line9}
-\section[I]{Problem I -- 天外来物}
-\subsection{I 天外来物}
+
 \begin{frame}{符号系数与奇偶条件}
   考虑一颗水晶被采集的时候，其权值会被乘以一个系数，这个系数要么是 $1$，要么是 $-1$。
 
@@ -588,15 +598,16 @@
 \end{frame}}
 
 % J
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line10}
+\section[J]{Problem J -- 时间谜题 2}
+\subsection{J 时间谜题 2}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxx{\BF{\TT{J}}} \BF{时间谜题 2}\end{center}
   将非负整数时间 $A{:}B$ 规范化为唯一的
   $0\le h<24$、$0\le m<60$ 的标准时间。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line10}
-\section[J]{Problem J -- 时间谜题 2}
-\subsection{J 时间谜题 2}
 \begin{frame}{直接按总分钟数取模}
   两种等价操作都不改变总分钟数
   \[
@@ -617,6 +628,9 @@
 \end{frame}}
 
 % K
+{\setbeamercolor{frametitle}{fg=black,bg=Line11}
+\section[K]{Problem K -- 永世沙漏}
+\subsection{K 永世沙漏}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxi{\BF{\TT{K}}} \BF{永世沙漏}\end{center}
   给定逆时针简单多边形，统计稳定方向 $d$。
@@ -624,9 +638,7 @@
   使多边形中每一点都能沿 $d$ 方向直达 $l$ 而不离开多边形。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line11}
-\section[K]{Problem K -- 永世沙漏}
-\subsection{K 永世沙漏}
+
 \begin{frame}{投影坐标下的充要条件}
   对候选整数方向 $\mathbf d=(a,b)$，令
   \[
@@ -693,15 +705,16 @@
 \end{frame}}
 
 % L
+{\setbeamercolor{frametitle}{fg=white,bg=Line12}
+\section[L]{Problem L -- 净化行动 3}
+\subsection{L 净化行动 3}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxii{\BF{\TT{L}}} \BF{净化行动 3}\end{center}
   无限棋盘上有若干炮。若同一行或列中两个炮之间恰好隔一个炮，
   它们互相攻击。每次只能删除当前未受攻击的炮，判断能否删空。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line12}
-\section[L]{Problem L -- 净化行动 3}
-\subsection{L 净化行动 3}
+
 \begin{frame}{同一行或列的结构}
   将同一横线或纵线上的炮按坐标排序。
   \begin{itemize}
@@ -730,81 +743,95 @@
 \end{frame}}
 
 % M
-\begin{frame}{题意概述}
-  \begin{center}试题 \myboxxiii{\BF{\TT{M}}} \BF{魔女审判}\end{center}
-  树上每个点有一个当前唯一的权值。支持单点换权；
-  查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条向上路径的并。
-\end{frame}
-
-{\setbeamercolor{frametitle}{fg=black,bg=Line13}
+{\setbeamercolor{frametitle}{fg=white,bg=Line13}
 \section[M]{Problem M -- 魔女审判}
 \subsection{M 魔女审判}
-\begin{frame}{查询先确定关键端点}
-  离线收集初值和所有更新值并离散化，维护一棵按权值建的线段树。
-  每个节点记录
-  \[
-    (cnt,\ \sum dep,\ \text{最浅深度及其个数和节点},\ \text{一个最深节点}).
-  \]
-  查询 $[l,r]$ 前先检查
-  \[
-    cnt=r-l+1.
-  \]
-  否则某个整数权值不存在，立刻为 \TT{NO}。最浅点还必须唯一；
-  记它为 $z$，取一个最深点为 $x$，并检查 $z$ 是 $x$ 的祖先。
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxxiii{\BF{\TT{M}}} \BF{魔女审判}\end{center}
+  树上每个点有一个当前唯一的权值。支持交换点权和对特定区间做一个变换。
+  查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条相交的向上路径的并。
 \end{frame}
 
-\begin{frame}{从深度和恢复另一条链}
-  令
-  \[
-    v=r-l+1,\quad len_1=dep_x-dep_z+1,\quad len_2=v-len_1.
-  \]
-  第一条 $z\to x$ 的深度和为
-  \[
-    S_1=dep_z\,len_1+\frac{len_1(len_1-1)}2.
-  \]
-  先用树链剖分确认整条 $z\to x$ 的权值都在 $[l,r]$。
-  若 $len_2=0$，直接为 \TT{YES}。
-
-  \vspace{0.5em}
-  否则另一端点 $y$ 的深度唯一：
-  \[
-    dep_y=\frac{\sum dep-S_1+len_2(len_2-1)/2}{len_2}.
-  \]
-  要求整除且 $dep_z+len_2\le dep_y\le dep_x$。
-\end{frame}
-
-\begin{frame}{定位 $y$ 并验证}
-  对每个深度维护当前权值的有序集合。主链 $z\to x$ 在深度 $dep_y$
-  有唯一节点 $p$。合法时，$[l,r]$ 内该深度恰有两个节点：$p$ 与 $y$；
-  用 \TT{lower\_bound} 至多检查三个元素即可判断并找出 $y$。
-
-  \vspace{0.5em}
-  令 $w=\operatorname{LCA}(x,y)$，还需检查
-  \[
-    z\text{ 是 }y\text{ 的祖先},\qquad dep_w=dep_y-len_2.
-  \]
-  再验证 $w\to y$ 的每个点权都在 $[l,r]$。两条路径的并有
-  $len_1+len_2=v$ 个不同点，且全部落在值域内；由 $cnt=v$ 和权值唯一性，
-  该并集恰为查询集合。
-\end{frame}
-
-\begin{frame}{数据结构与复杂度}
-  同时维护：
+\begin{frame}{拆分条件}
+  记 $p_i$ 为权值为 $i$ 的点的结点编号。
+  翻译条件，可以总结出这样的充要条件：
   \begin{itemize}
-    \item 值域线段树：计数、深度和、最浅和最深节点；
-    \item 树链剖分上的线段树：路径权值最小值和最大值；
-    \item 每个深度一个 \TT{set}：定位给定值域内的候选节点；
-    \item 倍增 LCA。
+    \item $[l, r]$ 内没有真后代（即不含本身）点（记作极深点）的数量不大于 $2$。 
+    \item 若极深点数量为 $1$，记其为 $x$，区间内的 $\text{LCA}$ 为 $F$ 有 \[
+      \text{dep}_x - \text{dep}_F + 1 = r - l + 1.
+    \]
+    \item 若极深点数量为 $2$，记其为 $x$ 和 $y$，$B = \text{LCA}(x, y)$, $F$ 定义同上有 \[
+      \text{dep}_x+\text{dep}_y -\text{dep}_B-\text{dep}_F+1 = r - l + 1.
+    \]
   \end{itemize}
-  更新时同步修改三处。值域查询和更新为 $O(\log n)$，
-  两次树链查询为 $O(\log^2 n)$，总复杂度
+  因此要考虑维护的信息是：
+  \begin{itemize}
+    \item 区间 $[l, r]$ 内极深点。
+    \item 区间 LCA。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{合并和操作 2}
+  不难发现，区间内极深点数量随着区间扩展是单调不下降的，因此我们至多只需要维护 $2$ 个即可，而更多的情况都可以打一个 bad 标记。
+
+  而在合并两个集合的时候，新区间内的极深点必然只包含原先两个区间的极深点，合并是至多 $O(1)$ 的。
+
+  区间 LCA 维护区间内 DFS 序最大点和最小点，查询额外进行一次 LCA 即可，合并是 $O(1)$ 的，查询会用到一个 $\log n$。
+
+  考察操作 2，将序列划分为 $A:[p_1,p_{s_1})$, $B:[p_{s_1}, p_{s_2})$, $C:[p_{s_2}, p_{s_3}]$, $D:(p_{s_3}, p_n]$。
+
+  置换后 $p$ 序列会被变成：
   \[
-    O((n+q)\log^2 n).
+  A+B+C+D
+  \longrightarrow
+  A+\operatorname{rev}(C)+B+D
   \]
-\end{frame}}
+
+  这启发我们用平衡树维护序列 $p$，下以 Splay 为例。
+\end{frame}
+
+\begin{frame}{Splay 信息}
+  令 Splay 的中序遍历恰好为当前序列 $p_1,p_2,\ldots,p_n$。
+  对每个 Splay 子树维护下列信息：
+  \begin{itemize}
+    \item 子树大小 $\text{sz}$；
+    \item 子树内所有原树结点的 DFS 序最大点和最小点。
+    \item 至多两个极深点，若超过 $2$ 个则记录一个 bad 标记；
+    \item 区间翻转标记 $\text{rev}$。
+  \end{itemize}
+  Pushup的时候，只需要合并左右子树和本身的信息即可，这是 $O(1)$ 的。
+  注意上面的信息只和区间内集合有关，和区间内元素顺序无关，因此 reverse 的时候只需要打上 tag 做左右儿子 reverse 即可，不需要改信息。
+\end{frame}
+\begin{frame}{Splay 操作}
+  需要支持的操作包括：
+  \begin{itemize}
+    \item 取序列内第 $k$ 个结点；
+    \item 取 $x$ 在当前序列中的位置；
+    \item 将 $[l, r]$ 暴露为一棵子树；
+    \item 翻转一个区间；
+    \item 将一段连续区间插入到指定位置。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{处理给定操作和复杂度}
+  操作 1 即找到树上 $x$, $y$ 在序列上对应点后将这两个点 splay 到根结点和直接儿子，直接交换 pushup 即可。
+
+  操作 2 找到权值 $l$, $r$ 对应点 $u$, $v$ 后取 LCA，再倒回去取到序列上的 $k$，切分进行一次区间插入和翻转即可。
+
+  操作 3 暴露对应区间后直接考察子树信息即可。
+
+  Splay 的一次基本操作摊还复杂度为 $O(\log n)$，每个题目操作只需要常数次 Splay 操作及 LCA 查询，因此单次操作摊还复杂度还是 $O(\log n)$ 的。
+
+  总时间复杂度为 $O((n + q) \log n)$。
+  空间复杂度为 $O(n \log n)$。
+\end{frame}
+
+
+
+
 
 \section*{End}
-\begin{frame}{Thanks}
+\begin{frame}
   \begin{center}\Huge Thanks!\end{center}
 \end{frame}
 \end{document}

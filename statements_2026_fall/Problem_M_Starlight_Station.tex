@@ -10,103 +10,274 @@
 
 
 \begin{quote}
-	\textit{占位风味文本}
+	\textit{我宁可成为异端，也不愿背叛良知。}
 \end{quote}
 
 \subsection{题目描述}
 
-Celeste 国的航天事业正在蒸蒸日上！
+你拿着的三叉戟再次击中了村民，但这一次，当审判结束，你却发现自己已经找不到它了。
 
-近日，Celeste 国的航天工程师发射了第一个星光站，星光站共有 $n$ 个舱室，编号分别为 $1, 2, \ldots, n$，其中主舱室的编号为 $1$。每个舱室通过若干条双向管道相互连接，保证每个舱室都通过一条唯一的由双向管道组成的路径与主舱室相连（即形成一棵以 $1$ 为根的树），因此双向管道的数量为 $n - 1$。
+据你所知，你的三叉戟落在一棵有 $n$ 个结点以 $1$ 号结点为根的有根树 $T$。每个结点都有一个权值 $a_i$，并且任意时刻所有结点的权值都恰好构成 $1 \sim n$ 的一个排列。对于树上的两个结点 $u,v$，记它们之间的简单路径为 $P(u,v)$，注意此处 $u , v \in P(u, v)$。
 
-初始情况下，每个舱室 $i$ 中分别放有一份编号为 $a_i$ 的实验器材，保证所有 $a_i$ 互不相同。
+定义一个树上结点集合 $S$ 为一个\textbf{三叉}，当且仅当存在三个结点 $F$，$x$，$y$，满足：
 
-作为星光站主管，Maddy 收到了如下 $q$ 条按顺序发来的指令，她需要根据这些指令依次来进行实验，指令共分为两种：
+\begin{itemize}
+	\item $F$ 是 $x$ 的祖先或 $F=x$；
+	\item $F$ 是 $y$ 的祖先或 $F=y$；
+	\item $S = P(F,x)\cup P(F,y)$；
+	% \item 注意此处 $x = y$ 满足条件。
+\end{itemize}
 
-\begin{enumerate}
-	\item \BF{实验器材更新}：指令由两个参数 $i$ 和 $w$ 组成，表示将舱室 $i$ 中的原有实验器材丢弃，并更新为编号为 $w$ 的实验器材。
-	\begin{itemize}
-		\item 保证 $w$ 不和先前的任意一个 $w$ 相同，亦保证不与任意一个初始的 $a_i$ 相同（即所有出现过的器材编号全局两两不同）。
-	\end{itemize}
 
-	\item \BF{实验准备}：指令由两个参数 $l$ 和 $r$ 组成，表示需要寻找一组满足如下条件 $C(l, r)$ 的舱室 $x, y, z$ 并给出回答：
-	\begin{itemize}
-		\item 所有满足在 $x$ 到 $z$ 路径上，或 $y$ 到 $z$ 路径上的点组成的集合 $V$，恰好是整数区间 $[l, r]$ 内的所有数的一个排列（即集合 $V$ 中的器材编号恰好为 $l, l + 1, \ldots, r$，且每个出现一次）。
-		\item $z$ 在 $x$ 到主舱室的路径上，$z$ 在 $y$ 到主舱室的路径上（即 $z$ 是 $x$ 和 $y$ 的某个公共祖先，在根为 $1$ 的树中）。
-		\item $x$ 和 $y$，$x$ 和 $z$，以及 $y$ 和 $z$ 都可以相等。
-	\end{itemize}
-\end{enumerate}
+你需要按顺序处理 $q$ 次操作，操作共有三种：
 
-请帮助 Maddy 处理这些指令，并对于每个类型为\BF{实验准备}的指令给出回答。
+\textbf{操作 1：引雷}，给定两个结点 $x$ 和 $y$，交换它们当前的权值。
 
-注意评测时不会区分 \TT{YES} 和 \TT{NO} 的大小写，换言之当答案是肯定的时候输出 \TT{yes}、\TT{YES}、\TT{Yes}、\TT{YeS} 等都会被认为是正确的。
+\textbf{操作 2：审判}，给定两个不同的权值 $l$ 和 $r$，记 $a_u = l$, $a_v = r$，并且令 $F = \text{LCA}(u, v)$，$k = a_F$，此处的 $k$ 可以和 $u$ 或 $v$ 相等，$\text{LCA}$ 表示最近公共祖先。
+
+将 $l, r, k$ 从小到大排序，得到 $s_1 \le s_2 \le s_3$ 且多重集合 $\{s_1, s_2, s_3\} = \{l, r, k\}$。
+随后对所有的权值进行如下的变化，设操作前结点 $x$ 的权值为 $a_x$，操作后为 $a_x'$。
+
+此时定义
+\[
+a'_x=
+\begin{cases}
+a_x+(s_3-s_2+1), & s_1\le a_x<s_2,\\
+s_1+s_3-a_x, & s_2\le a_x\le s_3,\\
+a_x, & \text{otherwise}.
+\end{cases}
+\]
+
+随后对所有 $1 \le x \le n$ 的整数 $x$，同时令 $a_x \leftarrow a'_x$，可以证明操作前后序列始终是 $1 \sim n$ 的一个排列
+
+\textbf{操作 3：寻戟}，给定 $l \le r$，判断 $S=\{x \in \N, 1\le x \le n : l\le a_x\le r\}$ 是否是一个\textbf{三叉}。
+
+请依次回答所有\textbf{操作 3：寻戟}所提出的问题。
 
 \subsection{输入格式}
 
 第一行输入一个整数 $T$ ($1 \le T \le 10^3$)，表示测试数据的数量。
 
-每组测试数据第一行输入两个整数 $n$ 和 $q$ ($1 \le n, q \le 3 \times 10^5$)，表示星光站的舱室数量与指令数量。
+每组测试数据第一行输入两个整数 $n$ 和 $q$ ($1 \le n, q \le 10^5$)，表示树上的结点数量和操作的数量。
 
-随后 $n - 1$ 行每行输入两个整数 $u$ 和 $v$ ($1 \le u, v \le n$, $u \ne v$)，表示存在一条连接 $u$ 和 $v$ 的双向管道。
+随后 $n - 1$ 行每行输入两个整数 $u$ 和 $v$ ($1 \le u, v \le n$, $u \ne v$)，表示树上存在一条连接 $u$ 和 $v$ 的边。
 
-随后一行输入 $n$ 个整数 $a_1, a_2, \ldots, a_n$ ($1 \le a_i \le 10^9$)，分别表示舱室初始的实验器材编号。
+随后一行输入 $n$ 个整数 $a_1, a_2, \ldots, a_n$ ($1 \le a_i \le n$)，表示每个结点的权值。
 
-随后 $q$ 行每行表示一组依次进行的指令，第 $i$ 行首先输入一个字符 $\text{op}_i$（$\text{op}_i \in \{\text{U}, \text{E}\}$），表示指令类型，随后格式如下：
+随后 $q$ 行每行表示一次操作，第 $i$ 行首先输入一个整数 $\text{op}_i$ ($1 \le op_i \le 3$)，表示操作类型，随后格式如下：
 
 \begin{itemize}
-	\item 若 $\text{op}_i = \text{U}$，随后输入两个整数 $i, w$ ($1 \le i \le n$, $1 \le w \le 10^9$)，表示进行一次实验器材更新，将舱室 $i$ 中的原有实验器材丢弃，并更新为编号为 $w$ 的实验器材。
-	\item 若 $\text{op}_i = \text{E}$，随后输入两个整数 $l, r$ ($1 \le l \le r \le 10^9$)，表示进行一次实验准备。
+	\item 若 $\text{op}_i = 1$，随后输入两个整数 $x$ 和 $y$ ($1 \le x, y \le n$)，表示进行一次\textbf{操作 1：引雷}，交换 $x$ 和 $y$ 的权值。
+	\item 若 $\text{op}_i = 2$，随后输入两个整数 $l$ 和 $r$ ($1 \le l < r \le n$)，表示进行一次\textbf{操作 2：审判}，对权值再 $[l,r]$ 之间的结点权值做变换。
+	\item 若 $\text{op}_i = 3$，随后输入两个整数 $x$ 和 $y$ ($1 \le l \le r \le n$)，表示进行一次\textbf{操作 3：寻戟}，查询权值在 $[l,r]$ 之间的点是否构成一个\textbf{三叉}。
 \end{itemize}
 
-保证单组测试数据内，所有 $w$ 和所有 $a_i$ 两两不同。
+保证单组测试数据内，所有结点的权值构成 $1\sim n$ 的一个排列，给定的边形成一棵 $n$ 个结点的树。
 
-保证所有测试数据的 $\sum n \le 6 \times 10^5$，$\sum q \le 6 \times 10^5$。
+保证所有测试数据的 $\sum n \le 3 \times 10^5$，$\sum q \le 3 \times 10^5$。
 
 \subsection{输出格式}
 
-对于每组测试数据中指令类型为\BF{实验准备}的指令输出一行一个字符串：
+对于每组测试数据中指令类型为\textbf{操作 3：寻戟}的指令输出一行一个字符串：
 
 \begin{itemize}
-	\item 若存在一组如此合法的 $(x, y, z)$，则输出 \TT{YES}；
+	\item 若$S=\{x \in \N : l\le a_x\le r\}$ 是一个\textbf{三叉}，则输出 \TT{YES}；
 	\item 反之则输出 \TT{NO}。
 \end{itemize}
 
+注意评测时不会区分 \TT{YES} 和 \TT{NO} 的大小写，换言之当答案是肯定的时候输出 \TT{yes}、\TT{YES}、\TT{Yes}、\TT{YeS} 等都会被认为是正确的。
+
+
 \subsection{样例 1}
 
+
 \begin{minipage}{\linewidth}
-	\begin{minipage}[t]{0.49\linewidth}
-		\begin{lstlisting}[title=\texttt{standard input}]
+    \begin{minipage}[t]{0.49\linewidth}
+        \begin{lstlisting}[title=\texttt{standard input}]
 1
-6 7
+7 6
 1 2
 1 3
-1 4
-4 5
-4 6
-5 3 2 4 6 7
-E 4 7
-E 3 7
-E 3 4
-E 3 5
-U 5 1
-E 1 6
-E 1 3
-\end{lstlisting}
-	\end{minipage}
-	\begin{minipage}[t]{0.49\linewidth}
-		\begin{lstlisting}[title=\texttt{standard output}]
+2 4
+2 5
+3 6
+3 7
+4 2 6 1 3 5 7
+3 1 3
+3 1 5
+2 1 7
+3 4 7
+1 4 5
+3 5 7
+        \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\linewidth}
+        \begin{lstlisting}[title=\texttt{standard output}]
 YES
 NO
 YES
 YES
-NO
-NO
-YES
-\end{lstlisting}
-	\end{minipage}
+        \end{lstlisting}
+    \end{minipage}
 \end{minipage}
 
 
 \subsection{样例 1 解释}
 
-占位样例解释
+\begin{figure}[htbp]
+    \centering
+
+% ---------- (a) 初始状态 ----------
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \begin{tikzpicture}[
+        scale=0.90,
+        transform shape,
+        level 1/.style={sibling distance=3.0cm},
+        level 2/.style={sibling distance=1.65cm},
+        level distance=1.55cm,
+        villager/.style={
+            circle,
+            draw=black,
+            thick,
+            minimum size=0.8cm,
+            font=\bfseries
+        },
+        edge from parent/.style={draw=black, thick}
+    ]
+    \node[villager, label={[text=blue]above:$a_1=4$}] {1}
+        child {
+            node[villager, label={[text=blue]left:$a_2=2$}] {2}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-2mm]below:$a_4=1$}] {4}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-4mm]below:$a_5=3$}] {5}
+            }
+        }
+        child {
+            node[villager, label={[text=blue]right:$a_3=6$}] {3}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=4mm]below:$a_6=5$}] {6}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=2mm]below:$a_7=7$}] {7}
+            }
+        };
+    \end{tikzpicture}
+    \caption{初始状态}
+\end{subfigure}\hfill%
+% ---------- (b) 执行 J(1,7) 后 ----------
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \begin{tikzpicture}[
+        scale=0.90,
+        transform shape,
+        level 1/.style={sibling distance=3.0cm},
+        level 2/.style={sibling distance=1.65cm},
+        level distance=1.55cm,
+        villager/.style={
+            circle,
+            draw=black,
+            thick,
+            minimum size=0.8cm,
+            font=\bfseries
+        },
+        edge from parent/.style={draw=black, thick}
+    ]
+    \node[villager, label={[text=blue]above:$a_1=4$}] {1}
+        child {
+            node[villager, label={[text=blue]left:$a_2=6$}] {2}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-2mm]below:$a_4=5$}] {4}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-4mm]below:$a_5=7$}] {5}
+            }
+        }
+        child {
+            node[villager, label={[text=blue]right:$a_3=2$}] {3}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=4mm]below:$a_6=3$}] {6}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=2mm]below:$a_7=1$}] {7}
+            }
+        };
+    \end{tikzpicture}
+    \caption{执行 $J(1,7)$ 后}
+\end{subfigure}\hfill%
+% ---------- (c) 再执行 L(4,5) 后 ----------
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \begin{tikzpicture}[
+        scale=0.90,
+        transform shape,
+        level 1/.style={sibling distance=3.0cm},
+        level 2/.style={sibling distance=1.65cm},
+        level distance=1.55cm,
+        villager/.style={
+            circle,
+            draw=black,
+            thick,
+            minimum size=0.8cm,
+            font=\bfseries
+        },
+        edge from parent/.style={draw=black, thick}
+    ]
+    \node[villager, label={[text=blue]above:$a_1=4$}] {1}
+        child {
+            node[villager, label={[text=blue]left:$a_2=6$}] {2}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-2mm]below:$a_4=7$}] {4}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=-4mm]below:$a_5=5$}] {5}
+            }
+        }
+        child {
+            node[villager, label={[text=blue]right:$a_3=2$}] {3}
+            child {
+                node[villager,
+                    label={[text=blue,xshift=4mm]below:$a_6=3$}] {6}
+            }
+            child {
+                node[villager,
+                    label={[text=blue,xshift=2mm]below:$a_7=1$}] {7}
+            }
+        };
+    \end{tikzpicture}
+    \caption{再执行 $L(4,5)$ 后}
+\end{subfigure}
+
+    \caption{第 $1$ 组样例样例中两次权值变化前后的示意图}
+\end{figure}
+
+
+
+
+对于第 $1$ 组样例的第三次寻戟，经过前一次审判操作后，当前各结点的权值为$(a_1,a_2,\ldots,a_7)=(4,6,2,5,7,3,1)$。
+
+此时权值 $4,5,6,7$ 分别位于结点 $1, 4, 2, 5$，因此 $S=\{1,2,4,5\}$。
+
+取 $F = 1$，$x = 4$，$y = 5$，依次验证条件：
+
+\begin{itemize}
+	\item 结点 $1$ 是结点 $4$ 的祖先。
+	\item 结点 $1$ 是结点 $5$ 的祖先。
+	\item $P(1,4)\cup P(1,5) = \{1,2,4\} \cup \{1,2,5\} = S$。
+\end{itemize}
+
+因此 $S$ 是一个\textbf{三叉}。
+

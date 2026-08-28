@@ -1,0 +1,43 @@
+# C/C++ build artifacts
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.pdb
+
+# LaTeX auxiliary and build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.snm
+*.synctex.gz
+*.synctex.gz.sum.synctex
+*.toc
+*.xdv
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# CMake and other generated build directories
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+build/
+bin/
+
+# Temporary files and local settings
+*.tmp
+*.bak
+*.swp
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
