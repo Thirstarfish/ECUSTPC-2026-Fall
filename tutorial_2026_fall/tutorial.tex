@@ -33,26 +33,26 @@
   coltext=white,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,
   boxrule=0pt,bottomrule=1pt,toprule=1pt,leftrule=1pt,rightrule=1pt}}
 
-\definecolor{Line1}{HTML}{FFFF00}
-\definecolor{Line2}{HTML}{0066FF}
-\definecolor{Line3}{HTML}{9966FF}
-\definecolor{Line4}{HTML}{33CC33}
-\definecolor{Line5}{HTML}{FF5050}
-\definecolor{Line6}{HTML}{99CCFF}
-\definecolor{Line7}{HTML}{CCCCCC}
-\definecolor{Line8}{HTML}{333333}
-\definecolor{Line9}{HTML}{FFCC66}
-\definecolor{Line10}{HTML}{CC00CC}
-\definecolor{Line11}{HTML}{CCFF66}
-\definecolor{Line12}{HTML}{3DC3B6}
-\definecolor{Line13}{HTML}{F4C2C2}
-\contestbox{\myboxi}{Line1}       \contestboxwhite{\myboxii}{Line2}
-\contestboxwhite{\myboxiii}{Line3} \contestbox{\myboxiv}{Line4}
-\contestboxwhite{\myboxv}{Line5} \contestbox{\myboxvi}{Line6}
-\contestbox{\myboxvii}{Line7}    \contestboxwhite{\myboxviii}{Line8}
-\contestbox{\myboxix}{Line9}     \contestboxwhite{\myboxx}{Line10}
-\contestbox{\myboxxi}{Line11}    \contestbox{\myboxxii}{Line12}
-\contestbox{\myboxxiii}{Line13}
+\definecolor{Line1}{HTML}{000080}
+\definecolor{Line2}{HTML}{AF6BFF}
+\definecolor{Line3}{HTML}{FFA500}
+\definecolor{Line4}{HTML}{008000}
+\definecolor{Line5}{HTML}{CCCCCC}
+\definecolor{Line6}{HTML}{0000FF}
+\definecolor{Line7}{HTML}{FFD700}
+\definecolor{Line8}{HTML}{008B8B}
+\definecolor{Line9}{HTML}{FFCCCC}
+\definecolor{Line10}{HTML}{333333}
+\definecolor{Line11}{HTML}{90DDCC}
+\definecolor{Line12}{HTML}{EE0000}
+\definecolor{Line13}{HTML}{886699}
+
+\contestboxwhite{\myboxi}{Line1}   \contestboxwhite{\myboxii}{Line2}  \contestboxwhite{\myboxiii}{Line3}
+\contestboxwhite{\myboxiv}{Line4}  \contestbox{\myboxv}{Line5}   \contestboxwhite{\myboxvi}{Line6}
+\contestbox{\myboxvii}{Line7} \contestboxwhite{\myboxviii}{Line8} \contestbox{\myboxix}{Line9}
+\contestboxwhite{\myboxx}{Line10}  \contestbox{\myboxxi}{Line11} \contestboxwhite{\myboxxii}{Line12}
+\contestboxwhite{\myboxxiii}{Line13}
+
 
 \newcommand{\TT}[1]{{\ttfamily #1}}
 \newcommand{\BF}[1]{\textbf{#1}}
@@ -76,6 +76,7 @@
 \section{总体}
 \subsection{难度与知识点}
 \begin{frame}{难度预估}
+
   \begin{center}
   \large
   \begin{tabular}{cc}
@@ -83,10 +84,10 @@
     难度 & 题号 \\
     \midrule
     Easy & \myboxx{\BF{\TT{J}}}\ \myboxvi{\BF{\TT{F}}}\\
-    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxix{\BF{\TT{L}}}\ \myboxxii{\BF{\TT{H}}}\\
-    Medium & \myboxviii{\BF{\TT{I}}}\ \myboxiv{\BF{\TT{A}}}\ \myboxi{\BF{\TT{D}}}\\
-    MediumHard & \myboxxiii{\BF{\TT{E}}}\ \myboxv{\BF{\TT{B}}}\ \myboxxi{\BF{\TT{G}}}\\
-    Hard & \myboxii{\BF{\TT{M}}}\ \myboxvii{\BF{\TT{K}}}\\
+    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxxii{\BF{\TT{L}}}\ \myboxviii{\BF{\TT{H}}}\\
+    Medium & \myboxix{\BF{\TT{I}}}\ \myboxi{\BF{\TT{A}}}\ \myboxiv{\BF{\TT{D}}}\\
+    MediumHard & \myboxv{\BF{\TT{E}}}\ \myboxii{\BF{\TT{B}}}\ \myboxvii{\BF{\TT{G}}}\\
+    Hard & \myboxxiii{\BF{\TT{M}}}\ \myboxxi{\BF{\TT{K}}}\\
     \bottomrule
   \end{tabular}
   \end{center}
@@ -106,7 +107,7 @@
     \myboxiii{\BF{\TT{C}}} & 二分答案，线性DP &
     \myboxx{\BF{\TT{J}}} & 语法\\
     \myboxiv{\BF{\TT{D}}} & 构造 &
-    \myboxxi{\BF{\TT{K}}} & 凸包，旋转卡壳，线段树\\
+    \myboxxi{\BF{\TT{K}}} & 线段树维护凸包，旋转卡壳\\
     \myboxv{\BF{\TT{E}}} & 莫比乌斯反演，线性筛 &
     \myboxxii{\BF{\TT{L}}} & 拓扑排序\\
     \myboxvi{\BF{\TT{F}}} & 区间并 &
@@ -118,15 +119,16 @@
 \end{frame}
 
 % A
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line1}
+\section[A]{Problem A -- 纽约提喻法}
+\subsection{A 纽约提喻法}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxi{\BF{\TT{A}}} \BF{纽约提喻法}\end{center}
   长度 $L\le 10^{18}$ 的小写字符串中，至多 $500$ 个位置被指定字符；
   给出总长度不超过 $100$ 的禁止串，求合法字符串数。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line1}
-\section[A]{Problem A -- 纽约提喻法}
-\subsection{A 纽约提喻法}
 \begin{frame}{AC 自动机}
   要求字符串中不出现某些特定子串，是经典的 AC 自动机应用场景：
 
@@ -190,15 +192,16 @@
 \end{frame}}
 
 % B
+{\setbeamercolor{frametitle}{fg=white,bg=Line2}
+\section[B]{Problem B -- AIMC 实验室}
+\subsection{B AIMC 实验室}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxii{\BF{\TT{B}}} \BF{AIMC 实验室}\end{center}
   三维网格每个点选择 $0/1$ 态。除了单点奖励外，
   距离平方为 $1,3$ 的邻域在满足全异态条件、距离平方为 $2$ 的邻域在满足全同态条件也有奖励。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line2}
-\section[B]{Problem B -- AIMC 实验室}
-\subsection{B AIMC 实验室}
+
 \begin{frame}{二分图翻转}
   注意到每个点与曼哈顿距离为 1，3 的点需要全部不同才能获得奖励，而距离为 2 的点需要全部相同才能获得奖励。这是一个设计非常刻意的条件。
   
@@ -236,6 +239,9 @@
 \end{frame}}
 
 % C
+{\setbeamercolor{frametitle}{fg=white,bg=Line3}
+\section[C]{Problem C -- 一分为二 2}
+\subsection{C 一分为二 2}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxiii{\BF{\TT{C}}} \BF{一分为二 2}\end{center}
   任选切分点 $k$，得到
@@ -245,9 +251,7 @@
   从中选恰好 $m$ 个互不相邻元素，最大化所选元素的最小值。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line3}
-\section[C]{Problem C -- 一分为二 2}
-\subsection{C 一分为二 2}
+
 \begin{frame}{二分答案与前后缀}
   考虑二分答案。问题变成：新数组中能否取出互不相邻的 $m$ 个元素，使得其中最小的大于等于 $mid$。
 
@@ -274,6 +278,9 @@
 \end{frame}}
 
 % D
+{\setbeamercolor{frametitle}{fg=white,bg=Line4}
+\section[D]{Problem D -- 位距！？}
+\subsection{D 位距！？}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxiv{\BF{\TT{D}}} \BF{位距！？}\end{center}
   构造 $n\le5000$ 个平面点，点间距离至少 $10^{-4}$，
@@ -284,9 +291,7 @@
   对点的距离恰好为 $1$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line4}
-\section[D]{Problem D -- 位距！？}
-\subsection{D 位距！？}
+
 \begin{frame}{二进制超立方体投影}
   令 $K=\lceil\log_2n\rceil\le13$，$\varepsilon=2\times10^{-4}$，
   并定义单位向量
@@ -322,6 +327,9 @@
 \end{frame}}
 
 % E
+{\setbeamercolor{frametitle}{fg=black,bg=Line5}
+\section[E]{Problem E -- 根除}
+\subsection{E 根除}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxv{\BF{\TT{E}}} \BF{根除}\end{center}
   定义 $f(n)$ 为 $n=ab^2$ 中最小的 $a$。这就是 $n$ 的平方自由核。
@@ -332,9 +340,7 @@
   但至多 $10$ 个询问的右端点超过 $10^7$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line5}
-\section[E]{Problem E -- 根除}
-\subsection{E 根除}
+
 \begin{frame}{数论变形}
   令
   \[
@@ -391,6 +397,9 @@
 \end{frame}}
 
 % F
+{\setbeamercolor{frametitle}{fg=white,bg=Line6}
+\section[F]{Problem F -- 凸包}
+\subsection{F 凸包}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxvi{\BF{\TT{F}}} \BF{凸包}\end{center}
   给出 $n$ 个严格一元二次不等式
@@ -400,9 +409,7 @@
   判断是否存在同时满足它们的整数 $x$。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line6}
-\section[F]{Problem F -- 凸包}
-\subsection{F 凸包}
+
 \begin{frame}{每条不等式都是区间限制}
   记 $q(x)=ax^2+bx+c$。
   \begin{itemize}
@@ -425,15 +432,16 @@
 \end{frame}}
 
 % G
+{\setbeamercolor{frametitle}{fg=black,bg=Line7}
+\section[G]{Problem G -- 星之彼端}
+\subsection{G 星之彼端}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxvii{\BF{\TT{G}}} \BF{星之彼端}\end{center}
   通信题。第一次运行选出 $200000$ 个诱导四元环；
   第二次收到其中一个环删去任意一点后的三元组，需恢复环编号。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line7}
-\section[G]{Problem G -- 星之彼端}
-\subsection{G 星之彼端}
+
 \begin{frame}{唯一解码条件}
   若任意两个输出的四元环至多共享两个顶点，则它们不会共享一个三元组。
   对每个选中环的四个三元组排序后建立哈希表
@@ -468,15 +476,16 @@
 \end{frame}}
 
 % H
+{\setbeamercolor{frametitle}{fg=white,bg=Line8}
+\section[H]{Problem H -- 一般攻击魔法}
+\subsection{H 一般攻击魔法}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxviii{\BF{\TT{H}}} \BF{一般攻击魔法}\end{center}
   空格子可填正斜杠镜、反斜杠镜或保持空，而已有的镜子不能改。
   判断能否令光线从给定边界端口射入后，恰好从目标端口射出并输出方案。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line8}
-\section[H]{Problem H -- 一般攻击魔法}
-\subsection{H 一般攻击魔法}
+
 \begin{frame}{把每个格子拆成四个端口}
   每个格子拆为 $U,D,L,R$ 四个节点；相邻格子对应节点连无向边：
   \[
@@ -513,15 +522,16 @@
 \end{frame}
 
 % I
+{\setbeamercolor{frametitle}{fg=black,bg=Line9}
+\section[I]{Problem I -- 天外来物}
+\subsection{I 天外来物}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxix{\BF{\TT{I}}} \BF{天外来物}\end{center}
   依任意顺序采集一条链上的水晶。采集一个点会翻转尚未采集的相邻点能量，
   求最大总能量。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line9}
-\section[I]{Problem I -- 天外来物}
-\subsection{I 天外来物}
+
 \begin{frame}{符号系数与奇偶条件}
   考虑一颗水晶被采集的时候，其权值会被乘以一个系数，这个系数要么是 $1$，要么是 $-1$。
 
@@ -588,15 +598,16 @@
 \end{frame}}
 
 % J
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line10}
+\section[J]{Problem J -- 时间谜题 2}
+\subsection{J 时间谜题 2}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxx{\BF{\TT{J}}} \BF{时间谜题 2}\end{center}
   将非负整数时间 $A{:}B$ 规范化为唯一的
   $0\le h<24$、$0\le m<60$ 的标准时间。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=white,bg=Line10}
-\section[J]{Problem J -- 时间谜题 2}
-\subsection{J 时间谜题 2}
 \begin{frame}{直接按总分钟数取模}
   两种等价操作都不改变总分钟数
   \[
@@ -617,6 +628,9 @@
 \end{frame}}
 
 % K
+{\setbeamercolor{frametitle}{fg=black,bg=Line11}
+\section[K]{Problem K -- 永世沙漏}
+\subsection{K 永世沙漏}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxi{\BF{\TT{K}}} \BF{永世沙漏}\end{center}
   给定逆时针简单多边形，统计稳定方向 $d$。
@@ -624,9 +638,7 @@
   使多边形中每一点都能沿 $d$ 方向直达 $l$ 而不离开多边形。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line11}
-\section[K]{Problem K -- 永世沙漏}
-\subsection{K 永世沙漏}
+
 \begin{frame}{投影坐标下的充要条件}
   对候选整数方向 $\mathbf d=(a,b)$，令
   \[
@@ -693,15 +705,16 @@
 \end{frame}}
 
 % L
+{\setbeamercolor{frametitle}{fg=white,bg=Line12}
+\section[L]{Problem L -- 净化行动 3}
+\subsection{L 净化行动 3}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxii{\BF{\TT{L}}} \BF{净化行动 3}\end{center}
   无限棋盘上有若干炮。若同一行或列中两个炮之间恰好隔一个炮，
   它们互相攻击。每次只能删除当前未受攻击的炮，判断能否删空。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line12}
-\section[L]{Problem L -- 净化行动 3}
-\subsection{L 净化行动 3}
+
 \begin{frame}{同一行或列的结构}
   将同一横线或纵线上的炮按坐标排序。
   \begin{itemize}
@@ -730,15 +743,16 @@
 \end{frame}}
 
 % M
+{\setbeamercolor{frametitle}{fg=white,bg=Line13}
+\section[M]{Problem M -- 魔女审判}
+\subsection{M 魔女审判}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxiii{\BF{\TT{M}}} \BF{魔女审判}\end{center}
   树上每个点有一个当前唯一的权值。支持单点换权；
   查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条向上路径的并。
 \end{frame}
 
-{\setbeamercolor{frametitle}{fg=black,bg=Line13}
-\section[M]{Problem M -- 魔女审判}
-\subsection{M 魔女审判}
+
 \begin{frame}{查询先确定关键端点}
   离线收集初值和所有更新值并离散化，维护一棵按权值建的线段树。
   每个节点记录
