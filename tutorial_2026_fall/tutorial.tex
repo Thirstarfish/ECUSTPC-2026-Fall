@@ -748,77 +748,90 @@
 \subsection{M 魔女审判}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxxiii{\BF{\TT{M}}} \BF{魔女审判}\end{center}
-  树上每个点有一个当前唯一的权值。支持单点换权；
-  查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条向上路径的并。
+  树上每个点有一个当前唯一的权值。支持交换点权和对特定区间做一个变换。
+  查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条相交的向上路径的并。
 \end{frame}
 
-
-\begin{frame}{查询先确定关键端点}
-  离线收集初值和所有更新值并离散化，维护一棵按权值建的线段树。
-  每个节点记录
-  \[
-    (cnt,\ \sum dep,\ \text{最浅深度及其个数和节点},\ \text{一个最深节点}).
-  \]
-  查询 $[l,r]$ 前先检查
-  \[
-    cnt=r-l+1.
-  \]
-  否则某个整数权值不存在，立刻为 \TT{NO}。最浅点还必须唯一；
-  记它为 $z$，取一个最深点为 $x$，并检查 $z$ 是 $x$ 的祖先。
-\end{frame}
-
-\begin{frame}{从深度和恢复另一条链}
-  令
-  \[
-    v=r-l+1,\quad len_1=dep_x-dep_z+1,\quad len_2=v-len_1.
-  \]
-  第一条 $z\to x$ 的深度和为
-  \[
-    S_1=dep_z\,len_1+\frac{len_1(len_1-1)}2.
-  \]
-  先用树链剖分确认整条 $z\to x$ 的权值都在 $[l,r]$。
-  若 $len_2=0$，直接为 \TT{YES}。
-
-  \vspace{0.5em}
-  否则另一端点 $y$ 的深度唯一：
-  \[
-    dep_y=\frac{\sum dep-S_1+len_2(len_2-1)/2}{len_2}.
-  \]
-  要求整除且 $dep_z+len_2\le dep_y\le dep_x$。
-\end{frame}
-
-\begin{frame}{定位 $y$ 并验证}
-  对每个深度维护当前权值的有序集合。主链 $z\to x$ 在深度 $dep_y$
-  有唯一节点 $p$。合法时，$[l,r]$ 内该深度恰有两个节点：$p$ 与 $y$；
-  用 \TT{lower\_bound} 至多检查三个元素即可判断并找出 $y$。
-
-  \vspace{0.5em}
-  令 $w=\operatorname{LCA}(x,y)$，还需检查
-  \[
-    z\text{ 是 }y\text{ 的祖先},\qquad dep_w=dep_y-len_2.
-  \]
-  再验证 $w\to y$ 的每个点权都在 $[l,r]$。两条路径的并有
-  $len_1+len_2=v$ 个不同点，且全部落在值域内；由 $cnt=v$ 和权值唯一性，
-  该并集恰为查询集合。
-\end{frame}
-
-\begin{frame}{数据结构与复杂度}
-  同时维护：
+\begin{frame}{拆分条件}
+  记 $p_i$ 为权值为 $i$ 的点的结点编号。
+  翻译条件，可以总结出这样的充要条件：
   \begin{itemize}
-    \item 值域线段树：计数、深度和、最浅和最深节点；
-    \item 树链剖分上的线段树：路径权值最小值和最大值；
-    \item 每个深度一个 \TT{set}：定位给定值域内的候选节点；
-    \item 倍增 LCA。
+    \item $[l, r]$ 内没有真后代（即不含本身）点（记作极深点）的数量不大于 $2$。 
+    \item 若极深点数量为 $1$，记其为 $x$，区间内的 $\text{LCA}$ 为 $F$ 有 \[
+      \text{dep}_x - \text{dep}_F + 1 = r - l + 1.
+    \]
+    \item 若极深点数量为 $2$，记其为 $x$ 和 $y$，$B = \text{LCA}(x, y)$, $F$ 定义同上有 \[
+      \text{dep}_x+\text{dep}_y -\text{dep}_B-\text{dep}_F+1 = r - l + 1.
+    \]
   \end{itemize}
-  更新时同步修改三处。值域查询和更新为 $O(\log n)$，
-  两次树链查询为 $O(\log^2 n)$，总复杂度
+  因此要考虑维护的信息是：
+  \begin{itemize}
+    \item 区间 $[l, r]$ 内极深点。
+    \item 区间 LCA。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{合并和操作 2}
+  不难发现，区间内极深点数量随着区间扩展是单调不下降的，因此我们至多只需要维护 $2$ 个即可，而更多的情况都可以打一个 bad 标记。
+
+  而在合并两个集合的时候，新区间内的极深点必然只包含原先两个区间的极深点，合并是至多 $O(1)$ 的。
+
+  区间 LCA 维护区间内 DFS 序最大点和最小点，查询额外进行一次 LCA 即可，合并是 $O(1)$ 的，查询会用到一个 $\log n$。
+
+  考察操作 2，将序列划分为 $A:[p_1,p_{s_1})$, $B:[p_{s_1}, p_{s_2})$, $C:[p_{s_2}, p_{s_3}]$, $D:(p_{s_3}, p_n]$。
+
+  置换后 $p$ 序列会被变成：
   \[
-    O((n+q)\log^2 n).
+  A+B+C+D
+  \longrightarrow
+  A+\operatorname{rev}(C)+B+D
   \]
-\end{frame}}
+
+  这启发我们用平衡树维护序列 $p$，下以 Splay 为例。
+\end{frame}
+
+\begin{frame}{Splay 信息}
+  令 Splay 的中序遍历恰好为当前序列 $p_1,p_2,\ldots,p_n$。
+  对每个 Splay 子树维护下列信息：
+  \begin{itemize}
+    \item 子树大小 $\text{sz}$；
+    \item 子树内所有原树结点的 DFS 序最大点和最小点。
+    \item 至多两个极深点，若超过 $2$ 个则记录一个 bad 标记；
+    \item 区间翻转标记 $\text{rev}$。
+  \end{itemize}
+  Pushup的时候，只需要合并左右子树和本身的信息即可，这是 $O(1)$ 的。
+  注意上面的信息只和区间内集合有关，和区间内元素顺序无关，因此 reverse 的时候只需要打上 tag 做左右儿子 reverse 即可，不需要改信息。
+\end{frame}
+\begin{frame}{Splay 操作}
+  需要支持的操作包括：
+  \begin{itemize}
+    \item 取序列内第 $k$ 个结点；
+    \item 取 $x$ 在当前序列中的位置；
+    \item 将 $[l, r]$ 暴露为一棵子树；
+    \item 翻转一个区间；
+    \item 将一段连续区间插入到指定位置。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{处理给定操作和复杂度}
+  操作 1 即找到树上 $x$, $y$ 在序列上对应点后将这两个点 splay 到根结点和直接儿子，直接交换 pushup 即可。
+
+  操作 2 找到权值 $l$, $r$ 对应点 $u$, $v$ 后取 LCA，再倒回去取到序列上的 $k$，切分进行一次区间插入和翻转即可。
+
+  操作 3 暴露对应区间后直接考察子树信息即可。
+
+  Splay 的一次基本操作摊还复杂度为 $O(\log n)$，每个题目操作只需要常数次 Splay 操作及 LCA 查询，因此单次操作摊还复杂度还是 $O(\log n)$ 的。
+
+  总时间复杂度为 $O((n + q) \log n)$。
+  空间复杂度为 $O(n \log n)$。
+\end{frame}
+
+
+
+
 
 \section*{End}
-\begin{frame}{Thanks}
+\begin{frame}
   \begin{center}\Huge Thanks!\end{center}
 \end{frame}
 \end{document}
