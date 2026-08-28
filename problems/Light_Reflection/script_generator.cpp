@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    mt19937 g(114514);
+    freopen("script.txt", "w", stdout);
+
+    auto seed = [&]() {
+        return g() % (INT_MAX - 1u) + 1u;
+    };
+    auto emit = [&](int mode) {
+        cout << "generator " << mode << ' ' << seed() << " > $\n";
+    };
+
+    emit(1);
+    for (int i = 0; i < 4; ++i) emit(2);
+    for (int i = 0; i < 3; ++i) emit(3);
+    for (int i = 0; i < 2; ++i) emit(4);
+    for (int i = 0; i < 4; ++i) emit(5);
+    emit(6);
+    emit(7);
+    for (int i = 0; i < 2; ++i) emit(8);
+    for (int i = 0; i < 2; ++i) emit(9);
+    for (int i = 0; i < 2; ++i) emit(10);
+    return 0;
+}

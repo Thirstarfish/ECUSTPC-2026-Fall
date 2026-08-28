@@ -1,0 +1,810 @@
+%!TEX program = xelatex
+\documentclass{beamer}
+
+\usepackage{ctex}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{array,booktabs,multicol,multirow,tabularx}
+\usepackage{listings}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usefonttheme{professionalfonts}
+\usepackage{College}
+\setmonofont{Fira Code}
+
+\author{ECUSTPC 2026 Fall 裁判组}
+\title{2026 年华东理工大学程序设计竞赛（秋季）\\试题分析}
+\institute{ECUST}
+\date{2026 年秋季}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+\newcommand{\contestbox}[2]{%
+  \newtcbox{#1}{on line,arc=0pt,outer arc=1pt,colback=#2,colframe=#2,
+  boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,boxrule=0pt,
+  bottomrule=1pt,toprule=1pt,leftrule=1pt,rightrule=1pt}}
+\newcommand{\contestboxwhite}[2]{%
+  \newtcbox{#1}{on line,arc=0pt,outer arc=1pt,colback=#2,colframe=#2,
+  coltext=white,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,
+  boxrule=0pt,bottomrule=1pt,toprule=1pt,leftrule=1pt,rightrule=1pt}}
+
+\definecolor{Line1}{HTML}{FFFF00}
+\definecolor{Line2}{HTML}{0066FF}
+\definecolor{Line3}{HTML}{9966FF}
+\definecolor{Line4}{HTML}{33CC33}
+\definecolor{Line5}{HTML}{FF5050}
+\definecolor{Line6}{HTML}{99CCFF}
+\definecolor{Line7}{HTML}{CCCCCC}
+\definecolor{Line8}{HTML}{333333}
+\definecolor{Line9}{HTML}{FFCC66}
+\definecolor{Line10}{HTML}{CC00CC}
+\definecolor{Line11}{HTML}{CCFF66}
+\definecolor{Line12}{HTML}{3DC3B6}
+\definecolor{Line13}{HTML}{F4C2C2}
+\contestbox{\myboxi}{Line1}       \contestboxwhite{\myboxii}{Line2}
+\contestboxwhite{\myboxiii}{Line3} \contestbox{\myboxiv}{Line4}
+\contestboxwhite{\myboxv}{Line5} \contestbox{\myboxvi}{Line6}
+\contestbox{\myboxvii}{Line7}    \contestboxwhite{\myboxviii}{Line8}
+\contestbox{\myboxix}{Line9}     \contestboxwhite{\myboxx}{Line10}
+\contestbox{\myboxxi}{Line11}    \contestbox{\myboxxii}{Line12}
+\contestbox{\myboxxiii}{Line13}
+
+\newcommand{\TT}[1]{{\ttfamily #1}}
+\newcommand{\BF}[1]{\textbf{#1}}
+\newcommand{\INF}{\mathrm{INF}}
+\lstset{basicstyle=\ttfamily\small,keywordstyle=\bfseries\color{deepblue},
+  stringstyle=\color{deepgreen},numbers=left,
+  numberstyle=\small\color{halfgray},frame=shadowbox}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{目录}
+  \scriptsize
+  \begin{multicols}{2}
+    \tableofcontents[sectionstyle=show,subsectionstyle=hide]
+  \end{multicols}
+\end{frame}
+
+\section{总体}
+\subsection{难度与知识点}
+\begin{frame}{难度预估}
+  \begin{center}
+  \large
+  \begin{tabular}{cc}
+    \toprule
+    难度 & 题号 \\
+    \midrule
+    Easy & \myboxx{\BF{\TT{J}}}\ \myboxvi{\BF{\TT{F}}}\\
+    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxix{\BF{\TT{L}}}\ \myboxxii{\BF{\TT{H}}}\\
+    Medium & \myboxviii{\BF{\TT{I}}}\ \myboxiv{\BF{\TT{A}}}\ \myboxi{\BF{\TT{D}}}\\
+    MediumHard & \myboxxiii{\BF{\TT{E}}}\ \myboxv{\BF{\TT{B}}}\ \myboxxi{\BF{\TT{G}}}\\
+    Hard & \myboxii{\BF{\TT{M}}}\ \myboxvii{\BF{\TT{K}}}\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{技巧表}
+  \scriptsize
+  \begin{center}
+  \begin{tabular}{cccc}
+    \toprule
+    题号 & 核心技巧 & 题号 & 核心技巧\\
+    \midrule
+    \myboxi{\BF{\TT{A}}} & AC 自动机，矩阵快速幂 &
+    \myboxviii{\BF{\TT{H}}} & 建图，BFS\\
+    \myboxii{\BF{\TT{B}}} & 二分图，最小割 &
+    \myboxix{\BF{\TT{I}}} & 贪心\\
+    \myboxiii{\BF{\TT{C}}} & 二分答案，线性DP &
+    \myboxx{\BF{\TT{J}}} & 语法\\
+    \myboxiv{\BF{\TT{D}}} & 构造 &
+    \myboxxi{\BF{\TT{K}}} & 凸包，旋转卡壳，线段树\\
+    \myboxv{\BF{\TT{E}}} & 莫比乌斯反演，线性筛 &
+    \myboxxii{\BF{\TT{L}}} & 拓扑排序\\
+    \myboxvi{\BF{\TT{F}}} & 区间并 &
+    \myboxxiii{\BF{\TT{M}}} & 树链剖分\\
+    \myboxvii{\BF{\TT{G}}} & 启发式算法 & &\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+% A
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxi{\BF{\TT{A}}} \BF{纽约提喻法}\end{center}
+  长度 $L\le 10^{18}$ 的小写字符串中，至多 $500$ 个位置被指定字符；
+  给出总长度不超过 $100$ 的禁止串，求合法字符串数。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line1}
+\section[A]{Problem A -- 纽约提喻法}
+\subsection{A 纽约提喻法}
+\begin{frame}{AC 自动机}
+  要求字符串中不出现某些特定子串，是经典的 AC 自动机应用场景：
+
+  \begin{itemize}
+    \item 将所有禁止子串 $s_i$ 插入到一棵 Trie 树中，若某个节点是某个 $s_i$ 的结尾，将其标记为 \texttt{end}=\texttt{true}。
+    \item 通过 BFS 建立 \texttt{fail} 指针，同时将 Trie 补全为确定的有限状态自动机。
+    \item 在建立 \texttt{fail} 的过程中，需通过 \texttt{end[u] |= end[fail[u]]} 将非法状态沿 \texttt{fail} 树向下传递——如果某个节点的状态后缀包含任意禁止串，则该节点本身也是非法状态。
+  \end{itemize}
+
+  经过处理后，每个合法节点在遇到字符 $c$ 时，都能以 $O(1)$ 的代价确定性地转移到唯一的后继状态。
+
+  \vspace{0.5em}
+  由于 $\sum|s_i|\le 100$，Trie 树中的节点总数 $V\le 101$。
+\end{frame}
+
+\begin{frame}{DP 状态与转移}
+  定义状态：$dp[t][u]$ 表示长度为 $t$ 的合法前缀在 AC 自动机上停留在节点 $u$ 的方案数。
+
+  \vspace{0.5em}
+  无限制位置转移：
+  \[
+    dp[t][v]=\sum_{u}\sum_{c=\texttt{a}}^{\texttt{z}}
+    \bigl[u\xrightarrow{c}v\text{ 且 }v\text{ 合法}\bigr]\cdot dp[t-1][u].
+  \]
+
+  \vspace{0.5em}
+  固定字符位置转移（第 $p$ 位为 $c$）：
+  \[
+    dp[p][v]=\sum_{u}\bigl[u\xrightarrow{c}v\text{ 且 }v\text{ 合法}\bigr]\cdot dp[p-1][u].
+  \]
+\end{frame}
+
+\begin{frame}{分段与转移矩阵}
+  由于 $L\le 10^{18}$，需要借助矩阵快速幂。
+
+  \vspace{0.5em}
+  $K$ 个约束位置将整个长度为 $L$ 的字符串划分为最多 $K+1$ 段无约束的“空白区间”：
+  \[
+    [1,p_1-1],\quad [p_1+1,p_2-1],\quad \ldots,\quad [p_K+1,L].
+  \]
+
+  \vspace{0.5em}
+  设转移矩阵为 $M$（$V\times V$），其中 $M_{u,v}$ 表示从合法节点 $u$ 走一步能到达合法节点 $v$ 的字符种类数。
+
+  \vspace{0.5em}
+  预先计算出 $M^{2^0},M^{2^1},\ldots,M^{2^{59}}$，共需约 $60$ 次矩阵乘矩阵（$O(60\cdot V^3)$）。
+\end{frame}
+
+\begin{frame}{向量倍增与复杂度}
+  维护当前的方案数分布向量 $\mathbf{v}$（大小为 $1\times V$，初始 $\mathbf{v}_{\text{root}}=1$）：
+
+  \begin{itemize}
+    \item 跨越长度为 $d$ 的无约束区间时，将 $d$ 进行二进制拆分，用向量 $\mathbf{v}$ 依次右乘对应的倍增矩阵 $M^{2^j}$。单次转移仅需向量乘矩阵（$O(V^2)$）。
+    \item 到达受限位置 $p_i$ 时，仅枚举固定字符 $c_i$ 对应的单步转移更新 $\mathbf{v}$。
+  \end{itemize}
+
+  处理完所有 $K$ 个约束及末尾空白段后，将向量 $\mathbf{v}$ 中所有合法状态的数值累加即为最终答案。
+
+  \vspace{0.5em}
+  时间复杂度 $O(V^3\log L + K V^2\log L)$。
+\end{frame}}
+
+% B
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxii{\BF{\TT{B}}} \BF{AIMC 实验室}\end{center}
+  三维网格每个点选择 $0/1$ 态。除了单点奖励外，
+  距离平方为 $1,3$ 的邻域在满足全异态条件、距离平方为 $2$ 的邻域在满足全同态条件也有奖励。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line2}
+\section[B]{Problem B -- AIMC 实验室}
+\subsection{B AIMC 实验室}
+\begin{frame}{二分图翻转}
+  注意到每个点与曼哈顿距离为 1，3 的点需要全部不同才能获得奖励，而距离为 2 的点需要全部相同才能获得奖励。这是一个设计非常刻意的条件。
+  
+  考虑采用网格图二分图的性质，将所有到 $(0,0,0)$ 的曼哈顿距离为奇数的点称作黑点，其余点称作白点。
+  
+  如果我们将所有白点的 1 态当作 0 态，0 态当作 1 态，三种限制条件都就会变成需要与其他点全部相同才能获得奖励。
+\end{frame}
+
+\begin{frame}{最小割建模（一）}
+首先，对于每个点 $u$ ，连从源点 $S$ 到 $u$ 的边和从 $u$ 到汇点 $T$ 连边。
+\vspace{0.5em}
+
+对所有黑点，与源点连边的最大流量（后简称权值）为 $A_1(u)$ ，和汇点的连边权值为 $A_2(u)$ 。
+\vspace{0.5em}
+
+对所有白点，和源点的连边权值为 $A_2(u)$ ，和汇点的连边权值为 $A_1(u)$ 。对每个点，只要割断其中一条边即可使得图不连通。
+\vspace{0.5em}
+
+先考虑 $u$ 与所有与其距离为 1 的点都为 0 态时获得的奖励。
+
+将上述所有点与虚点 $v$ 连一条权值为 $+\infty$ 的边，而 $v$ 与源点连一条权值为 $A_3(u)$ 的边。
+\end{frame}
+
+\begin{frame}{最小割建模（二）}
+这部分的含义是：只要有一条代表选择 1 的边还未被割掉，$S$ 就仍然汇经 $v$ 与 $T$ 连通。为此，只能割断权值为 $A_3(u)$ 的边。而如果所有代表1的边都被割掉，权值为 $A_3(u)$ 的边就不用割掉。
+\vspace{0.5em}
+
+雷同地，将上述所有点与虚点 $w$ 连一条权值为 $+\infty$ 的边，而 $w$ 与汇点连一条权值为 $A_4(u)$ 的边。这可以表示 $u$ 与所有与其曼哈顿距离为 1 的点都为 1 态时获得的奖励。
+\vspace{0.5em}
+
+剩下的四个条件的建模逻辑相似。
+\vspace{0.5em}
+
+时间复杂度 $O(Dinic)$ 。
+\end{frame}}
+
+% C
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxiii{\BF{\TT{C}}} \BF{一分为二 2}\end{center}
+  任选切分点 $k$，得到
+  \[
+    [a_1,\ldots,a_k,b_{k+1},\ldots,b_n].
+  \]
+  从中选恰好 $m$ 个互不相邻元素，最大化所选元素的最小值。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line3}
+\section[C]{Problem C -- 一分为二 2}
+\subsection{C 一分为二 2}
+\begin{frame}{二分答案与前后缀}
+  考虑二分答案。问题变成：新数组中能否取出互不相邻的 $m$ 个元素，使得其中最小的大于等于 $mid$。
+
+  \vspace{0.5em}
+  我们递推计算 $pre$，$suf$ 数组。其中 $pre_i$ 表示 $a$ 的前 $i$ 个数中最多能取出多少个大于等于 $mid$ 且互不相邻的数，$suf_i$ 表示 $a$ 的后 $n-i+1$ 个数中最多能取出多少个大于等于 $mid$ 且互不相邻的数。
+\end{frame}
+
+\begin{frame}{递推与拼合}
+  令 $pre_0=pre_{-1}=suf_{n+1}=suf_{n+2}=0$。有递推式
+
+  \[pre_i= \begin{cases}pre_{i-2}+1 ,& a_i \ge mid \\pre_{i-1},& a_i<mid \end{cases}\]
+
+  \[suf_i= \begin{cases}suf_{i+2}+1 ,& b_i \ge mid \\suf_{i+1},& b_i<mid \end{cases}\]
+
+  \vspace{0.5em}
+  最后，拼合前后缀可以得到答案
+  \[
+    ans=\max_{-1\le i\le n}\left(pre_i+suf_{i+2}\right).
+  \]
+  如果 $ans\ge m$ 则 $mid$ 合法。
+
+  \vspace{0.5em}
+  时间复杂度 $O(n\log n)$。
+\end{frame}}
+
+% D
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxiv{\BF{\TT{D}}} \BF{位距！？}\end{center}
+  构造 $n\le5000$ 个平面点，点间距离至少 $10^{-4}$，
+  并有至少
+  \[
+    \left\lfloor\tfrac12n\log_2n-n\right\rfloor
+  \]
+  对点的距离恰好为 $1$。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line4}
+\section[D]{Problem D -- 位距！？}
+\subsection{D 位距！？}
+\begin{frame}{二进制超立方体投影}
+  令 $K=\lceil\log_2n\rceil\le13$，$\varepsilon=2\times10^{-4}$，
+  并定义单位向量
+  \[
+    \vec v_j=\left(\sqrt{1-(\varepsilon2^j)^2},\ \varepsilon2^j\right)
+    \quad(0\le j<K).
+  \]
+  对 $i=0,1,\ldots,n-1$，输出
+  \[
+    P_i=\sum_{j=0}^{K-1}[\text{$i$ 的第 $j$ 位为 }1]\vec v_j.
+  \]
+  若仅第 $j$ 位不同，两点之差为 $\pm\vec v_j$，距离恰为 $1$。
+  同时 $y(P_i)=\varepsilon i$，所以不同点的纵坐标差至少
+  $2\times10^{-4}$。
+\end{frame}
+
+\begin{frame}{单位边计数}
+  每个 $i$ 的每个 $1$ 位可以清零，得到更小的合法编号并产生一条单位边。
+  因而单位边数至少
+  \[
+    F(n)=\sum_{i=0}^{n-1}\operatorname{popcount}(i).
+  \]
+  令 $n=2^q+r$，$0\le r<2^q$，有
+  \[
+    F(n)=q2^{q-1}+r+F(r).
+  \]
+  由此归纳得到
+  \[
+    F(n)\ge\tfrac12n\log_2n-n,
+  \]
+  正好达到要求。
+  构造时间 $O(n\log n)$。
+\end{frame}}
+
+% E
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxv{\BF{\TT{E}}} \BF{根除}\end{center}
+  定义 $f(n)$ 为 $n=ab^2$ 中最小的 $a$。这就是 $n$ 的平方自由核。
+  查询
+  \[
+    \sum_{i=l}^{r}f(i),\qquad r\le10^{12},
+  \]
+  但至多 $10$ 个询问的右端点超过 $10^7$。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line5}
+\section[E]{Problem E -- 根除}
+\subsection{E 根除}
+\begin{frame}{数论变形}
+  令
+  \[
+    F(N)=\sum_{i=1}^{N}f(i),\qquad T(x)=\frac{x(x+1)}2.
+  \]
+  平方自由数示性函数为 $\mu^2$，故
+  \[
+    F(N)=\sum_{b\le\sqrt N}\sum_{a\le N/b^2}a\mu^2(a).
+  \]
+  利用
+  \[
+    \mu^2(a)=\sum_{d^2\mid a}\mu(d)
+  \]
+  得到
+  \[
+    \sum_{a\le X}a\mu^2(a)
+    =\sum_{d\le\sqrt X}d^2\mu(d)
+      T\left(\left\lfloor\frac{X}{d^2}\right\rfloor\right).
+  \]
+\end{frame}
+
+\begin{frame}{合并平方因子}
+  令 $m=bd$ 并交换求和：
+  \[
+    F(N)=\sum_{m\le\sqrt N}g(m)
+      T\left(\left\lfloor\frac{N}{m^2}\right\rfloor\right),
+    \qquad
+    g(m)=\sum_{d\mid m}d^2\mu(d).
+  \]
+  $g$ 是积性函数，且
+  \[
+    g(m)=\prod_{p\mid m}(1-p^2).
+  \]
+  因此大端点只需枚举到 $\sqrt N\le10^6$。
+  每个询问回答 $F(r)-F(l-1)$，在模 $998244353$ 下计算。
+\end{frame}
+
+\begin{frame}{预处理与复杂度}
+  \begin{itemize}
+    \item 对 $N\le10^7$，线性筛出 $f(i)$ 并做前缀和。
+    \item 设 $p=\operatorname{lp}(i)$、$y=i/p$，则
+    \[
+      f(i)=
+      \begin{cases}
+        f(y)/p,&p\mid f(y);\\
+        f(y)p,&p\nmid f(y).
+      \end{cases}
+    \]
+    \item 对 $g$ 同样线性筛。若 $p\mid i$，$g(ip)=g(i)$；
+    否则乘上 $1-p^2$。
+  \end{itemize}
+  预处理 $O(10^7)$。小端点 $O(1)$；大端点 $O(\sqrt N)$，
+  至多约 $20$ 次，总枚举量不超过 $2\times10^7$。
+\end{frame}}
+
+% F
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxvi{\BF{\TT{F}}} \BF{凸包}\end{center}
+  给出 $n$ 个严格一元二次不等式
+  \[
+    a_ix^2+b_ix+c_i>0,
+  \]
+  判断是否存在同时满足它们的整数 $x$。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line6}
+\section[F]{Problem F -- 凸包}
+\subsection{F 凸包}
+\begin{frame}{每条不等式都是区间限制}
+  记 $q(x)=ax^2+bx+c$。
+  \begin{itemize}
+    \item $a<0$ 时，$q(x)>0$ 的整数解是一个连续区间，或为空。
+    \item $a>0$ 时，$q(x)\le0$ 的整数解是一个连续禁区，或为空。
+  \end{itemize}
+  先相交所有 $a<0$ 的可行区间，得到总候选区间 $[L,R]$；
+  再把所有 $a>0$ 的禁区合并，判断它们是否覆盖 $[L,R]$。
+
+  \vspace{0.5em}
+  若不存在 $a<0$ 的式子，直接输出 \TT{YES}：
+  取足够大的 $x$ 时所有开口向上的二次式均为正。
+
+  \vspace{0.5em}
+  严格不等号很重要：开口向上的式子必须删去 $q(x)\le0$，
+  根处取等同样不合法。
+
+  \vspace{0.5em}
+  时间$O(n\log n)$，空间 $O(n)$。
+\end{frame}}
+
+% G
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxvii{\BF{\TT{G}}} \BF{星之彼端}\end{center}
+  通信题。第一次运行选出 $200000$ 个诱导四元环；
+  第二次收到其中一个环删去任意一点后的三元组，需恢复环编号。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line7}
+\section[G]{Problem G -- 星之彼端}
+\subsection{G 星之彼端}
+\begin{frame}{唯一解码条件}
+  若任意两个输出的四元环至多共享两个顶点，则它们不会共享一个三元组。
+  对每个选中环的四个三元组排序后建立哈希表
+  \[
+    \{\text{三元组}\}\longrightarrow\{\text{输出编号}\},
+  \]
+  第二次运行即可唯一回答。
+
+  \vspace{0.5em}
+  因而任务变成：从所有诱导 $C_4$ 中选 $200000$ 个，
+  且四个三元组均不与已选环冲突。
+\end{frame}
+
+\begin{frame}{四元环枚举、启发式贪心及其增广}
+  枚举 $u$ ，找到所有从 $u$ 开始且长度为2的路径。如果存在终点相同的路径，说明四元环存在。然后判断另外两条边是否不存在即可。用邻接矩阵可 $O(1)$ 判边。
+
+  对每个三元组统计被多少四元环拥有，定义四元环的冲突度 = 它 $4$ 个三元组各自被多少个其他四元环共享之和。
+
+  按冲突度升序扫描，当前四元环的 $4$ 个三元组都空闲就选它、占用这 $4$ 个三元组。
+
+  最后，考虑对答案进行增广。如果一个未选择的环与已选择的环中只有一个矛盾，则将其替换。替换一轮之后再检测是否有新的可加入的环，将这些环加入。
+
+  进行一轮增广即可通过。
+\end{frame}
+
+\begin{frame}{时间复杂度与一些其他性质}
+  图的平均度数为 $d \approx \frac{2\vert{}E\vert{}}{\vert{}V\vert{}}$，图中诱导四元环的总数为 $C$ ，时间复杂度 $O(\vert{}V\vert{}^2 + \vert{}V\vert{}d^2 + C \log C)$ 。
+
+  出题组对若干种可能的启发式贪心策略做了研究，并尽可能保证了本题无法仅通过贪心直接通过。
+  
+  出题组在本地进行了 $1000$ 组随机图测试。如果将该做法能找到四元环的数量近似看作正态分布的话，这种做法无法通过的概率在 $10^{-10}$ 量级。如果采用更多轮次的增广的话，通过率还会更高。
+\end{frame}}
+
+% H
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxviii{\BF{\TT{H}}} \BF{一般攻击魔法}\end{center}
+  空格子可填正斜杠镜、反斜杠镜或保持空，而已有的镜子不能改。
+  判断能否令光线从给定边界端口射入后，恰好从目标端口射出并输出方案。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line8}
+\section[H]{Problem H -- 一般攻击魔法}
+\subsection{H 一般攻击魔法}
+\begin{frame}{把每个格子拆成四个端口}
+  每个格子拆为 $U,D,L,R$ 四个节点；相邻格子对应节点连无向边：
+  \[
+    R_{i,j}\leftrightarrow L_{i,j+1},\qquad
+    D_{i,j}\leftrightarrow U_{i+1,j}.
+  \]
+  每个格子对应的连边方法：
+\[
+  \begin{array}{c|c}
+    \text{填法}&\text{内部配对}\\ \hline
+    \text{.}&\text{全部六条边}\\
+    \text{/}&\text{U-L, D-R}\\
+    \text{\textbackslash}&\text{U-R, D-L}
+  \end{array}
+  \]
+  在此松弛图中从起点 BFS 到终点。
+\end{frame}}
+
+\begin{frame}{从最短路恢复填法}
+  恢复 BFS 的最短简单路径。若路径在空格中使用端口对：
+  \[
+  \begin{array}{c|c}
+    U-D\text{ 或 }L-R&\texttt{.}\\
+    U-L\text{ 或 }D-R&\texttt{/}\\
+    U-R\text{ 或 }D-L&\text{\textbackslash}
+  \end{array}
+  \]
+  就填入对应状态；未经过的格子无需修改。
+
+  \vspace{0.5em}
+  若最短路在同一空格的四元完全图内（下简称 $K_4$ ）内使用两次，取第一次和最后一次经过的端口，
+  $K_4$ 中有直接边，可以严格缩短路径，矛盾。
+  时间复杂度 $O(nm)$ 。
+\end{frame}
+
+% I
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxix{\BF{\TT{I}}} \BF{天外来物}\end{center}
+  依任意顺序采集一条链上的水晶。采集一个点会翻转尚未采集的相邻点能量，
+  求最大总能量。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line9}
+\section[I]{Problem I -- 天外来物}
+\subsection{I 天外来物}
+\begin{frame}{符号系数与奇偶条件}
+  考虑一颗水晶被采集的时候，其权值会被乘以一个系数，这个系数要么是 $1$，要么是 $-1$。
+
+  \vspace{0.5em}
+  先说结论：$-1$ 的个数的奇偶性一定与 $n-1$ 的奇偶性相同，且任何一个满足该条件的系数序列都能被取到。
+\end{frame}
+
+\begin{frame}{结论的证明（一）}
+  定义 $n-1$ 个布尔变量 $d_1,d_2,\ldots,d_{n-1}$，其中 $d_i=0$ 表示第 $i$ 个数比第 $i+1$ 个先取，$d_i=1$ 则表示第 $i+1$ 个数比第 $i$ 个先取。
+
+  \vspace{0.5em}
+  定义 $n$ 个布尔变量 $x_1,x_2,\ldots,x_n$，其中 $x_i=0$ 表示第 $i$ 个数被取走时系数为 $1$，$x_i=1$ 则表示第 $i$ 个数被取走时系数为 $-1$。
+
+  \vspace{0.5em}
+  有等式
+  \[
+    x_i=d_{i-1}\oplus d_i\oplus 1.
+  \]
+  特殊地，$x_1=d_1$，$x_n=d_{n-1}\oplus 1$。
+
+\end{frame}
+
+\begin{frame}{结论的证明（二）}
+  \vspace{0.5em}
+  求和得到
+  \[
+  \begin{aligned}
+    \bigoplus_{i=1}^n x_i &= (d_1)\\
+    &\quad \oplus (d_1\oplus d_2\oplus 1)\\
+    &\quad \oplus (d_2\oplus d_3\oplus 1)\\
+    &\quad \cdots\\
+    &\quad \oplus (d_{n-2}\oplus d_{n-1}\oplus 1)\\
+    &\quad \oplus (d_{n-1}\oplus 1).
+  \end{aligned}
+  \]
+  其中，每个 $d_i$ 都出现了两次，而 $1$ 恰好出现了 $n-1$ 次。
+
+  \vspace{0.5em}
+  因此，$x$ 中 $-1$ 的个数的奇偶性与 $n-1$ 的相同。
+\end{frame}
+
+\begin{frame}{结论的证明（三）}
+  接下来再说明为何任何一个满足该条件的系数序列都能被取到。
+
+  \vspace{0.5em}
+  首先，$d_1,d_2,\ldots,d_{n-1}$ 的取值是我们可以任意指定的。由于只有 $n-1$ 对偏序关系且彼此之间不成环，不可能产生矛盾。
+
+  \vspace{0.5em}
+  假设我们想要取到的序列 $x_1,x_2,\ldots,x_n$。
+
+  \vspace{0.5em}
+  令 $d_1=x_1$，$d_1$ 唯一确定后，$d_2$ 也可唯一确定，依此类推，对任意 $1\le i\le n-1$，我们可以根据 $x_i$ 解得唯一确定的 $d_i$。
+
+  \vspace{0.5em}
+  只要 $x_1,x_2,\ldots,x_{n-1}$ 被确定，由于 $x$ 中 $-1$ 的个数的奇偶性是确定的，根据前 $n-1$ 个值的结果，$x_n$ 也是确定的。至此得证。
+\end{frame}
+
+\begin{frame}{贪心取最优系数}
+  有了这个结论之后，考虑贪心。如果水晶中负数的个数的奇偶性与 $n-1$ 的奇偶性相同，那么可以取一个系数序列使得每个数都提供大于等于 $0$ 的贡献。
+
+  \vspace{0.5em}
+  而如果奇偶性不同，则让绝对值最小的数提供负的权值。
+  时间复杂度 $O(n)$ 。
+\end{frame}}
+
+% J
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxx{\BF{\TT{J}}} \BF{时间谜题 2}\end{center}
+  将非负整数时间 $A{:}B$ 规范化为唯一的
+  $0\le h<24$、$0\le m<60$ 的标准时间。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=white,bg=Line10}
+\section[J]{Problem J -- 时间谜题 2}
+\subsection{J 时间谜题 2}
+\begin{frame}{直接按总分钟数取模}
+  两种等价操作都不改变总分钟数
+  \[
+    60A+B
+  \]
+  模 $24\times60=1440$ 的值。因此
+  \[
+    t=(60A+B)\bmod1440,\qquad
+    h=\left\lfloor\frac{t}{60}\right\rfloor,\quad m=t\bmod60.
+  \]
+  也可写作
+  \[
+    h=(A+\lfloor B/60\rfloor)\bmod24,\qquad m=B\bmod60.
+  \]
+
+  \vspace{1em}
+  每组只需 $O(1)$。
+\end{frame}}
+
+% K
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxxi{\BF{\TT{K}}} \BF{永世沙漏}\end{center}
+  给定逆时针简单多边形，统计稳定方向 $d$。
+  需要找到一条垂直于 $d$ 的线 $l$，
+  使多边形中每一点都能沿 $d$ 方向直达 $l$ 而不离开多边形。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line11}
+\section[K]{Problem K -- 永世沙漏}
+\subsection{K 永世沙漏}
+\begin{frame}{投影坐标下的充要条件}
+  对候选整数方向 $\mathbf d=(a,b)$，令
+  \[
+    \mathbf e=(b,-a),\qquad X(P)=P\cdot\mathbf e,\qquad Y(P)=P\cdot\mathbf d.
+  \]
+  直线 $l$ 形如 $Y=c$，投影线平行 $\mathbf d$。
+
+  \vspace{0.5em}
+  稳定当且仅当：
+  \begin{enumerate}
+    \item 多边形关于 $X$ 单调，即每条 $X=\mathrm{const}$ 截线是线段；
+    \item 所有截线有公共点 $(X,c)$。
+  \end{enumerate}
+  若两条边界链为下链 $D$ 和上链 $U$，第二项等价于
+  \[
+    \max_{P\in D}Y(P)\le\min_{P\in U}Y(P).
+  \]
+\end{frame}
+
+\begin{frame}{候选方向只有线性个}
+  考虑凸包。稳定直线在 $X$ 的两个极值处接触凸包：
+  \begin{itemize}
+    \item 若某个接触面是一条边，则该边平行于 $\mathbf d$。
+    \item 若两端都是顶点，则这对顶点是凸包的一对对踵点，且
+    $\mathbf d$ 垂直于它们的连线。
+  \end{itemize}
+  因而只需枚举
+  \[
+    \text{凸包边方向}\quad\text{和}\quad
+    \text{凸包对踵点连线的垂直方向}.
+  \]
+  旋转卡壳在线性时间列出全部对踵关系。规范化、去重，并只保留
+  $a>0,b\ge0$ 的方向，候选数为 $O(n)$。
+\end{frame}
+
+\begin{frame}{快速验证一个候选}
+  对原多边形的循环顶点序列建立两棵线段树：
+  \begin{itemize}
+    \item 顶点树：节点维护顶点集合凸包，查询区间内 $P\cdot\mathbf d$、
+    $P\cdot\mathbf e$ 的最值；
+    \item 边树：节点维护边向量集合凸包，查询区间内
+    $\Delta P\cdot\mathbf e$ 的最值。
+  \end{itemize}
+  找到 $X$ 极值支撑面后，按原边界验证四段：
+  \[
+  L^-\to R^-:\Delta X\ge0,\quad R^-\to R^+:\Delta X=0,
+  \]
+  \[
+  R^+\to L^+:\Delta X\le0,\quad L^+\to L^-:\Delta X=0,
+  \]
+  最后检查下链的 $\max Y$ 不超过上链的 $\min Y$。
+\end{frame}
+
+\begin{frame}{复杂度与精度}
+  一个环形范围拆成至多两个普通区间，线段树访问 $O(\log n)$ 个节点；
+  每个局部凸包上二分支持函数极值，故一次验证 $O(\log^2 n)$。
+
+  \vspace{0.5em}
+  凸包、旋转卡壳与全部候选总计 $O(n)$，建树 $O(n\log n)$，总复杂度
+  \[
+    O(n\log^2 n).
+  \]
+  点和方向均使用整数表示，点积、叉积使用 \TT{\_\_int128}，避免浮点误差。
+\end{frame}}
+
+% L
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxxii{\BF{\TT{L}}} \BF{净化行动 3}\end{center}
+  无限棋盘上有若干炮。若同一行或列中两个炮之间恰好隔一个炮，
+  它们互相攻击。每次只能删除当前未受攻击的炮，判断能否删空。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line12}
+\section[L]{Problem L -- 净化行动 3}
+\subsection{L 净化行动 3}
+\begin{frame}{同一行或列的结构}
+  将同一横线或纵线上的炮按坐标排序。
+  \begin{itemize}
+    \item 若初始有至少 $4$ 个炮，则该线上的每个炮都与相隔一个的炮互相攻击，
+    它们一个也无法删除，答案必为 \TT{NO}。
+    \item 若恰有 $3$ 个炮，只有两端受攻击；中间炮必须先于两端删除。
+    \item 若至多 $2$ 个炮，没有攻击关系。
+  \end{itemize}
+  删除不会制造新的隔一个炮的攻击关系；只会消灭已有关系。
+\end{frame}
+
+\begin{frame}{拓扑序即删除顺序}
+  对每条恰有三个炮的横线或纵线，向中间炮到两个端点各连一条有向边。
+  所有约束同时满足当且仅当有向图无环。
+
+  \vspace{0.5em}
+  任意拓扑序中，一个点被删前，所有要求它先删除的中间炮都已消失，
+  因而它当前不受攻击；反之任何合法删除顺序也必须遵守这些边。
+
+  \vspace{0.5em}
+  按 $x$、按 $y$ 分组排序后建边，再拓扑排序：
+  \[
+    O(n\log n)
+  \]
+  时间、$O(n)$ 空间。
+\end{frame}}
+
+% M
+\begin{frame}{题意概述}
+  \begin{center}试题 \myboxxiii{\BF{\TT{M}}} \BF{魔女审判}\end{center}
+  树上每个点有一个当前唯一的权值。支持单点换权；
+  查询值域 $[l,r]$ 中所有权值所在节点，是否恰好组成两条向上路径的并。
+\end{frame}
+
+{\setbeamercolor{frametitle}{fg=black,bg=Line13}
+\section[M]{Problem M -- 魔女审判}
+\subsection{M 魔女审判}
+\begin{frame}{查询先确定关键端点}
+  离线收集初值和所有更新值并离散化，维护一棵按权值建的线段树。
+  每个节点记录
+  \[
+    (cnt,\ \sum dep,\ \text{最浅深度及其个数和节点},\ \text{一个最深节点}).
+  \]
+  查询 $[l,r]$ 前先检查
+  \[
+    cnt=r-l+1.
+  \]
+  否则某个整数权值不存在，立刻为 \TT{NO}。最浅点还必须唯一；
+  记它为 $z$，取一个最深点为 $x$，并检查 $z$ 是 $x$ 的祖先。
+\end{frame}
+
+\begin{frame}{从深度和恢复另一条链}
+  令
+  \[
+    v=r-l+1,\quad len_1=dep_x-dep_z+1,\quad len_2=v-len_1.
+  \]
+  第一条 $z\to x$ 的深度和为
+  \[
+    S_1=dep_z\,len_1+\frac{len_1(len_1-1)}2.
+  \]
+  先用树链剖分确认整条 $z\to x$ 的权值都在 $[l,r]$。
+  若 $len_2=0$，直接为 \TT{YES}。
+
+  \vspace{0.5em}
+  否则另一端点 $y$ 的深度唯一：
+  \[
+    dep_y=\frac{\sum dep-S_1+len_2(len_2-1)/2}{len_2}.
+  \]
+  要求整除且 $dep_z+len_2\le dep_y\le dep_x$。
+\end{frame}
+
+\begin{frame}{定位 $y$ 并验证}
+  对每个深度维护当前权值的有序集合。主链 $z\to x$ 在深度 $dep_y$
+  有唯一节点 $p$。合法时，$[l,r]$ 内该深度恰有两个节点：$p$ 与 $y$；
+  用 \TT{lower\_bound} 至多检查三个元素即可判断并找出 $y$。
+
+  \vspace{0.5em}
+  令 $w=\operatorname{LCA}(x,y)$，还需检查
+  \[
+    z\text{ 是 }y\text{ 的祖先},\qquad dep_w=dep_y-len_2.
+  \]
+  再验证 $w\to y$ 的每个点权都在 $[l,r]$。两条路径的并有
+  $len_1+len_2=v$ 个不同点，且全部落在值域内；由 $cnt=v$ 和权值唯一性，
+  该并集恰为查询集合。
+\end{frame}
+
+\begin{frame}{数据结构与复杂度}
+  同时维护：
+  \begin{itemize}
+    \item 值域线段树：计数、深度和、最浅和最深节点；
+    \item 树链剖分上的线段树：路径权值最小值和最大值；
+    \item 每个深度一个 \TT{set}：定位给定值域内的候选节点；
+    \item 倍增 LCA。
+  \end{itemize}
+  更新时同步修改三处。值域查询和更新为 $O(\log n)$，
+  两次树链查询为 $O(\log^2 n)$，总复杂度
+  \[
+    O((n+q)\log^2 n).
+  \]
+\end{frame}}
+
+\section*{End}
+\begin{frame}{Thanks}
+  \begin{center}\Huge Thanks!\end{center}
+\end{frame}
+\end{document}
