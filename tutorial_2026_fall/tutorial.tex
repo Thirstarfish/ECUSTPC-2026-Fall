@@ -45,13 +45,13 @@
 \definecolor{Line10}{HTML}{333333}
 \definecolor{Line11}{HTML}{90DDCC}
 \definecolor{Line12}{HTML}{EE0000}
-\definecolor{Line13}{HTML}{886699}
+\definecolor{Line13}{HTML}{8AB0FF}
 
-\contestboxwhite{\myboxi}{Line1}   \contestboxwhite{\myboxii}{Line2}  \contestboxwhite{\myboxiii}{Line3}
+\contestboxwhite{\myboxi}{Line1}   \contestboxwhite{\myboxii}{Line2}  \contestbox{\myboxiii}{Line3}
 \contestboxwhite{\myboxiv}{Line4}  \contestbox{\myboxv}{Line5}   \contestboxwhite{\myboxvi}{Line6}
 \contestbox{\myboxvii}{Line7} \contestboxwhite{\myboxviii}{Line8} \contestbox{\myboxix}{Line9}
 \contestboxwhite{\myboxx}{Line10}  \contestbox{\myboxxi}{Line11} \contestboxwhite{\myboxxii}{Line12}
-\contestboxwhite{\myboxxiii}{Line13}
+\contestbox{\myboxxiii}{Line13}
 
 
 \newcommand{\TT}[1]{{\ttfamily #1}}
@@ -86,8 +86,8 @@
     Easy & \myboxx{\BF{\TT{J}}}\ \myboxvi{\BF{\TT{F}}}\\
     EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxxii{\BF{\TT{L}}}\ \myboxviii{\BF{\TT{H}}}\\
     Medium & \myboxix{\BF{\TT{I}}}\ \myboxi{\BF{\TT{A}}}\ \myboxiv{\BF{\TT{D}}}\\
-    MediumHard & \myboxv{\BF{\TT{E}}}\ \myboxii{\BF{\TT{B}}}\ \myboxvii{\BF{\TT{G}}}\\
-    Hard & \myboxxiii{\BF{\TT{M}}}\ \myboxxi{\BF{\TT{K}}}\\
+    MediumHard & \myboxv{\BF{\TT{E}}}\ \myboxii{\BF{\TT{B}}}\ \myboxxiii{\BF{\TT{M}}}\\
+    Hard & \myboxvii{\BF{\TT{G}}}\ \myboxxi{\BF{\TT{K}}}\\
     \bottomrule
   \end{tabular}
   \end{center}
@@ -239,7 +239,7 @@
 \end{frame}}
 
 % C
-{\setbeamercolor{frametitle}{fg=white,bg=Line3}
+{\setbeamercolor{frametitle}{fg=black,bg=Line3}
 \section[C]{Problem C -- 一分为二 2}
 \subsection{C 一分为二 2}
 \begin{frame}{题意概述}
@@ -502,7 +502,7 @@
   \end{array}
   \]
   在此松弛图中从起点 BFS 到终点。
-\end{frame}}
+\end{frame}
 
 \begin{frame}{从最短路恢复填法}
   恢复 BFS 的最短简单路径。若路径在空格中使用端口对：
@@ -520,7 +520,7 @@
   $K_4$ 中有直接边，可以严格缩短路径，矛盾。
   时间复杂度 $O(nm)$ 。
 \end{frame}
-
+}
 % I
 {\setbeamercolor{frametitle}{fg=black,bg=Line9}
 \section[I]{Problem I -- 天外来物}
@@ -743,7 +743,7 @@
 \end{frame}}
 
 % M
-{\setbeamercolor{frametitle}{fg=white,bg=Line13}
+{\setbeamercolor{frametitle}{fg=black,bg=Line13}
 \section[M]{Problem M -- 魔女审判}
 \subsection{M 魔女审判}
 \begin{frame}{题意概述}
