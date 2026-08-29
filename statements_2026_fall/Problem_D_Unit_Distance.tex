@@ -23,7 +23,15 @@
 
 \subsection{题目描述}
 
-请在平面上选定 $n$ 个点，使得其中至少有 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 对点对的距离为 $1$。
+请在欧氏平面上构造一个 $n$ 个点的点集，使得：
+
+\begin{itemize}
+	\item 点的横纵坐标绝对值不超过 $10^9$；
+	\item 任意两点之间的欧氏距离不小于 $10^{-4}$；
+	\item 至少存在 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 个不同的无序欧氏点对的距离在 $[1 - 10^{-9}, 1 + 10^{-9}]$ 之间。
+\end{itemize}
+
+% 其中至少有 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 对点对的距离为 $1$。
 
 \subsection{输入格式}
 
@@ -37,12 +45,9 @@
 
 对于每组测试数据，输出 $n$ 行，每行输出两个实数 $x_i, y_i$ ($-10^9 \le x_i, y_i \le 10^9$)，表示第 $i$ 个点的坐标。
 
-你的输出将被视为正确，当且仅当：
+你的输出将被视为正确，当且仅当你的输出符合上面的三个条件。
 
-\begin{itemize}
-	\item 所有点之间的欧几里得距离 $d$ 满足 $d \ge 10^{-4}$。
-	\item 距离为 $1$ 的点对数量至少为 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$。具体而言，若点 $i$ 和点 $j$ 之间的欧几里得距离 $d$ 满足 $|d - 1| \le 10^{-9}$，则认为它们之间的距离为 $1$。
-\end{itemize}
+如果有多个合法的答案则你可以输出其中任意一个。
 
 \subsection{样例 1}
 
@@ -65,4 +70,12 @@
 
 \subsection{样例 1 解释}
 
-对于第一组测试数据，三个点中，每两个点之间的距离都是 $1$ 。
+对于第一组测试数据，前两个条件不难验证，对于第三个条件，有：
+
+\[d_{12} = 1, d_{13} = d_{23} = 1.000000000013476527219909191607\ldots \approx 1 + 1.3476 \times 10^{-11} \]
+
+因此每个点对都在误差范围内，$3 \ge \left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor = -1$。
+
+\subsection{提示}
+
+当 $n = 5000$ 时 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor = 25719$。

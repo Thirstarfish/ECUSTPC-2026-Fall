@@ -50,7 +50,7 @@ a_x, & \text{otherwise}.
 
 随后对所有 $1 \le x \le n$ 的整数 $x$，同时令 $a_x \leftarrow a'_x$，可以证明操作前后序列始终是 $1 \sim n$ 的一个排列
 
-\textbf{操作 3：寻戟}，给定 $l \le r$，判断 $S=\{x \in \N, 1\le x \le n : l\le a_x\le r\}$ 是否是一个\textbf{三叉}。
+\textbf{操作 3：寻戟}，给定 $l \le r$，判断 $S=\{x \in \N, 1\le x \le n \mid l\le a_x\le r\}$ 是否是一个\textbf{三叉}。
 
 请依次回答所有\textbf{操作 3：寻戟}所提出的问题。
 
@@ -81,7 +81,7 @@ a_x, & \text{otherwise}.
 对于每组测试数据中指令类型为\textbf{操作 3：寻戟}的指令输出一行一个字符串：
 
 \begin{itemize}
-	\item 若$S=\{x \in \N : l\le a_x\le r\}$ 是一个\textbf{三叉}，则输出 \TT{YES}；
+	\item 若$S=\{x \in \N \mid l\le a_x\le r\}$ 是一个\textbf{三叉}，则输出 \TT{YES}；
 	\item 反之则输出 \TT{NO}。
 \end{itemize}
 
@@ -267,7 +267,7 @@ YES
 
 
 
-对于第 $1$ 组样例的第三次寻戟，经过前一次审判操作后，当前各结点的权值为$(a_1,a_2,\ldots,a_7)=(4,6,2,5,7,3,1)$。
+对于第 $1$ 组测试数据的第三次寻戟，经过前一次审判操作后，当前各结点的权值为$(a_1,a_2,\ldots,a_7)=(4,6,2,5,7,3,1)$。
 
 此时权值 $4,5,6,7$ 分别位于结点 $1, 4, 2, 5$，因此 $S=\{1,2,4,5\}$。
 

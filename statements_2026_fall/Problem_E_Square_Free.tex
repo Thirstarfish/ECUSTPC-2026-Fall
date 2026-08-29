@@ -1,4 +1,4 @@
-\section[E. 占位标题 E]{\myboxv{      \BF{\TT{E}}} 根除}
+\section[E. 根除]{\myboxv{      \BF{\TT{E}}} 根除}
 
 \textit{运行时间限制}   X second
 
@@ -10,14 +10,16 @@
 
 
 \begin{quote}
-	\textit{占位风味文本}
+	\textit{我们终于等来了黎明，可这座城的}根除\textit{了记得黑夜，似乎什么也没能留下。}
 \end{quote}
 
 \subsection{题目描述}
 
-我们知道对于任意的正整数 $n$ 一定可以写成 $n = ab^2$，其中 $a, b \in \mathbb{N}$。现在定义数论函数 $f(n) = \min\{a \mid n = ab^2, a, b \in \mathbb{N}\}$，即函数值为满足等式的最小正整数 $a$。
+我们通常会把 一个较大的数字的开根分解为最简的根式，例如 $\sqrt{432} = 12 \sqrt3$。
 
-现在给定 $q$ 次询问，每次询问给定 $l, r$，请输出 $\sum_{i=l}^r f(i)$ 的答案在模 $998\,244\,353$ 下的值。
+在 $\N$ 上定义数论函数 $f(n) = \min\{a \mid n = ab^2, a, b \in \mathbb{N}\}$，即函数值为满足等式的最小自然数 $a$，可以发现这样的 $a$ 总是存在的。
+
+给定 $q$ 次询问，每次询问给定 $l, r$，请输出 $\sum_{i=l}^r f(i)$ 的答案在模 $998\,244\,353$ 下的值。
 
 \subsection{输入格式}
 
@@ -36,12 +38,19 @@
 \begin{minipage}{\linewidth}
 	\begin{minipage}[t]{0.49\linewidth}
 		\begin{lstlisting}[title=\texttt{standard input}]
-占位输入
+4
+432 432
+1 10
+10 15
+1 100000000
 \end{lstlisting}
 	\end{minipage}
 	\begin{minipage}[t]{0.49\linewidth}
 		\begin{lstlisting}[title=\texttt{standard output}]
-占位输出
+3
+38
+66
+651260790
 \end{lstlisting}
 	\end{minipage}
 \end{minipage}
@@ -49,4 +58,21 @@
 
 \subsection{样例 1 解释}
 
-占位样例解释
+对于第 2 组和第 3 组测试数据，对应的 $f$ 值为：
+
+\[
+\begin{array}{c|ccccccccccccccc}
+n
+&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+\hline
+f(n)
+&1&2&3&1&5&6&7&2&1&10&11&3&13&14&15
+\end{array}
+\]
+
+其中第 3 组测试数据即为
+\[
+	\sum_{i = 10}^{15} = f(10) + f(11) + f(12) + f(13) + f(14) + f(15) = 10 + 11 + 3 + 13 + 14 + 15 = 66.
+\]
+
+

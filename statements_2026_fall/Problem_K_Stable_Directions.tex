@@ -10,19 +10,24 @@
 
 
 \begin{quote}
-	\textit{占位风味文本}
+	\textit{在这时针不停转动的世界里}
+	\textit{// 无论多少次}
+	\textit{// 去触碰那残酷之言刺耳之声}
+	\textit{// 都会泫然欲泣}
 \end{quote}
 
 \subsection{题目描述}
 
-给定一个按照逆时针顺序给出的多边形 $P = P_0P_1 \cdots P_{n-1}$。记下面的一个方向 $d(\alpha) = (\cos \alpha, \sin \alpha)$，$0 \le \alpha < \frac{\pi}{2}$ 为一个\BF{稳定方向}，当且仅当存在一条直线 $l$ 满足：
+在欧氏平面上给定一个顶点按照逆时针顺序给出的多边形 $P = P_0P_1 \cdots P_{n-1}$。
 
-\begin{itemize}
-	\item 其方向向量 $\vec{l}$ 满足 $\vec{l} \cdot d(\alpha) = 0$。
-	\item 对于 $P$ 闭集内每一点 $P^*$，过其作垂线 $P^*H \perp l$ 交 $l$ 于 $H$，满足垂线段 $P^*H$ 在 $P$ 闭集内。
-\end{itemize}
+记一个角度 $\alpha$ ($0 \le \alpha < \frac{\pi}{2}$) 为一个\BF{稳定方向}，当且仅当存在 $c \in \R$，使得对于多边形 $P$ （含边界）内的任意一点 $X$ 到直线 
+\[
+	\cos \alpha\,x + \sin \alpha\,y + c = 0
+\]
+的垂线段完全包含在 $P$ （含边界）内。
 
-请求出满足条件的 $\alpha$ 的数量。
+
+请求出满足条件的 $\alpha$ 的数量，可以证明\BF{稳定方向}只有有限个。
 
 \subsection{输入格式}
 
@@ -36,7 +41,7 @@
 
 \subsection{输出格式}
 
-对于每组测试数据，输出一行一个整数，表示满足条件的稳定方向的数量。
+对于每组测试数据，输出一行一个整数，表示满足条件的\BF{稳定方向}的数量。
 
 \subsection{样例 1}
 
