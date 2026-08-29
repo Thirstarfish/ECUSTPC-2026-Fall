@@ -38,6 +38,7 @@ bin/
 *.tmp
 *.bak
 *.swp
-.claude/settings.local.json
+.claude/
+.vscode/
 .DS_Store
 Thumbs.db
