@@ -4,7 +4,7 @@ using namespace std;
 
 namespace
 {
-const long double COORD_LIMIT = 1000000000.0L;
+const long double COORD_LIMIT = 100000.0L;
 const long double MIN_DISTANCE = 0.0001L;
 const long double UNIT_TOLERANCE = 0.000000001L;
 
