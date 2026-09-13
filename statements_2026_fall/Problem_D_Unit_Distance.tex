@@ -27,8 +27,8 @@
 
 \begin{itemize}
 	\item 点的横纵坐标绝对值不超过 $10^5$；
-	\item 任意两点之间的欧氏距离不小于 $10^{-4}$；
-	\item 至少存在 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 个不同的无序欧氏点对的距离在 $[1 - 10^{-9}, 1 + 10^{-9}]$ 之间。
+	\item 任意两点之间的距离不小于 $10^{-4}$；
+	\item 至少存在 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 个不同的无序点对距离在 $[1 - 10^{-9}, 1 + 10^{-9}]$ 之间。
 \end{itemize}
 
 % 其中至少有 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor$ 对点对的距离为 $1$。
@@ -74,7 +74,7 @@
 
 \[d_{12} = 1, d_{13} = d_{23} = 1.000000000013476527219909191607\ldots \approx 1 + 1.3476 \times 10^{-11} \]
 
-因此每个点对都在误差范围内，$3 \ge \left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor = -1$。
+因此每个点对之间的距离都在 $1$ 的误差范围内，这是符合第三个条件的。
 
 \subsection{提示}
 

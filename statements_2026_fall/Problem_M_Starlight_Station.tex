@@ -19,7 +19,7 @@
 
 据你所知，你的三叉戟落在一棵有 $n$ 个结点以 $1$ 号结点为根的有根树 $T$。每个结点都有一个权值 $a_i$，并且任意时刻所有结点的权值都恰好构成 $1 \sim n$ 的一个排列。对于树上的两个结点 $u,v$，记它们之间的简单路径为 $P(u,v)$，注意此处 $u , v \in P(u, v)$。
 
-定义一个树上结点集合 $S$ 为一个\textbf{三叉}，当且仅当存在三个结点 $F$，$x$，$y$，满足：
+定义一个树上结点集合 $S$ 为一个\textbf{三叉}，当且仅当存在三个结点 $F$，$x$，$y$（可以相同），满足：
 
 \begin{itemize}
 	\item $F$ 是 $x$ 的祖先或 $F=x$；
@@ -65,7 +65,7 @@ a_x, & \text{otherwise}.
 \begin{itemize}
 	\item 若 $\text{op}_i = 1$，随后输入两个整数 $x$ 和 $y$ ($1 \le x, y \le n$)，表示进行一次\textbf{操作 1：引雷}，交换 $x$ 和 $y$ 的权值。
 	\item 若 $\text{op}_i = 2$，随后输入两个整数 $l$ 和 $r$ ($1 \le l < r \le n$)，表示进行一次\textbf{操作 2：审判}，翻转权值在 $[l,r]$ 的点的权值。
-	\item 若 $\text{op}_i = 3$，随后输入两个整数 $x$ 和 $y$ ($1 \le l \le r \le n$)，表示进行一次\textbf{操作 3：寻戟}，查询权值在 $[l,r]$ 之间的点是否构成一个\textbf{三叉}。
+	\item 若 $\text{op}_i = 3$，随后输入两个整数 $l$ 和 $r$ ($1 \le l \le r \le n$)，表示进行一次\textbf{操作 3：寻戟}，查询权值在 $[l,r]$ 之间的点是否构成一个\textbf{三叉}。
 \end{itemize}
 
 保证单组测试数据内，所有结点的权值构成 $1\sim n$ 的一个排列，给定的边形成一棵 $n$ 个结点的树。
@@ -77,7 +77,7 @@ a_x, & \text{otherwise}.
 对于每组测试数据中指令类型为\textbf{操作 3：寻戟}的指令输出一行一个字符串：
 
 \begin{itemize}
-	\item 若$S=\{x \in \N \mid l\le a_x\le r\}$ 是一个\textbf{三叉}，则输出 \TT{YES}；
+	\item 若 $S=\{x \in \N, 1\le x \le n \mid l\le a_x\le r\}$ 是一个\textbf{三叉}，则输出 \TT{YES}；
 	\item 反之则输出 \TT{NO}。
 \end{itemize}
 
@@ -208,7 +208,7 @@ label={[text=blue,xshift=2mm]below:$a_7=1$}] {7}
 }
 };
 \end{tikzpicture}
-\caption{执行 $J(1,7)$ 后}
+\caption{执行审判 $(1,7)$ 后}
 \end{subfigure}\hfill%
 % ---------- (c) 再执行 L(4,5) 后 ----------
 \begin{subfigure}[t]{0.32\linewidth}
@@ -252,10 +252,9 @@ label={[text=blue,xshift=2mm]below:$a_7=1$}] {7}
 }
 };
 \end{tikzpicture}
-\caption{再执行 $L(4,5)$ 后}
+\caption{再引雷 $L(4,5)$ 后}
 \end{subfigure}
 
-\caption{第 $1$ 组样例中两次权值变化前后的示意图}
 \end{figure}
 
 对于第 $1$ 组测试数据的第三次寻戟，经过前一次审判操作后，
