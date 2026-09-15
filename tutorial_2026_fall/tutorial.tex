@@ -869,16 +869,7 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
 
   区间 LCA 维护区间内 DFS 序最大点和最小点，查询额外进行一次 LCA 即可，合并是 $O(1)$ 的，查询会用到一个 $\log n$。
 
-  考察操作 2，将序列划分为 $A:[p_1,p_{s_1})$, $B:[p_{s_1}, p_{s_2})$, $C:[p_{s_2}, p_{s_3}]$, $D:(p_{s_3}, p_n]$。
-
-  置换后 $p$ 序列会被变成：
-  \[
-  A+B+C+D
-  \longrightarrow
-  A+\operatorname{rev}(C)+B+D
-  \]
-
-  这启发我们用平衡树维护序列 $p$，下以 Splay 为例。
+  考察操作 2 的区间反转，这启发我们用平衡树维护序列 $p$，下以 Splay 为例。
 \end{frame}
 
 \begin{frame}{Splay 信息}
@@ -900,7 +891,7 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
     \item 取 $x$ 在当前序列中的位置；
     \item 将 $[l, r]$ 暴露为一棵子树；
     \item 翻转一个区间；
-    \item 将一段连续区间插入到指定位置。
+    % \item 将一段连续区间插入到指定位置。
   \end{itemize}
 \end{frame}
 
