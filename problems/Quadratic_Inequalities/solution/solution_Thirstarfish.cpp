@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const double eps = 1e-7;
+typedef long double ld;
+const ld eps = 1e-8;
 
 void cold_beans()
 {
@@ -10,7 +11,7 @@ void cold_beans()
     vector<int> a(n + 1), b(n + 1), c(n + 1);
     for (int i = 1; i <= n; i++)
         cin >> a[i] >> b[i] >> c[i];
-    double l1 = -1e18, l2 = 1e18;
+    ld l1 = -1e18, l2 = 1e18;
     vector<array<int, 2>> bl;
     for (int i = 1; i <= n; i++)
     {
@@ -23,8 +24,8 @@ void cold_beans()
                 cout << "NO" << endl;
                 return;
             }
-        double x1 = 1.0 * (-b[i] - sqrt(delta)) / a[i] / 2;
-        double x2 = 1.0 * (-b[i] + sqrt(delta)) / a[i] / 2;
+        ld x1 = 1.0l * (-b[i] - sqrt(delta)) / a[i] / 2;
+        ld x2 = 1.0l * (-b[i] + sqrt(delta)) / a[i] / 2;
         if (a[i] > 0)
         {
             int l = ceil(x1 - eps), r = floor(x2 + eps);
