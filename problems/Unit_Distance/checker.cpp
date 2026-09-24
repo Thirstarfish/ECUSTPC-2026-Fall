@@ -4,75 +4,16 @@ using namespace std;
 
 namespace
 {
-const long double COORD_LIMIT = 100000.0L;
-const long double MIN_DISTANCE = 0.0001L;
-const long double UNIT_TOLERANCE = 0.000000001L;
+using Int = __int128_t;
+const Int SCALE = 10000000000000LL;
+const long long COORD_LIMIT = 1000000000000000000LL;
+const Int MIN_DISTANCE = SCALE / 10000;
+const Int UNIT_TOLERANCE = SCALE / 1000000000;
 
 struct Point
 {
-    long double x, y;
+    long long x, y;
 };
-
-bool hasDecimalSyntax(const string &token)
-{
-    size_t pos = 0;
-    if (pos < token.size() && (token[pos] == '+' || token[pos] == '-'))
-        ++pos;
-
-    bool hasDigit = false;
-    while (pos < token.size() && isdigit((unsigned char)token[pos]))
-        hasDigit = true, ++pos;
-
-    if (pos < token.size() && token[pos] == '.')
-    {
-        ++pos;
-        while (pos < token.size() && isdigit((unsigned char)token[pos]))
-            hasDigit = true, ++pos;
-    }
-    if (!hasDigit)
-        return false;
-
-    if (pos < token.size() && (token[pos] == 'e' || token[pos] == 'E'))
-    {
-        ++pos;
-        if (pos < token.size() && (token[pos] == '+' || token[pos] == '-'))
-            ++pos;
-        size_t exponentStart = pos;
-        while (pos < token.size() && isdigit((unsigned char)token[pos]))
-            ++pos;
-        if (pos == exponentStart)
-            return false;
-    }
-    return pos == token.size();
-}
-
-long double readCoordinate(InStream &stream, TResult verdict,
-                           const char *streamName, int tc, int point,
-                           const char *axis)
-{
-    if (stream.seekEof())
-        stream.quitf(verdict,
-                     "%s ends before coordinate %s of point %d in test case %d",
-                     streamName, axis, point, tc);
-
-    string token = stream.readToken();
-    if (!hasDecimalSyntax(token))
-        stream.quitf(verdict,
-                     "%s: coordinate %s of point %d in test case %d is not a valid real number",
-                     streamName, axis, point, tc);
-
-    char *end = nullptr;
-    long double value = strtold(token.c_str(), &end);
-    if (end == token.c_str() || *end != '\0' || !isfinite(value))
-        stream.quitf(verdict,
-                     "%s: coordinate %s of point %d in test case %d is not finite",
-                     streamName, axis, point, tc);
-    if (value < -COORD_LIMIT || value > COORD_LIMIT)
-        stream.quitf(verdict,
-                     "%s: coordinate %s of point %d in test case %d is out of range",
-                     streamName, axis, point, tc);
-    return value;
-}
 
 long long requiredUnitPairs(int n)
 {
@@ -81,6 +22,7 @@ long long requiredUnitPairs(int n)
     if (found != cache.end())
         return found->second;
 
+    // bit_length(n^n) - 1 = floor(n * log2(n)), exactly.
     vector<uint32_t> power(1, 1);
     for (int i = 0; i < n; ++i)
     {
@@ -106,11 +48,11 @@ long long requiredUnitPairs(int n)
 void readAndCheckOutput(InStream &stream, TResult verdict,
                         const char *streamName, const vector<int> &sizes)
 {
-    const long double minimumSquared = MIN_DISTANCE * MIN_DISTANCE;
-    const long double unitLower = (1.0L - UNIT_TOLERANCE) *
-                                  (1.0L - UNIT_TOLERANCE);
-    const long double unitUpper = (1.0L + UNIT_TOLERANCE) *
-                                  (1.0L + UNIT_TOLERANCE);
+    const Int minimumSquared = MIN_DISTANCE * MIN_DISTANCE;
+    const Int unitLower = (SCALE - UNIT_TOLERANCE) *
+                         (SCALE - UNIT_TOLERANCE);
+    const Int unitUpper = (SCALE + UNIT_TOLERANCE) *
+                         (SCALE + UNIT_TOLERANCE);
 
     for (int tc = 1; tc <= (int)sizes.size(); ++tc)
     {
@@ -119,19 +61,18 @@ void readAndCheckOutput(InStream &stream, TResult verdict,
         vector<Point> points(n);
         for (int i = 0; i < n; ++i)
         {
-            points[i].x = readCoordinate(stream, verdict, streamName,
-                                         tc, i + 1, "x");
-            points[i].y = readCoordinate(stream, verdict, streamName,
-                                         tc, i + 1, "y");
+            points[i].x = stream.readLong(-COORD_LIMIT, COORD_LIMIT, "X");
+            points[i].y = stream.readLong(-COORD_LIMIT, COORD_LIMIT, "Y");
         }
 
         long long unitPairs = 0;
         for (int i = 0; i < n; ++i)
             for (int j = i + 1; j < n; ++j)
             {
-                long double dx = points[i].x - points[j].x;
-                long double dy = points[i].y - points[j].y;
-                long double squaredDistance = dx * dx + dy * dy;
+                Int dx = (Int)points[i].x - points[j].x;
+                Int dy = (Int)points[i].y - points[j].y;
+                // At most 8 * 10^36, below the signed 128-bit limit.
+                Int squaredDistance = dx * dx + dy * dy;
 
                 if (squaredDistance < minimumSquared)
                     stream.quitf(verdict,

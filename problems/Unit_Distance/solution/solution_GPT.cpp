@@ -8,7 +8,7 @@ int main()
 
     int T;
     cin >> T;
-    cout << fixed << setprecision(18);
+    cout << fixed << setprecision(13);
 
     const long double EPSILON = 0.0002L;
     while (T--)
