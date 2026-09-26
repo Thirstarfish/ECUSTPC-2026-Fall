@@ -1,0 +1,100 @@
+\section[H. 崩碎之歌]{\myboxviii{      \BF{\TT{H}}} 崩碎之歌}
+
+\textit{运行时间限制}   1 second
+
+\textit{内存使用限制} 1 Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+\begin{quote}
+   \textit{[ERR] Tw1nkl3... T-w-i-n-k-l-e // DATA\_LOST: L1ttl3\_St4r.exe}
+\end{quote}
+
+
+\subsection{题目描述}
+
+Maddy 的歌词本破碎了，被 Baddy 捡了起来。
+
+原先的歌词本中包含 $n$ 个仅包含小写字母和连字符 \TT{-} 的字符串 $Str_1$, $Str_2$, $\ldots$, $Str_n$.
+
+为了找回歌词本中的记忆，Maddy 询问了 Baddy $q$ 个问题每个问题的格式如下：
+
+\begin{itemize}
+   \item 原先的歌词本中是否存在前缀为 $P$, 后缀为 $S$, 且 $P$ 和 $S$ 相交的字符串？
+\end{itemize}
+
+然而，拿到了歌词本的 Baddy 决心帮助她，因此，在回答每一个问题之前，她可以对歌词本中的字符串做如下的操作任意次（也可以不做），来尽可能构造满足 Maddy 要求的字符串：
+
+\begin{itemize}
+   \item 选择一个字符串 $Str_i$ 中相邻的字符 $Str_{i, j_1}$ 和 $Str_{i, j + 1}$, 需要保证这两个字符中恰有一个为连字符 \TT{-}.
+\end{itemize}
+
+对于每一个询问，请依次告诉 Baddy 在合适的操作之后是否可以在歌词本中构造出满足 Maddy 要求的字符串。
+
+\subsection{输入格式}
+
+第一行输入一个整数 $T$ ($1 \le T \le 10^5$), 表示数据组数.
+
+每组测试数据的第一行输入两个整数 $n$ 和 $q$ ($1 \le n \le 10^5, 1 \le q \le 10^5$), 分别表示歌词本中的字符串个数和询问的个数。
+
+随后 $n$ 行每行输入一个包含小写字母和连字符 \TT{-} 的字符串 $Str_i$ ($1 \le |Str_i| \le 10^5$), 表示歌词本中的字符串。
+
+随后 $q$ 行每行输入两个包含小写字母和连字符 \TT{-} 的字符串 $P$ 和 $S$ ($1 \le |S|,|P| \le 10^5$), 表示每组询问中的前缀和后缀。
+
+保证所有测试数据输入中的 $\sum n \le 3 \times 10^5$, $\sum q \le 3 \times 10^5$, 所有字符串中的字符数之和 $\sum |String| \le 10^6$.
+
+\subsection{输出格式}
+
+对于每组测试数据，对于每组询问，若 Baddy 在合适的操作之后可以在歌词本中构造出满足 Maddy 要求的字符串，则输出一行一个字符串 \TT{YES}, 反之则输出一行一个字符串 \TT{NO}.
+
+注意评测时不会区分 \TT{YES} 和 \TT{NO} 的大小写，换言之当答案是肯定的时候输出 \TT{yes}, \TT{YES}, \TT{Yes}, \TT{YeS} 等都会被认为是正确的。
+
+\subsection{样例 1}
+
+\begin{minipage}{\linewidth}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard input}]
+1
+3 6
+a-b-c
+xy--z
+maddy
+a-b b-c
+a-- --bc
+xy- -z
+x-- --z
+mad ddy
+c-b b-a
+\end{lstlisting}
+   \end{minipage}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard output}]
+YES
+YES
+NO
+NO
+YES
+NO
+\end{lstlisting}
+   \end{minipage}
+\end{minipage}
+
+\subsection{样例 1 解释}
+
+对于第 $1$ 个样例的第 $2$ 个询问，我们考虑将 $Str_1$ 经过如下操作变为满足条件的字符串：
+
+\begin{itemize}
+   \item 交换 $Str_{1, 3}$ 和 $Str_{1, 4}$, 即 \TT{a-\BF{b-}c} $\rightarrow$ \TT{a--bc}.
+\end{itemize}
+
+可以发现 \TT{a--bc} 是以 \TT{a--} 为前缀，\TT{--bc} 为后缀的， 前缀占据 $[1, 3]$ 后缀占据 $[2, 5]$, 因此他们是相交的。
+
+\subsection{提示}
+
+称字符串 $p$ 是字符串 $S$ 的\BF{前缀}，当且仅当可以在 $p$ 的末尾添加若干个字符（包括零个字符）将它变成 $S$. 特别地，空字符串是任意字符串的前缀。
+
+称字符串 $s$ 是字符串 $S$ 的\BF{后缀}，当且仅当可以在 $s$ 的头前添加若干个字符（包括零个字符）将它变成 $S$. 特别地，空字符串是任意字符串的后缀。
+
+一个字符串 $a$ 的前缀 $p$ 和后缀 $s$ 相交，当且仅当 \TT{p} 占据的位置 $[1, x]$ 和 $s$ 占据的位置 $[y, |S|]$ 满足 $y < x$.

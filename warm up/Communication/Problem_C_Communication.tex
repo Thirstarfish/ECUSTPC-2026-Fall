@@ -1,0 +1,86 @@
+\section[C. 字母密信]{\myboxiii{      \BF{\TT{C}}} 字母密信}
+
+\textit{运行时间限制}   1 second
+
+\textit{内存使用限制} 1 Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+\begin{quote}
+   \textit{注意到genshinimpact是本题第一次运行的合法输出。}
+\end{quote}
+
+\BF{这是一道通信题。你的程序会在同一组数据上运行两次。}
+
+\subsection{题目描述}
+
+评测机中保存着一个整数 $x$，满足 $0 \le x \le 10^{18}$。你的程序将运行两次，第一次运行和第二次运行之间不会共享内存或文件。
+
+\textbf{第一次运行：}评测机将把整数 $x$ 告诉你的程序。你的程序需要输出一个恰好由 $13$ 个小写英文字母组成的字符串 $s$。
+
+\textbf{第二次运行：}评测机将把第一次运行输出的字符串 $s$ 告诉你的程序。你的程序需要还原并输出第一次运行得到的整数 $x$。
+
+\subsection{交互协议}
+
+本题每个测试点只有一组数据。每次运行开始时，评测机会先输出一个单词，用于表示当前运行阶段。
+
+\textbf{第一次运行：}
+
+第一行输入字符串 \TT{send}。
+
+第二行输入一个整数 $x$ ($0 \le x \le 10^{18}$)。
+
+你的程序应输出一行恰好包含 $13$ 个字符的字符串 $s$。其中每个字符都必须是小写英文字母 \TT{a} 到 \TT{z}。
+
+\textbf{第二次运行：}
+
+第一行输入字符串 \TT{receive}。
+
+第二行输入一个长度为 $13$ 的字符串 $s$，它是第一次运行时输出的字符串。
+
+你的程序应输出一个整数，表示还原出的 $x$。
+
+每次输出后都应输出换行并刷新缓冲区。由于每个阶段只有一次输入和一次输出，输出答案后即可结束程序。
+
+\subsection{输出格式}
+
+第一次运行输出一行字符串 $s$，满足 $|s|=13$ 且 $s$ 的每个字符均为小写英文字母。
+
+第二次运行输出一行整数，必须等于第一次运行输入的 $x$。
+
+\subsection{样例 1}
+
+\textbf{第一次运行：}
+
+\begin{minipage}{\linewidth}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard input}]
+send
+42
+\end{lstlisting}
+   \end{minipage}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard output}]
+aaaaaaaaaaabq
+\end{lstlisting}
+   \end{minipage}
+\end{minipage}
+
+\textbf{第二次运行：}
+
+\begin{minipage}{\linewidth}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard input}]
+receive
+aaaaaaaaaaabq
+\end{lstlisting}
+   \end{minipage}
+   \begin{minipage}[t]{0.49\linewidth}
+      \begin{lstlisting}[title=\texttt{standard output}]
+42
+\end{lstlisting}
+   \end{minipage}
+\end{minipage}
+

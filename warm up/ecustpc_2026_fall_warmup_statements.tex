@@ -1,0 +1,70 @@
+%!TEX program = xelatex
+\documentclass[titlepage,oneside]{ctexart}
+\usepackage{ecustpc}
+
+\title{2026 年秋季华东理工大学程序设计竞赛}
+\author{ECUSTPC 2026 Fall Jury}
+\date{Sept 28th, 2026}
+
+\begin{document}
+
+\setcontestheader{2026 年秋季华东理工大学程序设计竞赛}{2026 年 9 月 28 日}
+\pagestyle{fancy}
+\setlength{\headheight}{25.3186pt}
+
+\begin{titlepage}
+\begin{center}
+    \huge{\textbf{2026 年秋季华东理工大学程序设计竞赛}} \\ [10pt]
+    \huge{热身赛\quad 试题册} \\ [10pt]
+    \Large{2026 年 9 月 28 日}
+\end{center}
+
+\vspace{2em}
+{\large\BF{题目列表}}
+
+\begin{table}[htbp]
+  \begin{center}
+    \large
+    \begin{tabular}{ccccc}
+      \toprule
+      题号 & 题目名称 & 时间限制 & 内存限制 & 注释 \\
+      \midrule
+      \myboxi{\BF{\TT{A}}} & \BF{一分为二} & 3s & 1GB & \\
+      \myboxii{\BF{\TT{B}}} & \BF{左灯右行} & 1s & 1GB & 交互题 \\
+      \myboxiii{\BF{\TT{C}}} & \BF{字母密信} & 1s & 1GB & 通信题 \\
+      \myboxiv{\BF{\TT{D}}} & \BF{题目待定} & -- & -- & \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{table}
+
+试题册共包含 4 道试题和 6 页.
+
+若您的试题册缺页请立刻联系志愿者。
+
+请务必认真阅读位于比赛文件附件中的赛事规则和技术规则。
+
+赛事开始前请勿翻阅试题册，亦请勿触碰鼠标和键盘。
+
+请注意黑白打印的试题册可能会丢失部分需要颜色展现的信息。
+
+\textit{写在题目描述前的斜体文字 是 Feature Text（风味文本），和题目无关，包括这句话。}
+
+\end{titlepage}
+
+\linespread{1.0}
+\setlength{\parskip}{0\baselineskip}
+\normalsize
+
+\newpage
+\setcounter{page}{1}
+
+\input{Problem_A_One_Half}
+\newpage
+\input{Problem_B_LeftRight}
+\newpage
+\input{Communication/Problem_C_Communication}
+\newpage
+\input{Problem_D_TBD}
+
+\end{document}
