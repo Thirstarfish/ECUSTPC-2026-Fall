@@ -1,0 +1,87 @@
+\section[D. Unit Distance!?]{\myboxiv{      \BF{\TT{D}}} Unit Distance!?}
+
+\textit{Time limit}   2 seconds
+
+\textit{Memory limit} 1 Gigabyte
+
+\textit{Input} \qquad standard input
+
+\textit{Output} \qquad standard output
+
+
+\begin{quote}
+	\textit{最后跳支舞吧。}
+
+	\textit{在魔都的远郊，}
+
+	\textit{在化工强校的信息楼，}
+
+	\textit{在这个光怪陆离的}
+
+	\textit{革命前夜。}
+\end{quote}
+
+\subsection{Problem Statement}
+
+Construct a set of $n$ points in the Euclidean plane such that:
+
+\begin{itemize}
+	\item The absolute values of both coordinates of every point are at most $10^5$;
+	\item Each coordinate of every point becomes an integer when multiplied by $10^{13}$;
+	\item The distance between any two points is at least $10^{-4}$;
+	\item At least $\left\lfloor \frac12 n\log_2 n-n \right\rfloor$ distinct unordered pairs of points have distance in $[1-10^{-9},1+10^{-9}]$.
+\end{itemize}
+
+
+\subsection{Input}
+
+The first line contains an integer $T$ ($1 \le T \le 100$), the number of test cases.
+
+Each test case contains one integer $n$ ($2 \le n \le 5000$), the number of points to construct.
+
+The sum of $n$ over all test cases does not exceed $5000$.
+
+\subsection{Output}
+
+For each test case, output $n$ lines. The $i$-th line contains two integers $X_i,Y_i$ ($-10^{18} \le X_i,Y_i \le 10^{18}$), representing the actual point $\left(\frac{X_i}{10^{13}},\frac{Y_i}{10^{13}}\right)$.
+
+Your output is accepted if and only if it satisfies this format and all four conditions above.
+
+If several valid constructions exist, output any one of them.
+
+\subsection{Sample 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+1
+3
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+0 0
+10000000000000 0
+5000000000000 8660254038000
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{Sample 1 Explanation}
+
+In the first test case, the actual coordinates are:
+
+\[
+	(x_1, y_1) = (0, 0), (x_2, y_2) = (1, 0), (x_3, y_3) = (0.5, 0.8660254038)
+\]
+
+The first three conditions are easy to verify. The pairwise distances are:
+
+\[d_{12} = 1, d_{13} = d_{23} = 1.000000000013476527219909191607\ldots \approx 1 + 1.3476 \times 10^{-11} \]
+
+Thus every pairwise distance is within the allowed tolerance of $1$, satisfying the fourth condition.
+
+% \subsection{提示}
+
+% 当 $n = 5000$ 时 $\left\lfloor \frac{1}{2}n\log_2 n - n \right\rfloor = 25719$。

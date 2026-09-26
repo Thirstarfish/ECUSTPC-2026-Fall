@@ -1,0 +1,64 @@
+\section[C. Split in Two 2]{\myboxiii{      \BF{\TT{C}}} Split in Two 2}
+
+\textit{Time limit}   2 seconds
+
+\textit{Memory limit} 1 Gigabyte
+
+\textit{Input} \qquad standard input
+
+\textit{Output} \qquad standard output
+
+
+\begin{quote}
+	\textit{别在昨日里频频回首，说什么将寂寞对半分担。}
+\end{quote}
+
+\subsection{Problem Statement}
+
+You are given two arrays $a$ and $b$, each of length $n$.
+
+Choose any $k \in [0,n]$ and concatenate the first $k$ elements of $a$ with the last $n-k$ elements of $b$ to form a new array of length $n$.
+
+Select exactly $m$ pairwise nonadjacent elements from the new array. Let $p$ be the smallest selected element. Maximize $p$.
+
+\subsection{Input}
+
+The first line contains an integer $T$ ($1 \le T \le 10^4$), the number of test cases.
+
+The first line of each test case contains two integers $n$ and $m$ ($1 \le m \le \lceil \frac n2 \rceil \le n \le 2 \times 10^5$): the array length and the number of elements to select.
+
+The second line contains $n$ integers $a_1,a_2,\ldots,a_n$ ($-10^9 \le a_i \le 10^9$).
+
+The third line contains $n$ integers $b_1,b_2,\ldots,b_n$ ($-10^9 \le b_i \le 10^9$).
+
+The sum of $n$ over all test cases does not exceed $2 \times 10^5$.
+
+\subsection{Output}
+
+For each test case, output one integer: the maximum possible value of $p$.
+
+\subsection{Sample 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]	
+2
+5 2
+5 4 3 2 1
+1 2 3 4 5
+9 5
+1 1 4 5 1 4 1 9 1
+9 9 8 2 4 4 3 5 3
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+5
+3
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+\subsection{Sample 1 Explanation}
+
+In the first test case, choosing $k=4$ gives $[5,4,3,2,5]$. Select the first and fifth elements; their minimum is $5$, which is optimal.

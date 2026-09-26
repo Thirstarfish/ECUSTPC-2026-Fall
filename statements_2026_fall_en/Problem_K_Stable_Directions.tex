@@ -1,0 +1,316 @@
+\section[K. Aeonglass]{\myboxxi{      \BF{\TT{K}}} Aeonglass}
+
+\textit{Time limit}   2 seconds
+
+\textit{Memory limit} 1 Gigabyte
+
+\textit{Input} \qquad standard input
+
+\textit{Output} \qquad standard output
+
+
+\begin{quote}
+	\textit{任季节一再轮转，我却始终没能习惯。}
+\end{quote}
+
+\subsection{Problem Statement}
+
+In the Euclidean plane, you are given a polygon $P=P_0P_1\cdots P_{n-1}$ whose vertices are listed in counterclockwise order.
+
+An angle $\alpha$ ($0 \le \alpha < \pi$) is a \BF{stable direction} if and only if there exists a $c \in \R$ such that, for every point $X$ in polygon $P$ (including its boundary), the perpendicular segment from $X$ to the line
+\[
+	\cos \alpha\,x + \sin \alpha\,y + c = 0
+\]
+lies entirely in $P$ (including its boundary). Here $\alpha$ is a direction of the line's normal vector.
+
+
+Find the number of \BF{stable directions}. This number can be shown to be finite.
+
+\subsection{Input}
+
+The first line contains an integer $T$ ($1 \le T \le 100$), the number of test cases.
+
+The first line of each test case contains an integer $n$ ($3 \le n \le 10^5$), the number of polygon vertices.
+
+Each of the next $n$ lines contains two integers $x_i,y_i$ ($-10^9 \le x_i,y_i \le 10^9$), the coordinates of the $i$-th vertex, listed in counterclockwise order.
+
+Within a test case, all vertices are distinct. Adjacent edges intersect only at their shared endpoint, and nonadjacent edges do not intersect.
+
+The sum of $n$ over all test cases does not exceed $10^5$.
+
+\subsection{Output}
+
+For each test case, output one integer: the number of \BF{stable directions}.
+
+\subsection{Sample 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+3
+4
+0 0
+1 0
+2 1
+1 1
+4
+0 0
+2 0
+2 2
+0 2
+6
+0 0
+4 0
+4 1
+1 1
+3 4
+0 4
+
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+3
+4
+1
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+\newpage
+\subsection{Sample 1 Explanation}
+
+% \paragraph{样例示意图}
+
+\begin{figure}[h]
+	\centering
+
+	% ============================================================
+	% Test 1
+	% ============================================================
+	\begin{minipage}[t]{0.31\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			scale=1.25,
+			>=Stealth,
+			every node/.style={font=\scriptsize}
+		]
+			% axes
+			\draw[->] (-0.45,0) -- (2.55,0)
+				node[below] {$x$};
+			\draw[->] (0,-0.45) -- (0,1.75)
+				node[left] {$y$};
+
+			% ticks
+			\foreach \x in {1,2}
+				\draw (\x,0.04) -- (\x,-0.04)
+					node[below=2pt] {\x};
+			\draw (0.04,1) -- (-0.04,1)
+				node[left=2pt] {1};
+
+			% polygon
+			\fill[Line11!50]
+				(0,0) -- (1,0) -- (2,1) -- (1,1) -- cycle;
+			\draw[Line11!50!black, very thick]
+				(0,0) -- (1,0) -- (2,1) -- (1,1) -- cycle;
+
+			% x = 1
+			\draw[black!70, very thick, dashed]
+				(1,-0.25) -- (1,1.45);
+			\node[black!70, right] at (1.03,1.35)
+				{$L_1$};
+
+			% x + y = 3/2
+			\draw[black!70, very thick, dashed]
+				(0.05,1.45) -- (1.75,-0.25);
+			\node[black!70, above right]
+				at (0.10,1.38)
+				{$L_2$};
+
+			% x - 2y = 0
+			\draw[black!70, very thick, dashed]
+				(-0.25,-0.125) -- (2.35,1.175);
+			\node[black!70, above]
+				at (1.85,0.93)
+				{$L_3$};
+
+			% vertices
+			\fill (0,0) circle (1.1pt);
+			\fill (1,0) circle (1.1pt);
+			\fill (2,1) circle (1.1pt);
+			\fill (1,1) circle (1.1pt);
+		\end{tikzpicture}
+
+		\vspace{1mm}
+
+	\t{\scriptsize Illustration for test case 1}
+	\end{minipage}
+	\hfill
+	% ============================================================
+	% Test 2
+	% ============================================================
+	\begin{minipage}[t]{0.31\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			scale=1.05,
+			>=Stealth,
+			every node/.style={font=\scriptsize}
+		]
+			% axes
+			\draw[->] (-0.45,0) -- (2.65,0)
+				node[below] {$x$};
+			\draw[->] (0,-0.45) -- (0,2.65)
+				node[left] {$y$};
+
+			% ticks
+			\foreach \x in {1,2}
+				\draw (\x,0.04) -- (\x,-0.04)
+					node[below=2pt] {\x};
+			\foreach \y in {1,2}
+				\draw (0.04,\y) -- (-0.04,\y)
+					node[left=2pt] {\y};
+
+			% polygon
+			\fill[Line11!50]
+				(0,0) -- (2,0) -- (2,2) -- (0,2) -- cycle;
+			\draw[Line11!50!black, very thick]
+				(0,0) -- (2,0) -- (2,2) -- (0,2) -- cycle;
+
+			% x = 1
+			\draw[black!70, very thick, dashed]
+				(1,-0.25) -- (1,2.4);
+			\node[black!70, right] at (1.04,2.25)
+				{$L_1$};
+
+			% y = 1
+			\draw[black!70, very thick, dashed]
+				(-0.25,1) -- (2.4,1);
+			\node[black!70, below right]
+				at (2.05,1.03)
+				{$L_2$};
+
+			% x + y = 2
+			\draw[black!70, very thick, dashed]
+				(-0.15,2.15) -- (2.15,-0.15);
+			\node[black!70, above right]
+				at (0.10,1.92)
+				{$L_3$};
+
+			% x - y = 0
+			\draw[black!70, very thick, dashed]
+				(-0.15,-0.15) -- (2.25,2.25);
+			\node[black!70, below right]
+				at (2.05,2.05)
+				{$L_4$};
+
+			% vertices
+			\fill (0,0) circle (1.1pt);
+			\fill (2,0) circle (1.1pt);
+			\fill (2,2) circle (1.1pt);
+			\fill (0,2) circle (1.1pt);
+		\end{tikzpicture}
+
+		\vspace{1mm}
+
+	\t{\scriptsize Illustration for test case 2}
+	\end{minipage}
+	\hfill
+	% ============================================================
+	% Test 3
+	% ============================================================
+	\begin{minipage}[t]{0.34\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			scale=0.72,
+			>=Stealth,
+			every node/.style={font=\scriptsize}
+		]
+			% axes
+			\draw[->] (-0.55,0) -- (4.75,0)
+				node[below] {$x$};
+			\draw[->] (0,-0.55) -- (0,4.75)
+				node[left] {$y$};
+
+			% ticks
+			\foreach \x in {1,2,3,4}
+				\draw (\x,0.06) -- (\x,-0.06)
+					node[below=2pt] {\x};
+			\foreach \y in {1,2,3,4}
+				\draw (0.06,\y) -- (-0.06,\y)
+					node[left=2pt] {\y};
+
+			% polygon
+			\fill[Line11!50]
+				(0,0) -- (4,0) -- (4,1) --
+				(1,1) -- (3,4) -- (0,4) -- cycle;
+			\draw[Line11!50!black, very thick]
+				(0,0) -- (4,0) -- (4,1) --
+				(1,1) -- (3,4) -- (0,4) -- cycle;
+
+			% unique valid line
+			\draw[black!70, very thick, dashed]
+				(0.5,-0.3) -- (0.5,4.4);
+			\node[black!70, right] at (0.56,4.35)
+				{$L$};
+
+			% vertices
+			\fill (0,0) circle (1.2pt);
+			\fill (4,0) circle (1.2pt);
+			\fill (4,1) circle (1.2pt);
+			\fill (1,1) circle (1.2pt);
+			\fill (3,4) circle (1.2pt);
+			\fill (0,4) circle (1.2pt);
+
+			% highlight reflex vertex
+			% \node[above right] at (1,1)
+			% 	{$(1,1)$};
+		\end{tikzpicture}
+
+		\vspace{1mm}
+
+	\t{\scriptsize Illustration for test case 3}
+	\end{minipage}
+
+	% \vspace{4em}
+	% 三组样例及其合法直线示意图。虚线表示可以选取的直线。
+\end{figure}
+
+The lines and \BF{stable directions} for test case 1 are
+
+\[
+\begin{aligned}
+L_1:\quad &x-1=0,
+&\alpha_1&=0,\\
+L_2:\quad &\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y-\frac{3\sqrt{2}}{4}=0,
+&\alpha_2&=\frac{\pi}{4},\\
+L_3:\quad &-\frac{1}{\sqrt{5}}x+\frac{2}{\sqrt{5}}y=0,
+&\alpha_3&=\pi-\arctan 2.
+\end{aligned}
+\]
+
+
+
+The lines and \BF{stable directions} for test case 2 are
+
+\[
+\begin{aligned}
+L_1:\quad &x-1=0,
+&\alpha_1&=0,\\
+L_2:\quad &y-1=0,
+&\alpha_2&=\frac{\pi}{2},\\
+L_3:\quad &\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y-\sqrt{2}=0,
+&\alpha_3&=\frac{\pi}{4},\\
+L_4:\quad &-\frac{\sqrt{2}}{2}x+\frac{\sqrt{2}}{2}y=0,
+&\alpha_4&=\frac{3\pi}{4}.
+\end{aligned}
+\]
+
+The line and \BF{stable direction} for test case 3 are
+
+\[
+L:\quad x-\frac{1}{2}=0,
+\qquad
+\alpha_1=0.
+\]
+
+The corresponding line is not uniquely determined.

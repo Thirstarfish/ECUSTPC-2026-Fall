@@ -1,0 +1,99 @@
+\section[H. Ordinary Offensive Magic]{\myboxviii{      \BF{\TT{H}}} Ordinary Offensive Magic}
+
+\textit{Time limit}   2 seconds
+
+\textit{Memory limit} 1 Gigabyte
+
+\textit{Input} \qquad standard input
+
+\textit{Output} \qquad standard output
+
+
+\begin{quote}
+	\textit{``Zoltraak.''}
+\end{quote}
+
+\subsection{Problem Statement}
+
+Consider an $n \times m$ grid. Each cell has one of three states:
+
+\begin{enumerate}
+	\item \TT{/} (forward-slash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the left and the bottom with the right.
+	\item \TT{\textbackslash} (backslash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the right and the bottom with the left.
+	\item \TT{.} (empty cell): contains no obstacle. A ray passes straight through, connecting the top with the bottom and the left with the right.
+\end{enumerate}
+
+Initially, some cells contain fixed \TT{/} or \TT{\textbackslash} mirrors; the rest are empty. You may \BF{leave each initially empty cell empty}, \BF{replace it with a \TT{/} mirror}, or \BF{replace it with a \TT{\textbackslash} mirror}.
+
+The outside boundary of the grid consists of $2(n+m)$ unit-length segments. A ray may enter or leave only perpendicularly through the midpoint of one of these segments.
+
+Given an entry point and a target exit point, determine whether the grid can be filled legally so that a ray entering at the specified point, after straight-line travel and reflections, exits at exactly the target point.
+
+If possible, output any valid completed grid. Otherwise, report that it is impossible.
+
+\subsection{Input}
+
+The first line contains an integer $T$ ($1 \le T \le 100$), the number of test cases.
+
+The first line of each test case contains two integers $n,m$ ($1 \le n \times m \le 2 \times 10^5$), the numbers of rows and columns.
+
+Each of the next $n$ lines contains a string of length $m$ describing the initial grid. Here \TT{/} is a forward-slash mirror, \TT{\textbackslash} is a backslash mirror, and \TT{.} is an empty cell.
+
+The next line contains four space-separated values $d_1,p_1,d_2,p_2$. The first pair specifies the entry point, and the second specifies the target exit point:
+
+\begin{itemize}
+	\item Each of $d_1,d_2$ is one of U, D, L, R, denoting the top, bottom, left, or right boundary, respectively.
+	\item Each of $p_1,p_2$ is a positive integer specifying the midpoint of the outer edge of the $p$-th boundary cell. On U or D, $p$ is a column number ($1 \le p \le m$); on L or R, it is a row number ($1 \le p \le n$).
+\end{itemize}
+
+It is guaranteed that $(d_1,p_1) \ne (d_2,p_2)$.
+
+The sum of $n \times m$ over all test cases does not exceed $2 \times 10^5$.
+
+\subsection{Output}
+
+For each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output \TT{IMPOSSIBLE}.
+
+A backslash must usually be escaped: \TT{\textbackslash\textbackslash} outputs \TT{\textbackslash}.
+
+\subsection{Sample 1}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+3
+2 2
+..
+..
+L 1 U 2
+4 4
+/\/\
+/\/.
+....
+./..
+L 2 L 4
+4 4
+/\/\
+/\/.
+..\/
+./..
+L 2 L 4
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+./
+..
+/\/\
+/\//
+.//.
+./..
+IMPOSSIBLE
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{Sample 1 Explanation}
+
+In the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the \TT{/} mirror in $(1,2)$, and exits through the top edge of column $2$.

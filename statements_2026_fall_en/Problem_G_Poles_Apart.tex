@@ -1,0 +1,135 @@
+\section[G. Beyond the Stars]{\myboxvii{      \BF{\TT{G}}} Beyond the Stars}
+
+\textit{Time limit}   8 seconds
+
+\textit{Memory limit} 1 Gigabyte
+
+\textit{Input} \qquad standard input
+
+\textit{Output} \qquad standard output
+
+
+\begin{quote}
+	\textit{今夜天空深远宁静，我们望的是同一颗星星吗？}
+\end{quote}
+
+\BF{This is a communication problem. Pay attention to its unusual constraints.}
+
+\subsection{Problem Statement}
+
+That was long ago, in a past forgotten by all of ECUST\ldots
+
+In that forgotten age, Zhulin and Qianwai fought side by side, lived together, and gazed up at the same stars. Later, sand buried their language, oceans severed their roads, and even their names faded from history. Only the vast, silent star chart above them remained: public, radiant, and unchanging. Yet nobody knew which stars they had once quietly joined into a message.
+
+This problem has $20$ test cases.
+
+You are given an undirected graph $G=(V,E)$ with $|V|=2000$ and $|E|=43\,600$. It has no multiple edges or self-loops and is generated as follows. Initially, $G$ has $|V|$ vertices and no edges. Then, $|E|$ times, the generator uniformly chooses one of the vertex pairs not yet joined by an edge and adds an undirected edge between them.
+
+Your program will be run twice:
+
+\BF{First run}
+
+In the first run, you play Zhulin. Choose and output $n$ induced four-cycles in $G$. They may share vertices.
+
+\begin{itemize}
+	\item \BF{Definition of an induced four-cycle:} Choose $4$ vertices of $G$ that have \BF{exactly} $4$ edges among them, forming a simple cycle. In particular, there are no diagonals.
+\end{itemize}
+
+\BF{Second run}
+
+In the second run, you play Qianwai. The judge has your complete output from the first run. For each of $q$ queries, it selects one of your four-cycles, deletes one of its vertices, and gives you the other three vertex numbers. Report the index of the four-cycle in Zhulin's output from which they came.
+
+\subsection{Input}
+
+\BF{First run}
+
+The first line contains the string \TT{send}.
+
+The second line contains an integer $n$ ($n=200\,000$), the number of induced four-cycles you must output.
+
+The third line contains two integers $|V|$ and $|E|$.
+
+Each of the next $|E|$ lines contains two integers $u,v$, indicating an undirected edge between vertices $u$ and $v$ ($1 \le u,v \le |V|$).
+
+\BF{Second run}
+
+The first line contains the string \TT{receive}.
+
+The second line contains two integers $|V|$ and $|E|$.
+
+Each of the next $|E|$ lines contains two integers $u,v$, indicating an undirected edge between vertices $u$ and $v$ ($1 \le u,v \le |V|$).
+
+Line $|E|+3$ contains an integer $q$ ($q=4n$), the number of received vertex sets.
+
+Each of the next $q$ lines contains $3$ integers: the vertices remaining after the judge removes one vertex from a four-cycle in your first-run output.
+
+\subsection{Output}
+
+\BF{First run}
+
+Output $n$ lines. Line $i$ contains four integers $v_1,v_2,v_3,v_4$, the vertices of the $i$-th induced four-cycle.
+
+\BF{Second run}
+
+Output $q$ lines. For each received vertex set, output an integer $i$ ($1 \le i \le n$), the index of its four-cycle.
+
+\subsection{Sample 1}
+
+\BF{First run}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+send
+200000
+2000 43600
+29 1973
+228 1127
+...
+92 573
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+1 174 613 1323
+1 955 1683 1755
+...
+1390 1615 1683 1777
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+\BF{Second run}
+
+\begin{minipage}{\linewidth}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard input}]
+receive
+2000 43600
+29 1973
+228 1127
+...
+92 573
+800000
+46 1297 1949
+1056 1275 1454
+...
+387 1289 1533
+\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}[t]{0.49\linewidth}
+		\begin{lstlisting}[title=\texttt{standard output}]
+17713
+191947
+...
+118231
+\end{lstlisting}
+	\end{minipage}
+\end{minipage}
+
+
+\subsection{Sample 1 Explanation}
+
+Parts of the sample are omitted because the complete data is too large.
+
+
