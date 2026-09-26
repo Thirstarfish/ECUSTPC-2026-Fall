@@ -1,4 +1,4 @@
-\section[G. Beyond the Stars]{\myboxvii{      \BF{\TT{G}}} Beyond the Stars}
+\section[G. Beyond the Stars]{\myboxvii{      \textbf{\texttt{G}}} Beyond the Stars}
 
 \textit{Time limit}   8 seconds
 
@@ -13,7 +13,7 @@
 	\textit{今夜天空深远宁静，我们望的是同一颗星星吗？}
 \end{quote}
 
-\BF{This is a communication problem. Pay attention to its unusual constraints.}
+\textbf{This is a communication problem. Pay attention to its unusual constraints.}
 
 \subsection{Problem Statement}
 
@@ -27,23 +27,23 @@ You are given an undirected graph $G=(V,E)$ with $|V|=2000$ and $|E|=43\,600$. I
 
 Your program will be run twice:
 
-\BF{First run}
+\textbf{First run}
 
 In the first run, you play Zhulin. Choose and output $n$ induced four-cycles in $G$. They may share vertices.
 
 \begin{itemize}
-	\item \BF{Definition of an induced four-cycle:} Choose $4$ vertices of $G$ that have \BF{exactly} $4$ edges among them, forming a simple cycle. In particular, there are no diagonals.
+	\item \textbf{Definition of an induced four-cycle:} Choose $4$ vertices of $G$ that have \textbf{exactly} $4$ edges among them, forming a simple cycle. In particular, there are no diagonals.
 \end{itemize}
 
-\BF{Second run}
+\textbf{Second run}
 
 In the second run, you play Qianwai. The judge has your complete output from the first run. For each of $q$ queries, it selects one of your four-cycles, deletes one of its vertices, and gives you the other three vertex numbers. Report the index of the four-cycle in Zhulin's output from which they came.
 
 \subsection{Input}
 
-\BF{First run}
+\textbf{First run}
 
-The first line contains the string \TT{send}.
+The first line contains the string \texttt{send}.
 
 The second line contains an integer $n$ ($n=200\,000$), the number of induced four-cycles you must output.
 
@@ -51,9 +51,9 @@ The third line contains two integers $|V|$ and $|E|$.
 
 Each of the next $|E|$ lines contains two integers $u,v$, indicating an undirected edge between vertices $u$ and $v$ ($1 \le u,v \le |V|$).
 
-\BF{Second run}
+\textbf{Second run}
 
-The first line contains the string \TT{receive}.
+The first line contains the string \texttt{receive}.
 
 The second line contains two integers $|V|$ and $|E|$.
 
@@ -65,17 +65,17 @@ Each of the next $q$ lines contains $3$ integers: the vertices remaining after t
 
 \subsection{Output}
 
-\BF{First run}
+\textbf{First run}
 
 Output $n$ lines. Line $i$ contains four integers $v_1,v_2,v_3,v_4$, the vertices of the $i$-th induced four-cycle.
 
-\BF{Second run}
+\textbf{Second run}
 
 Output $q$ lines. For each received vertex set, output an integer $i$ ($1 \le i \le n$), the index of its four-cycle.
 
 \subsection{Sample 1}
 
-\BF{First run}
+\textbf{First run}
 
 \begin{minipage}{\linewidth}
 	\begin{minipage}[t]{0.49\linewidth}
@@ -99,7 +99,7 @@ send
 	\end{minipage}
 \end{minipage}
 
-\BF{Second run}
+\textbf{Second run}
 
 \begin{minipage}{\linewidth}
 	\begin{minipage}[t]{0.49\linewidth}

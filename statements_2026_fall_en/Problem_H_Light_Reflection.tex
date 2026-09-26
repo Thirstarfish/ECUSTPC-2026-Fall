@@ -1,4 +1,4 @@
-\section[H. Ordinary Offensive Magic]{\myboxviii{      \BF{\TT{H}}} Ordinary Offensive Magic}
+\section[H. Ordinary Offensive Magic]{\myboxviii{      \textbf{\texttt{H}}} Ordinary Offensive Magic}
 
 \textit{Time limit}   2 seconds
 
@@ -18,12 +18,12 @@
 Consider an $n \times m$ grid. Each cell has one of three states:
 
 \begin{enumerate}
-	\item \TT{/} (forward-slash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the left and the bottom with the right.
-	\item \TT{\textbackslash} (backslash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the right and the bottom with the left.
-	\item \TT{.} (empty cell): contains no obstacle. A ray passes straight through, connecting the top with the bottom and the left with the right.
+	\item \texttt{/} (forward-slash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the left and the bottom with the right.
+	\item \texttt{\textbackslash} (backslash mirror): reflects on both sides. A ray turns $90^\circ$, connecting the top with the right and the bottom with the left.
+	\item \texttt{.} (empty cell): contains no obstacle. A ray passes straight through, connecting the top with the bottom and the left with the right.
 \end{enumerate}
 
-Initially, some cells contain fixed \TT{/} or \TT{\textbackslash} mirrors; the rest are empty. You may \BF{leave each initially empty cell empty}, \BF{replace it with a \TT{/} mirror}, or \BF{replace it with a \TT{\textbackslash} mirror}.
+Initially, some cells contain fixed \texttt{/} or \texttt{\textbackslash} mirrors; the rest are empty. You may \textbf{leave each initially empty cell empty}, \textbf{replace it with a \texttt{/} mirror}, or \textbf{replace it with a \texttt{\textbackslash} mirror}.
 
 The outside boundary of the grid consists of $2(n+m)$ unit-length segments. A ray may enter or leave only perpendicularly through the midpoint of one of these segments.
 
@@ -37,7 +37,7 @@ The first line contains an integer $T$ ($1 \le T \le 100$), the number of test c
 
 The first line of each test case contains two integers $n,m$ ($1 \le n \times m \le 2 \times 10^5$), the numbers of rows and columns.
 
-Each of the next $n$ lines contains a string of length $m$ describing the initial grid. Here \TT{/} is a forward-slash mirror, \TT{\textbackslash} is a backslash mirror, and \TT{.} is an empty cell.
+Each of the next $n$ lines contains a string of length $m$ describing the initial grid. Here \texttt{/} is a forward-slash mirror, \texttt{\textbackslash} is a backslash mirror, and \texttt{.} is an empty cell.
 
 The next line contains four space-separated values $d_1,p_1,d_2,p_2$. The first pair specifies the entry point, and the second specifies the target exit point:
 
@@ -52,9 +52,9 @@ The sum of $n \times m$ over all test cases does not exceed $2 \times 10^5$.
 
 \subsection{Output}
 
-For each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output \TT{IMPOSSIBLE}.
+For each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output \texttt{IMPOSSIBLE}.
 
-A backslash must usually be escaped: \TT{\textbackslash\textbackslash} outputs \TT{\textbackslash}.
+A backslash must usually be escaped: \texttt{\textbackslash\textbackslash} outputs \texttt{\textbackslash}.
 
 \subsection{Sample 1}
 
@@ -77,7 +77,7 @@ L 2 L 4
 /\/.
 ..\/
 ./..
-L 2 L 4
+L 2 L 49
 \end{lstlisting}
 	\end{minipage}
 	\begin{minipage}[t]{0.49\linewidth}
@@ -96,4 +96,4 @@ IMPOSSIBLE
 
 \subsection{Sample 1 Explanation}
 
-In the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the \TT{/} mirror in $(1,2)$, and exits through the top edge of column $2$.
+In the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the \texttt{/} mirror in $(1,2)$, and exits through the top edge of column $2$.

@@ -1,4 +1,4 @@
-\section[L. In Filtration 3]{\myboxxii{      \BF{\TT{L}}} In Filtration 3}
+\section[L. In Filtration 3]{\myboxxii{      \textbf{\texttt{L}}} In Filtration 3}
 
 \textit{Time limit}   2 seconds
 
@@ -17,11 +17,11 @@
 
 Maddy is still purging Baddy's evil army\ldots for the third time!
 
-The game takes place on an infinite Cartesian plane, which you may imagine as an infinite chessboard. Baddy controls $n$ stationary \BF{cannons}, placed at $(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)$.
+The game takes place on an infinite Cartesian plane, which you may imagine as an infinite chessboard. Baddy controls $n$ stationary \textbf{cannons}, placed at $(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)$.
 
-Under Chinese chess rules, a cannon attacks by jumping over a screen. If cannons $A$ and $B$ share a row or column and \BF{exactly one} other cannon $C$ lies between them, $A$ attacks $B$ (and $B$ attacks $A$). Cannon $C$ is their ``screen.''
+Under Chinese chess rules, a cannon attacks by jumping over a screen. If cannons $A$ and $B$ share a row or column and \textbf{exactly one} other cannon $C$ lies between them, $A$ attacks $B$ (and $B$ attacks $A$). Cannon $C$ is their ``screen.''
 
-At each step, Maddy may destroy a cannon \BF{that is not currently attacked by any other cannon}. The destroyed cannon is immediately removed; it can no longer attack or serve as a screen.
+At each step, Maddy may destroy a cannon \textbf{that is not currently attacked by any other cannon}. The destroyed cannon is immediately removed; it can no longer attack or serve as a screen.
 
 Maddy wants to destroy all $n$ cannons. Does there exist an order of destruction that clears the board?
 
@@ -37,9 +37,9 @@ The sum of $n$ over all test cases does not exceed $2 \times 10^5$. All cannon p
 
 \subsection{Output}
 
-For each test case, output \TT{YES} if some valid destruction order clears the board, or \TT{NO} otherwise.
+For each test case, output \texttt{YES} if some valid destruction order clears the board, or \texttt{NO} otherwise.
 
-The answer is case-insensitive; for example, \TT{yes}, \TT{YES}, \TT{Yes}, and \TT{YeS} are all accepted as affirmative answers.
+The answer is case-insensitive; for example, \texttt{yes}, \texttt{YES}, \texttt{Yes}, and \texttt{YeS} are all accepted as affirmative answers.
 
 \subsection{Sample 1}
 
@@ -78,4 +78,4 @@ NO
 
 In the first test case, the three cannons share a column. Initially, $(0,0)$ and $(0,2)$ attack each other over the screen at $(0,1)$, while $(0,1)$ is unattacked. Destroy $(0,1)$ first. Then the other two are unattacked and may be destroyed in either order.
 
-In the third test case, four cannons share a row. Initially, $(0,0)$ and $(2,0)$ attack each other over $(1,0)$; $(1,0)$ and $(3,0)$ attack each other over $(2,0)$. Thus every cannon is attacked, none can be destroyed, and the answer is \TT{NO}.
+In the third test case, four cannons share a row. Initially, $(0,0)$ and $(2,0)$ attack each other over $(1,0)$; $(1,0)$ and $(3,0)$ attack each other over $(2,0)$. Thus every cannon is attacked, none can be destroyed, and the answer is \texttt{NO}.

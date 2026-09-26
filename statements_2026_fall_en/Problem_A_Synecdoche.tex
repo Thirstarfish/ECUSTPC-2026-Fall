@@ -1,4 +1,4 @@
-\section[A. Synecdoche, New York]{\myboxi{      \BF{\TT{A}}} Synecdoche, New York}
+\section[A. Synecdoche, New York]{\myboxi{      \textbf{\texttt{A}}} Synecdoche, New York}
 
 \textit{Time limit}   2 seconds
 
@@ -21,12 +21,12 @@
 
 Caden has come to understand ``fate'' in his own way. Leaving theater behind, he wants to use a string to represent his life through synecdoche. But in seeking a pure, original expression true to himself, he again falls into an infinite loop of self-reference. This time, Caden leaves the choice to you: portray his life for him.
 
-Caden's synecdoche is a string $T$ of length $L$. We call $T$ \BF{valid} if and only if all three conditions below hold:
+Caden's synecdoche is a string $T$ of length $L$. We call $T$ \textbf{valid} if and only if all three conditions below hold:
 
 \begin{enumerate}
 	\item $T$ consists only of lowercase English letters.
 	\item For every $i = 1, 2, \ldots, K$, the character of $T$ at position $p_i$ must equal the given character $c_i$, where $1 \le p_i \le L$ and $c_i$ is a lowercase letter.
-	\item For every $i = 1, 2, \ldots, N$, the given string $s_i$ must \BF{not} occur as a contiguous substring of $T$.
+	\item For every $i = 1, 2, \ldots, N$, the given string $s_i$ must \textbf{not} occur as a contiguous substring of $T$.
 \end{enumerate}
 
 Given $L$, $K$ position constraints $(p_i,c_i)$, and $N$ forbidden substrings $s_i$, count all valid strings $T$. Output the answer modulo $998\,244\,353$.
@@ -84,5 +84,5 @@ dcabe
 
 \subsection{Sample 1 Explanation}
 
-The string has length $3$, its second character must be \TT{b}, and it must not contain \TT{ab}. Valid strings have the form \TT{?b?}; the first character can be any lowercase letter except \TT{a}. There are $25 \times 26 = 650$ such strings.
+The string has length $3$, its second character must be \texttt{b}, and it must not contain \texttt{ab}. Valid strings have the form \texttt{?b?}; the first character can be any lowercase letter except \texttt{a}. There are $25 \times 26 = 650$ such strings.
 
