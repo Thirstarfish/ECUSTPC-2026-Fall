@@ -1,3 +1,110 @@
-\section[D. 题目待定]{\myboxiv{      \BF{\TT{D}}} 题目待定}
+\section[D. 日常]{\myboxiv{      \BF{\TT{D}}} 日常}
 
-\textit{本题题面待定。}
+
+\textit{运行时间限制}   1 second
+
+\textit{内存使用限制} 1 Gigabyte
+
+\textit{读入文件} \qquad 标准输入
+
+\textit{输出文件} \qquad 标准输出
+
+
+\begin{quote}
+   \textit{室内亦然，使}\textbf{光}\textit{在身后或右侧。……交战之后，将敌人向自己的左方驱赶；到了险地，不让敌人}\textbf{转}\textit{脸察看。}
+   \begin{flushright}
+   ——宫本武藏
+   \end{flushright}
+\end{quote}
+
+
+\subsection{题目描述}
+
+\begin{figure}[htbp]
+  \centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\ttfamily\fontsize{22}{22}\selectfont]
+  % dark clue cells
+  \fill[black!85] (2,5) rectangle (3,6);
+  \fill[black!85] (1,4) rectangle (2,5);
+  \fill[black!85] (3,4) rectangle (4,5);
+  \fill[black!85] (5,4) rectangle (6,5);
+  \fill[black!85] (4,2) rectangle (5,3);
+  \fill[black!85] (1,1) rectangle (2,2);
+  \fill[black!85] (3,1) rectangle (4,2);
+  \fill[black!85] (5,1) rectangle (6,2);
+  \draw[line width=0.8pt] (0,0) grid (8,6);
+  \draw[line width=1.2pt] (0,0) rectangle (8,6);
+  % cell contents
+  \node[text=black] at (0.5,5.5) {S};
+  \node[text=black] at (1.5,5.5) {H};
+  \node[text=white] at (2.5,5.5) {0};
+  \node[text=black] at (3.5,5.5) {O};
+  \node[text=black] at (4.5,5.5) {T};
+  \node[text=black] at (5.5,5.5) {G};
+  \node[text=black] at (6.5,5.5) {E};
+  \node[text=black] at (7.5,5.5) {S};
+  \node[text=black] at (0.5,4.5) {A};
+  \node[text=white] at (1.5,4.5) {0};
+  \node[text=black] at (2.5,4.5) {D};
+  \node[text=white] at (3.5,4.5) {1};
+  \node[text=black] at (4.5,4.5) {R};
+  \node[text=white] at (5.5,4.5) {3};
+  \node[text=black] at (6.5,4.5) {O};
+  \node[text=black] at (7.5,4.5) {M};
+  \node[text=black] at (0.5,3.5) {A};
+  \node[text=black] at (1.5,3.5) {D};
+  \node[text=black] at (2.5,3.5) {N};
+  \node[text=black] at (3.5,3.5) {U};
+  \node[text=black] at (4.5,3.5) {A};
+  \node[text=black] at (5.5,3.5) {I};
+  \node[text=black] at (6.5,3.5) {K};
+  \node[text=black] at (7.5,3.5) {I};
+  \node[text=black] at (0.5,2.5) {A};
+  \node[text=black] at (1.5,2.5) {N};
+  \node[text=black] at (2.5,2.5) {R};
+  \node[text=black] at (3.5,2.5) {O};
+  \node[text=white] at (4.5,2.5) {3};
+  \node[text=black] at (5.5,2.5) {N};
+  \node[text=black] at (6.5,2.5) {G};
+  \node[text=black] at (7.5,2.5) {N};
+  \node[text=black] at (0.5,1.5) {L};
+  \node[text=white] at (1.5,1.5) {1};
+  \node[text=black] at (2.5,1.5) {G};
+  \node[text=white] at (3.5,1.5) {2};
+  \node[text=black] at (4.5,1.5) {I};
+  \node[text=white] at (5.5,1.5) {2};
+  \node[text=black] at (6.5,1.5) {W};
+  \node[text=black] at (7.5,1.5) {O};
+  \node[text=black] at (0.5,0.5) {D};
+  \node[text=black] at (1.5,0.5) {H};
+  \node[text=black] at (2.5,0.5) {O};
+  \node[text=black] at (3.5,0.5) {M};
+  \node[text=black] at (4.5,0.5) {R};
+  \node[text=black] at (5.5,0.5) {L};
+  \node[text=black] at (6.5,0.5) {R};
+  \node[text=black] at (7.5,0.5) {O};
+\end{tikzpicture}
+\end{figure}
+
+\texttt{(..)+(..)+(..)+(..)+(4) = (..)}
+
+\subsection{输出格式}
+
+输出一行一个由大写字母组成的字符串，表示你的答案。
+
+\subsection{样例 1}
+
+本题不提供样例。
+
+\subsection{提示}
+
+这是一个 Puzzle Hunt （解谜寻宝）题，你可以通过 Clarification 发送下面的词语，向裁判寻求以下的预设提示。或者你也可以附带上你当前的进度，向裁判申请人工提示！
+
+裁判将在比赛的 23:00 $\sim$ 2:00 在线：
+
+\begin{itemize}
+   \item Puzzle Hunt 题是什么？
+   \item 我毫无头绪。
+   \item 该如何提取？
+   \item 最后的那串\texttt{(..)+(..)+(..)+(..)+(?)=(..)}是什么意思？
+\end{itemize}
