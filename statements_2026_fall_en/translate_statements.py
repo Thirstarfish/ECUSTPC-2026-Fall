@@ -44,7 +44,7 @@ TR = {
 36|\t\t\item The basis-state value of $P$ satisfies $c_P=c$.
 37|\t\t\item For every qubit $Q$ with $d^2(P,Q)=D$, the value $c_P+c_Q+D$ is even.
 41|As the chief scientist of AIMC Lab, initialize every qubit to a basis state so that the system's total energy is maximized. Output this maximum energy.
-45|The first line contains three integers $N$, $M$, and $H$ ($1 \le N,M,H \le 20$), the grid dimensions.
+45|The first line contains three integers $N$, $M$, and $H$ ($1 \le N,M,H \le 100$ and $N \times M \times H \le 100$), the grid dimensions.
 47|The data for the eight energy matrices $A_{D,c}$ follow in lexicographic order of $(D,c)$.
 49|Each matrix consists of $N$ blocks. Each block has $M$ lines, each containing $H$ integers. Blocks are separated by blank lines.
 51|The $z$-th number in the $y$-th line of the $x$-th block is the energy at $(x,y,z)$. All energy values satisfy $A_{D,c}(x_P,y_P,z_P) \in [0,10^9]$.

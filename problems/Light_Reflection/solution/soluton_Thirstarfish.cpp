@@ -56,25 +56,23 @@ void cold_beans()
 
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            if (a[i][j] == '/')
+        {
+            if (a[i][j] == '/' || a[i][j] == '.')
             {
                 add(id(i, j, 0), id(i, j, 3));
                 add(id(i, j, 1), id(i, j, 2));
             }
-            else if (a[i][j] == '\\')
+            if (a[i][j] == '\\' || a[i][j] == '.')
             {
                 add(id(i, j, 0), id(i, j, 1));
                 add(id(i, j, 2), id(i, j, 3));
             }
-            else
+            if (a[i][j] == '.')
             {
-                add(id(i, j, 0), id(i, j, 3));
-                add(id(i, j, 1), id(i, j, 2));
-                add(id(i, j, 0), id(i, j, 1));
-                add(id(i, j, 2), id(i, j, 3));
                 add(id(i, j, 0), id(i, j, 2));
                 add(id(i, j, 1), id(i, j, 3));
             }
+        }
 
     vector<int> from(n * m * 4 + 1);
     queue<int> q;

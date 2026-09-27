@@ -13,8 +13,8 @@
  *     - Matrices are separated by exactly one blank line
  *
  * Constraints:
- *   - 1 <= N, M, H <= 20
- *   - N * M * H <= 8000
+ *   - 1 <= N, M, H
+ *   - N * M * H <= 100
  *   - All energy values in [0, 10^9]
  */
 
@@ -27,17 +27,17 @@ int main(int argc, char* argv[]) {
     registerValidation(argc, argv);
 
     // Read grid dimensions
-    int N = inf.readInt(1, 20, "N");
+    int N = inf.readInt(1, 100, "N");
     inf.readSpace();
-    int M = inf.readInt(1, 20, "M");
+    int M = inf.readInt(1, 100, "M");
     inf.readSpace();
-    int H = inf.readInt(1, 20, "H");
+    int H = inf.readInt(1, 100, "H");
     inf.readEoln();
 
     // Validate total grid size
     long long totalSize = (long long)N * M * H;
-    ensuref(totalSize <= 8000,
-            "N*M*H must be <= 8000, but got %d*%d*%d = %lld",
+    ensuref(totalSize <= 100,
+            "N*M*H must be <= 100, but got %d*%d*%d = %lld",
             N, M, H, totalSize);
 
     // Read 8 energy matrices

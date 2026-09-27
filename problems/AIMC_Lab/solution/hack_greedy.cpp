@@ -5,13 +5,13 @@ typedef long long ll;
 // 3D grid quantum stabilizer - Greedy assignment with random orderings
 
 int N, M, H, V;
-int state[8000];
-int assigned[8000];
-ll A[8][8000];
+int state[100];
+int assigned[100];
+ll A[8][100];
 
-vector<int> nbr[3][8000];
-int nbr_cnt[3][8000];
-int cnt0[3][8000], cnt1[3][8000];
+vector<int> nbr[3][100];
+int nbr_cnt[3][100];
+int cnt0[3][100], cnt1[3][100];
 
 inline int cid(int x, int y, int z) { return (x * M + y) * H + z; }
 

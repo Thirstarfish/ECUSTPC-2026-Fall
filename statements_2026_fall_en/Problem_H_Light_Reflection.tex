@@ -29,7 +29,7 @@ The outside boundary of the grid consists of $2(n+m)$ unit-length segments. A ra
 
 Given an entry point and a target exit point, determine whether the grid can be filled legally so that a ray entering at the specified point, after straight-line travel and reflections, exits at exactly the target point.
 
-If possible, output any valid completed grid. Otherwise, report that it is impossible.
+If possible, output a valid completed grid that \textbf{minimizes the number of cells traversed} by the ray from the entry point to the target exit point. Count one traversal each time the ray enters a cell; repeated visits to the same cell are counted separately. If there are multiple optimal completions, output any of them. Otherwise, report that it is impossible.
 
 \subsection{Input}
 
@@ -52,7 +52,7 @@ The sum of $n \times m$ over all test cases does not exceed $2 \times 10^5$.
 
 \subsection{Output}
 
-For each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output \texttt{IMPOSSIBLE}.
+For each test case, if a valid completion exists, output $n$ lines of length $m$ describing a completion that minimizes the number of cells traversed. If there are multiple optimal completions, output any of them. Do not output the minimum number of traversals. Otherwise, output \texttt{IMPOSSIBLE}.
 
 A backslash must usually be escaped: \texttt{\textbackslash\textbackslash} outputs \texttt{\textbackslash}.
 
@@ -77,7 +77,7 @@ L 2 L 4
 /\/.
 ..\/
 ./..
-L 2 L 49
+L 2 L 4
 \end{lstlisting}
 	\end{minipage}
 	\begin{minipage}[t]{0.49\linewidth}
@@ -97,3 +97,5 @@ IMPOSSIBLE
 \subsection{Sample 1 Explanation}
 
 In the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the \texttt{/} mirror in $(1,2)$, and exits through the top edge of column $2$.
+
+This completion traverses $2$ cells, which is the minimum possible.

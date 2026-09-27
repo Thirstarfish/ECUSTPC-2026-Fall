@@ -5,11 +5,11 @@ typedef long long ll;
 // 3D grid quantum stabilizer - Pattern-based with greedy refinement
 
 int N, M, H, V;
-ll A[8][8000];
-int state[8000], best_state[8000];
+ll A[8][100];
+int state[100], best_state[100];
 
-vector<int> nbr[3][8000];
-int nbr_cnt[3][8000];
+vector<int> nbr[3][100];
+int nbr_cnt[3][100];
 
 inline int cid(int x, int y, int z) { return (x * M + y) * H + z; }
 
@@ -32,7 +32,7 @@ void precompute_neighbors() {
     }
 }
 
-int cnt0[3][8000], cnt1[3][8000];
+int cnt0[3][100], cnt1[3][100];
 
 void compute_counts() {
     for (int u = 0; u < V; u++)
@@ -159,7 +159,7 @@ ll refine(int time_limit_ms, chrono::steady_clock::time_point start_time) {
     return cur;
 }
 
-int coord_x[8000], coord_y[8000], coord_z[8000];
+int coord_x[100], coord_y[100], coord_z[100];
 
 int main() {
     ios::sync_with_stdio(false);
