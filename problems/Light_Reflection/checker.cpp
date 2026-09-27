@@ -30,7 +30,7 @@ bool sameEndpoint(const Endpoint &a, const Endpoint &b)
     return a.side == b.side && a.position == b.position;
 }
 
-bool reachesTarget(const TestCase &test, const vector<string> &grid)
+int traversedCells(const TestCase &test, const vector<string> &grid)
 {
     int row, column, direction;
     if (test.start.side == 'U')
@@ -45,13 +45,15 @@ bool reachesTarget(const TestCase &test, const vector<string> &grid)
     static const int dr[] = {-1, 0, 1, 0};
     static const int dc[] = {0, 1, 0, -1};
     vector<unsigned char> seen(4 * test.n * test.m, 0);
+    int count = 0;
 
     while (0 <= row && row < test.n && 0 <= column && column < test.m)
     {
         int state = 4 * (row * test.m + column) + direction;
         if (seen[state])
-            return false;
+            return -1;
         seen[state] = 1;
+        ++count; // Repeated visits to the same cell are counted separately.
 
         if (grid[row][column] == '/')
             direction ^= 1;
@@ -71,7 +73,54 @@ bool reachesTarget(const TestCase &test, const vector<string> &grid)
         actual = {'L', row + 1};
     else
         actual = {'R', row + 1};
-    return sameEndpoint(actual, test.target);
+    return sameEndpoint(actual, test.target) ? count : -1;
+}
+
+int minimumCells(const TestCase &test)
+{
+    // BFS states are (cell, incoming travel direction), with one visit per step.
+    // A shortest relaxed path never needs conflicting choices in a free cell:
+    // in the equivalent port graph its clique provides a strict shortcut.
+    // Thus the relaxed minimum is attainable by a single completed grid.
+    int sr, sc, sd;
+    if (test.start.side == 'U') sr = 0, sc = test.start.position - 1, sd = DOWN;
+    else if (test.start.side == 'D') sr = test.n - 1, sc = test.start.position - 1, sd = UP;
+    else if (test.start.side == 'L') sr = test.start.position - 1, sc = 0, sd = RIGHT;
+    else sr = test.start.position - 1, sc = test.m - 1, sd = LEFT;
+    static const int dr[] = {-1, 0, 1, 0};
+    static const int dc[] = {0, 1, 0, -1};
+    vector<int> dist(4 * test.n * test.m, -1);
+    queue<int> q;
+    int source = 4 * (sr * test.m + sc) + sd;
+    dist[source] = 1; q.push(source);
+    while (!q.empty())
+    {
+        int state = q.front(); q.pop();
+        int cell = state / 4, direction = state % 4;
+        int row = cell / test.m, column = cell % test.m;
+        string choices = test.initial[row][column] == '.' ? "./\\" : string(1, test.initial[row][column]);
+        for (char ch : choices)
+        {
+            int nd = direction;
+            if (ch == '/') nd ^= 1;
+            else if (ch == '\\') nd ^= 3;
+            int nr = row + dr[nd], nc = column + dc[nd];
+            if (nr < 0 || nr >= test.n || nc < 0 || nc >= test.m)
+            {
+                bool hit = (nr == -1 && test.target.side == 'U' && test.target.position == nc + 1) ||
+                           (nr == test.n && test.target.side == 'D' && test.target.position == nc + 1) ||
+                           (nc == -1 && test.target.side == 'L' && test.target.position == nr + 1) ||
+                           (nc == test.m && test.target.side == 'R' && test.target.position == nr + 1);
+                if (hit) return dist[state];
+            }
+            else
+            {
+                int next = 4 * (nr * test.m + nc) + nd;
+                if (dist[next] == -1) dist[next] = dist[state] + 1, q.push(next);
+            }
+        }
+    }
+    return -1;
 }
 
 void validateRow(InStream &stream, TResult verdict, const char *streamName,
@@ -98,11 +147,11 @@ void validateRow(InStream &stream, TResult verdict, const char *streamName,
     }
 }
 
-vector<bool> readAndCheckAnswers(InStream &stream, TResult verdict,
+vector<int> readAndCheckAnswers(InStream &stream, TResult verdict,
                                  const char *streamName,
                                  const vector<TestCase> &tests)
 {
-    vector<bool> possible(tests.size(), false);
+    vector<int> scores(tests.size(), -1);
     for (int tc = 0; tc < (int)tests.size(); ++tc)
     {
         setTestCase(tc + 1);
@@ -127,16 +176,16 @@ vector<bool> readAndCheckAnswers(InStream &stream, TResult verdict,
             validateRow(stream, verdict, streamName, tc + 1, row, test, grid[row]);
         }
 
-        if (!reachesTarget(test, grid))
+        scores[tc] = traversedCells(test, grid);
+        if (scores[tc] < 0)
             stream.quitf(verdict,
                          "%s: the light does not leave through the target in test case %d",
                          streamName, tc + 1);
-        possible[tc] = true;
     }
 
     if (!stream.seekEof())
         stream.quitf(verdict, "%s contains extra output", streamName);
-    return possible;
+    return scores;
 }
 } // namespace
 
@@ -161,16 +210,19 @@ int main(int argc, char *argv[])
         test.target = {d2[0], p2};
     }
 
-    vector<bool> juryPossible = readAndCheckAnswers(ans, _fail, "jury answer", tests);
-    vector<bool> participantPossible = readAndCheckAnswers(ouf, _wa, "participant output", tests);
+    vector<int> juryScore = readAndCheckAnswers(ans, _fail, "jury answer", tests);
+    vector<int> participantScore = readAndCheckAnswers(ouf, _wa, "participant output", tests);
 
     for (int tc = 0; tc < T; ++tc)
     {
         setTestCase(tc + 1);
-        if (juryPossible[tc] && !participantPossible[tc])
-            quitf(_wa, "jury has a construction, but participant reports IMPOSSIBLE");
-        if (!juryPossible[tc] && participantPossible[tc])
-            quitf(_fail, "participant found a construction while jury reports IMPOSSIBLE");
+        int optimum = minimumCells(tests[tc]);
+        if (juryScore[tc] != optimum)
+            quitf(_fail, "jury answer has length %d, expected %d in test case %d (-1 means IMPOSSIBLE)",
+                  juryScore[tc], optimum, tc + 1);
+        if (participantScore[tc] != optimum)
+            quitf(_wa, "participant answer has length %d, expected %d in test case %d (-1 means IMPOSSIBLE)",
+                  participantScore[tc], optimum, tc + 1);
     }
 
     quitf(_ok, "%d test case(s) checked", T);

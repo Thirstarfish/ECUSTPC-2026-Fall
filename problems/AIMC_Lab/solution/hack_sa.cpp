@@ -6,15 +6,15 @@ typedef long long ll;
 // Strong heuristic: efficient delta computation, exponential cooling, multiple restarts
 
 int N, M, H, V;
-int state[8000];
-ll A[8][8000];
+int state[100];
+ll A[8][100];
 
 // Neighbor lists for each cell, by type (0=S1/face, 1=S2/edge, 2=S3/body-diag)
-vector<int> nbr[3][8000];
-int nbr_cnt[3][8000]; // count of neighbors in grid
+vector<int> nbr[3][100];
+int nbr_cnt[3][100]; // count of neighbors in grid
 
 // For each cell u and cluster k: count of neighbors with state=0 and state=1
-int cnt0[3][8000], cnt1[3][8000];
+int cnt0[3][100], cnt1[3][100];
 
 inline int cid(int x, int y, int z) { return (x * M + y) * H + z; }
 
@@ -179,7 +179,7 @@ ll compute_total_energy() {
     return total;
 }
 
-int coord_x[8000], coord_y[8000], coord_z[8000];
+int coord_x[100], coord_y[100], coord_z[100];
 
 void hill_climb(ll &cur_energy, int time_limit, chrono::steady_clock::time_point start_time) {
     bool improved = true;
@@ -226,7 +226,7 @@ int main() {
     };
 
     ll best_energy = LLONG_MIN;
-    int best_saved[8000];
+    int best_saved[100];
 
     // Helper: save best state
     auto try_update_best = [&](ll e) {
