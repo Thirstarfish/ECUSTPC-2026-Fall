@@ -1,0 +1,161 @@
+type: default
+time: 2000ms
+memory: 1024MB
+checker_type: testlib
+checker:
+  file: check.cpp
+  lang: auto
+subtasks:
+- score: 100
+  if: []
+  id: 1
+  type: min
+  cases:
+  - input: '01'
+    output: 01.a
+  - input: '02'
+    output: 02.a
+  - input: '03'
+    output: 03.a
+  - input: '04'
+    output: 04.a
+  - input: '05'
+    output: 05.a
+  - input: '06'
+    output: 06.a
+  - input: '07'
+    output: 07.a
+  - input: '08'
+    output: 08.a
+  - input: '09'
+    output: 09.a
+  - input: '10'
+    output: 10.a
+  - input: '11'
+    output: 11.a
+  - input: '12'
+    output: 12.a
+  - input: '13'
+    output: 13.a
+  - input: '14'
+    output: 14.a
+  - input: '15'
+    output: 15.a
+  - input: '16'
+    output: 16.a
+  - input: '17'
+    output: 17.a
+  - input: '18'
+    output: 18.a
+  - input: '19'
+    output: 19.a
+  - input: '20'
+    output: 20.a
+  - input: '21'
+    output: 21.a
+  - input: '22'
+    output: 22.a
+  - input: '23'
+    output: 23.a
+  - input: '24'
+    output: 24.a
+  - input: '25'
+    output: 25.a
+  - input: '26'
+    output: 26.a
+  - input: '27'
+    output: 27.a
+  - input: '28'
+    output: 28.a
+  - input: '29'
+    output: 29.a
+  - input: '30'
+    output: 30.a
+  - input: '31'
+    output: 31.a
+  - input: '32'
+    output: 32.a
+  - input: '33'
+    output: 33.a
+  - input: '34'
+    output: 34.a
+  - input: '35'
+    output: 35.a
+  - input: '36'
+    output: 36.a
+  - input: '37'
+    output: 37.a
+  - input: '38'
+    output: 38.a
+  - input: '39'
+    output: 39.a
+  - input: '40'
+    output: 40.a
+  - input: '41'
+    output: 41.a
+  - input: '42'
+    output: 42.a
+  - input: '43'
+    output: 43.a
+  - input: '44'
+    output: 44.a
+  - input: '45'
+    output: 45.a
+  - input: '46'
+    output: 46.a
+  - input: '47'
+    output: 47.a
+  - input: '48'
+    output: 48.a
+  - input: '49'
+    output: 49.a
+  - input: '50'
+    output: 50.a
+  - input: '51'
+    output: 51.a
+  - input: '52'
+    output: 52.a
+  - input: '53'
+    output: 53.a
+  - input: '54'
+    output: 54.a
+  - input: '55'
+    output: 55.a
+  - input: '56'
+    output: 56.a
+  - input: '57'
+    output: 57.a
+  - input: '58'
+    output: 58.a
+  - input: '59'
+    output: 59.a
+  - input: '60'
+    output: 60.a
+  - input: '61'
+    output: 61.a
+  - input: '62'
+    output: 62.a
+  - input: '63'
+    output: 63.a
+  - input: '64'
+    output: 64.a
+  - input: '65'
+    output: 65.a
+  - input: '66'
+    output: 66.a
+  - input: '67'
+    output: 67.a
+  - input: '68'
+    output: 68.a
+  - input: '69'
+    output: 69.a
+  - input: '70'
+    output: 70.a
+  - input: '71'
+    output: 71.a
+  - input: '72'
+    output: 72.a
+  - input: '73'
+    output: 73.a
+  - input: '74'
+    output: 74.a

@@ -83,8 +83,8 @@
     难度 & 题号 \\
     \midrule
     Easy & \myboxx{\BF{\TT{J}}}\ \myboxvi{\BF{\TT{F}}}\\
-    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxxii{\BF{\TT{L}}}\ \myboxviii{\BF{\TT{H}}}\\
-    Medium & \myboxix{\BF{\TT{I}}}\ \myboxi{\BF{\TT{A}}}\ \myboxiv{\BF{\TT{D}}}\\
+    EasyMedium & \myboxiii{\BF{\TT{C}}}\ \myboxxii{\BF{\TT{L}}} \myboxix{\BF{\TT{I}}}\\\
+    Medium & \myboxviii{\BF{\TT{H}}}\ \myboxi{\BF{\TT{A}}}\ \myboxiv{\BF{\TT{D}}}\\
     MediumHard & \myboxv{\BF{\TT{E}}}\ \myboxii{\BF{\TT{B}}}\ \myboxxiii{\BF{\TT{M}}}\\
     Hard & \myboxvii{\BF{\TT{G}}}\ \myboxxi{\BF{\TT{K}}}\\
     \bottomrule
@@ -292,7 +292,7 @@
   \[
     \left\lfloor\tfrac12n\log_2n-n\right\rfloor
   \]
-  对点的距离恰好为 $1$。
+  对点的距离在误差范围内恰好为 $1$。
 \end{frame}
 
 
@@ -336,7 +336,7 @@
 \subsection{E 根除}
 \begin{frame}{题意概述}
   \begin{center}试题 \myboxv{\BF{\TT{E}}} \BF{根除}\end{center}
-  定义 $f(n) = \min\{a \mid n = ab^2, a, b \in \mathbb{N}\}$，查询 $T = 10^4$ 组
+  定义 $f(n) = \min\{a \mid n = ab^2, a, b \in \mathbb{N}\}$，查询 $T = 500$ 组
   \[
     \sum_{i=l}^{r}f(i), 1 \le l \le r \le 10^{12}.
   \]
@@ -453,7 +453,7 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
 
   再令 $l = r + 1$ 即可。
 
-  这样计算是 $O(n^{1/3})$ 的，对于 $T = 10^4$ 和 $r \le 10^{12}$ 是可过的。
+  这样计算是 $O(n^{1/3})$ 的，对于 $T = 500$ 和 $r \le 10^{12}$ 是可过的。
 
 \end{frame}
 }
@@ -465,32 +465,21 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
   \begin{center}试题 \myboxvi{\BF{\TT{F}}} \BF{凸包}\end{center}
   给出 $n$ 个严格一元二次不等式
   \[
-    a_ix^2+b_ix+c_i>0,
+    a_ix^2+b_ix+c_i>0\qquad(a_i<0),
   \]
   判断是否存在同时满足它们的整数 $x$。
 \end{frame}
 
 
-\begin{frame}{每条不等式都是区间限制}
-  记 $q(x)=ax^2+bx+c$。
-  \begin{itemize}
-    \item $a<0$ 时，$q(x)>0$ 的整数解是一个连续区间，或为空。
-    \item $a>0$ 时，$q(x)\le0$ 的整数解是一个连续禁区，或为空。
-  \end{itemize}
-  先相交所有 $a<0$ 的可行区间，得到总候选区间 $[L,R]$；
-  再把所有 $a>0$ 的禁区合并，判断它们是否覆盖 $[L,R]$。
+\begin{frame}{每条不等式都恰好是一个区间}
+因为 $a<0$，$q(x)=ax^2+bx+c>0$ 的解集是一段开区间，从中取整数仍然是一段连续区间（可能为空）。
 
-  \vspace{0.5em}
-  若不存在 $a<0$ 的式子，直接输出 \TT{YES}：
-  取足够大的 $x$ 时所有开口向上的二次式均为正。
+在本题中，求解区间边界的方式有多种。最简单的方式是使用eps+求根公式，左端点向上取整，右端点向下取整。
 
-  \vspace{0.5em}
-  严格不等号很重要：开口向上的式子必须删去 $q(x)\le0$，
-  根处取等同样不合法。
+对所有不等式求出其可行区间，再求交即可。
 
-  \vspace{0.5em}
-  时间$O(n\log n)$，空间 $O(n)$。
-\end{frame}}
+时间复杂度 $O(n)$ 。
+\end{frame}
 
 % G
 {\setbeamercolor{frametitle}{fg=black,bg=Line7}
@@ -811,6 +800,8 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
   由于每个点只插入和查询常数次李超树，做法是 $O(n \log n)$ 的。
   注意整个做法是完全有理的，可以全整在 128 位整数下完成。
 
+  另解是用线段树维护凸包，这个可以在 $O(n \log^2 n)$ 下完成。
+
 \end{frame}
 }
 
@@ -917,7 +908,7 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
 \begin{frame}{处理给定操作和复杂度}
   操作 1 即找到树上 $x$, $y$ 在序列上对应点后将这两个点 splay 到根结点和直接儿子，直接交换 pushup 即可。
 
-  操作 2 找到权值 $l$, $r$ 对应点 $u$, $v$ 后取 LCA，再倒回去取到序列上的 $k$，切分进行一次区间插入和翻转即可。
+  操作 2 即为反转。
 
   操作 3 暴露对应区间后直接考察子树信息即可。
 
@@ -933,6 +924,12 @@ G(n)=\sum_{d\le \sqrt{n}}\mu(d)\sum_{i\le n, d^2\mid i}i
 
 \section*{End}
 \begin{frame}
-  \begin{center}\Huge Thanks!\end{center}
+感谢验题人：CirnoNine、SATSKY\_2025target\_LGM、JerrySyr、MoScenix、Forest5326、yeyuege、XiaoXia、7\_divided\_by\_3、hushuqi\_qwq、Hanoko1314、Kendieer（排名不分先后）对赛题的指正、意见和建议。
+
+感谢chen\_zhe提供洛谷侧的技术支持。
+
+感谢yy1120、tumu1t学长对线下赛场秩序的维护。
+
+感谢\textit{你}参加这场比赛。
 \end{frame}
 \end{document}

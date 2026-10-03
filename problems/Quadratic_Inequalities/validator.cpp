@@ -21,8 +21,7 @@ int main(int argc, char *argv[])
 
         for (int i = 1; i <= n; ++i)
         {
-            int a = inf.readInt(-LIM, LIM, format("a[%d]", i));
-            ensuref(a != 0, "a[%d] must be non-zero", i);
+            int a = inf.readInt(-LIM, -1, format("a[%d]", i));
             inf.readSpace();
             inf.readInt(-LIM, LIM, format("b[%d]", i));
             inf.readSpace();

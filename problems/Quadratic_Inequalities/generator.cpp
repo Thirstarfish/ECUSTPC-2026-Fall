@@ -21,27 +21,20 @@ int totalN = 0;
 
 Quad makeQuad(long long a, long long b, long long c)
 {
-    ensuref(a != 0, "the leading coefficient must be non-zero");
-    ensuref(-COEF_LIM <= a && a <= COEF_LIM, "a=%lld is out of range", a);
+    ensuref(-COEF_LIM <= a && a <= -1, "a=%lld must satisfy -100000 <= a <= -1", a);
     ensuref(-COEF_LIM <= b && b <= COEF_LIM, "b=%lld is out of range", b);
     ensuref(-COEF_LIM <= c && c <= COEF_LIM, "c=%lld is out of range", c);
     return {(int)a, (int)b, (int)c};
 }
 
-// (x-p)(x-q)>0: the forbidden integer interval is [p,q].
-Quad forbiddenInterval(int p, int q, int scale = 1)
-{
-    ensuref(p <= q && scale >= 1, "invalid forbidden interval");
-    return makeQuad(scale, -1LL * scale * (p + q), 1LL * scale * p * q);
-}
-
-// -(x-(l-1))(x-(r+1))>0: the allowed integer interval is [l,r].
+// -(x-(l-1))(x-(r+1)) > 0：可行的整数集合恰为区间 [l,r]。
+// 需要 |l+r| <= 10^5 且 |(l-1)(r+1)| <= 10^5，因此 l,r 大致被限制在 [-316,316]。
 Quad allowedInterval(int l, int r, int scale = 1)
 {
     ensuref(l <= r && scale >= 1, "invalid allowed interval");
     long long p = l - 1LL;
     long long q = r + 1LL;
-    return makeQuad(-scale, scale * (p + q), -1LL * scale * p * q);
+    return makeQuad(-scale, 1LL * scale * (p + q), -1LL * scale * p * q);
 }
 
 Quad allowedSingleton(int x)
@@ -49,20 +42,79 @@ Quad allowedSingleton(int x)
     return allowedInterval(x, x);
 }
 
+// 对给定区间随机取一个仍然合法的放缩倍数（系数不越界）。
+int randomScale(int l, int r)
+{
+    long long p = l - 1LL, q = r + 1LL;
+    long long byC = abs(p * q) ? COEF_LIM / abs(p * q) : COEF_LIM;
+    long long byB = abs(p + q) ? COEF_LIM / abs(p + q) : COEF_LIM;
+    long long mx = max(1LL, min(byC, byB));
+    return (int)rnd.next(1LL, mx);
+}
+
+// -(x-p)(x-q) > 0：两根恰为整数 p,q，判别式是完全平方数。
+// 可行的整数恰好是开区间 (p,q) 中的整数。
+Quad integerRootsQuad(long long p, long long q)
+{
+    ensuref(p != q, "the two roots must be distinct");
+    return makeQuad(-1, p + q, -1LL * p * q);
+}
+
+// -x^2+(2k+1)x+(1-k^2-k) > 0：判别式为 5，两根 ((2k+1)±sqrt(5))/2 为无理数，
+// 可行的整数恰为 k 与 k+1。
+Quad irrationalRootsQuad(int k)
+{
+    return makeQuad(-1, 2LL * k + 1, 1LL - 1LL * k * k - k);
+}
+
+// -4x^2+8m x+(1-4m^2) > 0：两根为 m±1/2，可行的整数恰为 m。
+Quad halfRootsQuad(int m)
+{
+    return makeQuad(-4, 8LL * m, 1 - 4LL * m * m);
+}
+
+// 随机生成一个被 x 满足的不等式（|x| <= 316 时直接随机构造系数）。
 Quad randomSatisfiedAt(int x)
 {
-    for (int attempt = 0; attempt < 10000; ++attempt)
+    if (abs(x) > 316)
+        return makeQuad(-1, x > 0 ? COEF_LIM : -COEF_LIM, rnd.next(1, COEF_LIM));
+
+    long long sq = max(1LL, 1LL * x * x);
+    int maxAbsA = (int)max(1LL, min<long long>(COEF_LIM, 2LL * COEF_LIM / sq));
+    for (int attempt = 0; attempt < 500; ++attempt)
     {
-        int a = 0;
-        while (a == 0)
-            a = rnd.next(-COEF_LIM, COEF_LIM);
+        int a = -rnd.next(1, maxAbsA);
         int b = rnd.next(-COEF_LIM, COEF_LIM);
         long long base = 1LL * a * x * x + 1LL * b * x;
         long long low = max(-1LL * COEF_LIM, 1 - base);
         if (low <= COEF_LIM)
             return makeQuad(a, b, rnd.next((int)low, COEF_LIM));
     }
-    return makeQuad(1, 0, 1);
+    return allowedSingleton(x);
+}
+
+// a=-1, b=±10^5, c>0 时 -x^2±10^5x+c > 0 恰好覆盖到 |x| = 10^5。
+Quad extremeSatisfiedAt(int x)
+{
+    int s = (x > 0) ? 1 : -1;
+    switch (rnd.next(0, 2))
+    {
+    case 0: return makeQuad(-1, 1LL * s * COEF_LIM, COEF_LIM);
+    case 1: return makeQuad(-1, 1LL * s * COEF_LIM, COEF_LIM - 1);
+    default: return makeQuad(-1, 1LL * s * COEF_LIM, rnd.next(1, COEF_LIM));
+    }
+}
+
+// -x^2+10^5 x+c：当 c >= 0 时右端点恰好是 10^5（c=0 时退化到 10^5-1）。
+Quad rightmostQuad(int c)
+{
+    return makeQuad(-1, COEF_LIM, c);
+}
+
+// -x^2-10^5 x+c：当 c >= 0 时左端点恰好是 -10^5。
+Quad leftmostQuad(int c)
+{
+    return makeQuad(-1, -COEF_LIM, c);
 }
 
 template <class T>
@@ -96,60 +148,66 @@ void printTests()
 void modeHandmade()
 {
     vector<Test> corpus;
-    corpus.push_back({makeQuad(1, 2, -3)});
-    corpus.push_back({makeQuad(-1, 0, 0)});
-    corpus.push_back({makeQuad(-1, 2, -1)});
-    corpus.push_back({makeQuad(-1, 0, 1)});
-    corpus.push_back({makeQuad(-1, 1, 0)});
-    corpus.push_back({makeQuad(-5, 5, -1)});
-    corpus.push_back({makeQuad(5, -5, 1)});
-    corpus.push_back({makeQuad(4, -4, 1)});
-    corpus.push_back({makeQuad(1, -100000, -100000), makeQuad(1, 100000, -100000)});
-    corpus.push_back({allowedSingleton(0), forbiddenInterval(0, 0)});
 
-    corpus.push_back({allowedInterval(0, 3), forbiddenInterval(0, 1),
-                      forbiddenInterval(2, 3)});
-    corpus.push_back({allowedInterval(0, 4), forbiddenInterval(0, 1),
-                      forbiddenInterval(3, 4)});
-    corpus.push_back({allowedInterval(0, 20), forbiddenInterval(0, 10),
-                      forbiddenInterval(2, 3), forbiddenInterval(11, 20)});
+    // 单条不等式：无解（空集、判别式 < 0、判别式 = 0、严格不等号导致的空区间）
+    corpus.push_back({makeQuad(-1, 0, 0)});                 // -x^2 > 0
+    corpus.push_back({makeQuad(-1, 2, -1)});                // -(x-1)^2 > 0
+    corpus.push_back({makeQuad(-1, 3, -2)});                // 1 < x < 2
+    corpus.push_back({makeQuad(-1, 1, 0)});                 // 0 < x < 1
+    corpus.push_back({makeQuad(-1, -1, 0)});                // -1 < x < 0
+    corpus.push_back({integerRootsQuad(0, 1)});             // 0 < x < 1
+    corpus.push_back({integerRootsQuad(-1, 0)});            // -1 < x < 0
+    corpus.push_back({integerRootsQuad(2, 3)});             // 2 < x < 3
+    corpus.push_back({makeQuad(-100000, 100000, -1)});      // 两根极接近 0 与 1
+    corpus.push_back({makeQuad(-99999, 100000, -1)});       // 判别式完全平方，仍无解
+    corpus.push_back({makeQuad(-100000, 100000, -100000)});
+    corpus.push_back({makeQuad(-100000, -100000, -100000)});
+
+    // 单条不等式：恰有一个解
+    corpus.push_back({makeQuad(-1, 0, 1)});                 // x = 0
+    corpus.push_back({makeQuad(-100000, 0, 100000)});       // x = 0
+    corpus.push_back({makeQuad(-100000, 100000, 100000)});  // x ∈ {0,1}
+    corpus.push_back({makeQuad(-99999, 100000, 0)});        // x = 1
+    corpus.push_back({halfRootsQuad(0)});                   // x = 0
+    corpus.push_back({halfRootsQuad(100)});                 // x = 100
+    corpus.push_back({halfRootsQuad(-100)});                // x = -100
+    corpus.push_back({allowedSingleton(0)});
+    corpus.push_back({allowedSingleton(315)});
+    corpus.push_back({allowedSingleton(-315)});
+    corpus.push_back({irrationalRootsQuad(0)});             // x ∈ {0,1}
+    corpus.push_back({irrationalRootsQuad(315)});           // x ∈ {315,316}
+    corpus.push_back({irrationalRootsQuad(-1)});            // x ∈ {-1,0}
+
+    // 单条不等式：区间右端 / 左端恰好落在 10^5 上
+    corpus.push_back({rightmostQuad(1)});                   // x ∈ [0,100000]
+    corpus.push_back({rightmostQuad(0)});                   // x ∈ [0,99999]
+    corpus.push_back({rightmostQuad(-99999)});              // x ∈ [2,99998]
+    corpus.push_back({leftmostQuad(1)});                    // x ∈ [-100000,0]
+    corpus.push_back({leftmostQuad(0)});                    // x ∈ [-99999,-1]
+    corpus.push_back({leftmostQuad(-99999)});               // x ∈ [-99998,-2]
+
+    // 交集：恰好留下一个整数 / 恰好空掉
     corpus.push_back({allowedInterval(-10, 0), allowedInterval(0, 10)});
     corpus.push_back({allowedInterval(-10, -1), allowedInterval(0, 10)});
-    corpus.push_back({allowedInterval(-20, 20), forbiddenInterval(-20, -1),
-                      forbiddenInterval(1, 20)});
-    corpus.push_back({allowedInterval(-20, 20), forbiddenInterval(-20, 0),
-                      forbiddenInterval(1, 20)});
-
-    corpus.push_back({allowedSingleton(-1), makeQuad(1, 100000, 99998)});
-    corpus.push_back({allowedSingleton(-1), makeQuad(1, 100000, 99999)});
-    corpus.push_back({allowedSingleton(-1), makeQuad(1, 100000, 100000)});
-    corpus.push_back({allowedSingleton(1), makeQuad(1, -100000, 99998)});
-    corpus.push_back({allowedSingleton(1), makeQuad(1, -100000, 99999)});
-    corpus.push_back({allowedSingleton(1), makeQuad(1, -100000, 100000)});
-    corpus.push_back({allowedSingleton(1), makeQuad(-1, 100000, -99998)});
-    corpus.push_back({allowedSingleton(1), makeQuad(-1, 100000, -99999)});
-
-    corpus.push_back({allowedSingleton(0), makeQuad(-100000, 100000, 100000)});
-    corpus.push_back({allowedSingleton(0), makeQuad(100000, 100000, -100000)});
-    corpus.push_back({allowedSingleton(-2), makeQuad(25000, 100000, 100000)});
-    corpus.push_back({allowedSingleton(0), makeQuad(100000, -100000, 25000)});
-    corpus.push_back({allowedSingleton(-2), makeQuad(25000, 100000, 99999)});
-    corpus.push_back({allowedSingleton(0), makeQuad(25000, 99999, 100000)});
-    corpus.push_back({makeQuad(-1, 99999, 100000)});
-
-    Test positiveExtreme = {makeQuad(-1, 100000, 100000),
-                            forbiddenInterval(0, 99999),
-                            makeQuad(100000, 0, -100000)};
-    corpus.push_back(positiveExtreme);
-    positiveExtreme.push_back(forbiddenInterval(0, 100000));
-    corpus.push_back(positiveExtreme);
-
-    Test negativeExtreme = {makeQuad(-1, -100000, 100000),
-                            forbiddenInterval(-99999, 0),
-                            makeQuad(100000, 0, -100000)};
-    corpus.push_back(negativeExtreme);
-    negativeExtreme.push_back(forbiddenInterval(-100000, 0));
-    corpus.push_back(negativeExtreme);
+    corpus.push_back({allowedInterval(0, 3), allowedInterval(2, 5)});
+    corpus.push_back({allowedInterval(0, 3), allowedInterval(4, 5)});
+    corpus.push_back({allowedInterval(-315, 315), allowedInterval(-315, 314)});
+    corpus.push_back({allowedInterval(-315, 315), allowedInterval(-314, 315)});
+    corpus.push_back({allowedInterval(-315, 315), allowedSingleton(315)});
+    corpus.push_back({allowedInterval(-315, 315), allowedSingleton(315), allowedSingleton(316)});
+    corpus.push_back({allowedInterval(-315, 315), allowedSingleton(315), allowedInterval(-315, -315)});
+    corpus.push_back({rightmostQuad(1), leftmostQuad(1)});
+    corpus.push_back({rightmostQuad(0), leftmostQuad(0)});
+    corpus.push_back({rightmostQuad(1), leftmostQuad(-99999)});
+    corpus.push_back({rightmostQuad(-99999), allowedInterval(-315, 315)});
+    corpus.push_back({rightmostQuad(-99999), allowedInterval(1, 1)});
+    corpus.push_back({rightmostQuad(-99999), allowedSingleton(2)});
+    corpus.push_back({leftmostQuad(-99999), allowedSingleton(-2)});
+    corpus.push_back({rightmostQuad(-99999), irrationalRootsQuad(2)});
+    corpus.push_back({halfRootsQuad(0), allowedInterval(-1, 1)});
+    corpus.push_back({halfRootsQuad(0), allowedInterval(1, 2)});
+    corpus.push_back({halfRootsQuad(158), allowedInterval(-315, 315)});
+    corpus.push_back({halfRootsQuad(-158), allowedInterval(-315, 315)});
 
     for (Test &test : corpus)
     {
@@ -161,14 +219,10 @@ void modeHandmade()
 void modeExhaustiveSmall()
 {
     vector<Test> all;
-    for (int a = -5; a <= 5; ++a)
-    {
-        if (a == 0)
-            continue;
+    for (int a = -5; a <= -1; ++a)
         for (int b = -5; b <= 5; ++b)
             for (int c = -5; c <= 5; ++c)
                 all.push_back({makeQuad(a, b, c)});
-    }
     shuffleWithRnd(all);
     for (Test &test : all)
         addTest(std::move(test));
@@ -186,7 +240,15 @@ void modePlantedTiny()
         test.reserve(n);
         test.push_back(allowedSingleton(witness));
         if (!answerYes)
-            test.push_back(forbiddenInterval(witness, witness));
+        {
+            // 再放一个只允许 witness+1 的式子，把 witness 挤掉
+            switch (rnd.next(0, 2))
+            {
+            case 0: test.push_back(allowedSingleton(witness + 1)); break;
+            case 1: test.push_back(integerRootsQuad(witness, witness + 1)); break;
+            default: test.push_back(irrationalRootsQuad(witness + 1)); break;
+            }
+        }
         while ((int)test.size() < n)
             test.push_back(randomSatisfiedAt(witness));
         shuffleWithRnd(test);
@@ -199,150 +261,184 @@ void modeStrictArithmetic()
     const int T = 3000;
     for (int tc = 0; tc < T; ++tc)
     {
+        int x = rnd.next(-100, 100);
         Test test;
-        int witness = 0;
+        test.push_back(allowedSingleton(x));
         switch (tc % 12)
         {
-        case 0: witness = -1; test = {allowedSingleton(witness), makeQuad(1, 100000, 99998)}; break;
-        case 1: witness = -1; test = {allowedSingleton(witness), makeQuad(1, 100000, 99999)}; break;
-        case 2: witness = -1; test = {allowedSingleton(witness), makeQuad(1, 100000, 100000)}; break;
-        case 3: witness = 1; test = {allowedSingleton(witness), makeQuad(1, -100000, 99998)}; break;
-        case 4: witness = 1; test = {allowedSingleton(witness), makeQuad(1, -100000, 99999)}; break;
-        case 5: witness = 1; test = {allowedSingleton(witness), makeQuad(1, -100000, 100000)}; break;
-        case 6: witness = 0; test = {allowedSingleton(witness), makeQuad(-100000, 100000, 100000)}; break;
-        case 7: witness = 0; test = {allowedSingleton(witness), makeQuad(100000, 100000, -100000)}; break;
-        case 8: witness = -2; test = {allowedSingleton(witness), makeQuad(25000, 100000, 100000)}; break;
-        case 9: witness = 0; test = {allowedSingleton(witness), makeQuad(100000, -100000, 25000)}; break;
-        case 10: witness = -2; test = {allowedSingleton(witness), makeQuad(25000, 100000, 99999)}; break;
-        default: witness = 0; test = {allowedSingleton(witness), makeQuad(25000, 99999, 100000)}; break;
+        case 0: test.push_back(halfRootsQuad(x)); break;                           // 根 x±1/2
+        case 1: test.push_back(makeQuad(-1, 2LL * x, 1LL - 1LL * x * x)); break;   // 根 x±1
+        case 2: test.push_back(irrationalRootsQuad(x - 1)); break;                 // {x-1,x}
+        case 3: test.push_back(irrationalRootsQuad(x)); break;                     // {x,x+1}
+        case 4: test.push_back(integerRootsQuad(x - 1, x)); break;                 // 空
+        case 5: test.push_back(integerRootsQuad(x, x + 1)); break;                 // 空
+        case 6: test.push_back(allowedInterval(x, x, 2)); break;                   // 放缩后的同一个点
+        case 7: test.push_back(allowedInterval(x, x, 10)); break;
+        case 8: test.push_back(allowedInterval(x - rnd.next(0, 3), x + rnd.next(0, 3))); break;
+        case 9: test.push_back(makeQuad(-rnd.next(1, 5), 2LL * x * rnd.next(1, 5), 0)); break;
+        case 10: test.push_back(makeQuad(-1, 2LL * x + 1, -1LL * x * x - x)); break; // 根 x, x+1
+        default: test.push_back(makeQuad(-1, 2LL * x + 1, -1LL * x * x - x + 1)); break; // 根 x-0.618, x+1.618
         }
-        int extra = rnd.next(0, 6);
+        int extra = rnd.next(0, 5);
         while (extra--)
-            test.push_back(randomSatisfiedAt(witness));
+            test.push_back(randomSatisfiedAt(x));
         shuffleWithRnd(test);
         addTest(std::move(test));
     }
 }
 
-void addCoverage(Test &test, vector<Quad> &segments, int lo, int hi)
+void modeNestedIntervals()
 {
-    int current = lo;
-    while (current <= hi)
-    {
-        int len = rnd.next(10, 30);
-        int right = min(hi, current + len - 1);
-        Quad q = forbiddenInterval(current, right);
-        test.push_back(q);
-        segments.push_back(q);
-        current = right + 1;
-    }
-}
-
-void modeIntervalUnions()
-{
-    const int T = 2500;
+    const int T = 2000;
     for (int tc = 0; tc < T; ++tc)
     {
-        int l = rnd.next(-250, -50);
-        int r = rnd.next(50, 250);
-        int hole = rnd.next(l, r);
-        bool leaveHole = (tc % 2 == 0);
+        int l = rnd.next(-315, 0);
+        int r = rnd.next(0, 315);
+        bool keepOne = (tc % 2 == 0) || (l == r);
+        int victim = keepOne ? rnd.next(l, r) : rnd.next(l, r - 1);
 
         Test test;
-        vector<Quad> segments;
         test.push_back(allowedInterval(l, r));
-        if (leaveHole)
+
+        if (keepOne)
         {
-            if (l <= hole - 1)
-                addCoverage(test, segments, l, hole - 1);
-            if (hole + 1 <= r)
-                addCoverage(test, segments, hole + 1, r);
+            // 左右两端分别逐步向 victim 收紧，最终交集恰为 {victim}
+            int step = rnd.next(10, 30);
+            for (int c = l; c < victim; c += step)
+                test.push_back(allowedInterval(min(c, victim), r));
+            for (int d = r; d > victim; d -= step)
+                test.push_back(allowedInterval(l, max(d, victim)));
+            test.push_back(allowedInterval(l, victim));
+            test.push_back(allowedInterval(victim, r));
+            test.push_back(allowedSingleton(victim));
         }
         else
         {
-            addCoverage(test, segments, l, r);
+            // 两条互不相交但各自非空的区间，交集为空
+            test.push_back(allowedInterval(l, victim));
+            test.push_back(allowedInterval(victim + 1, r));
         }
 
         int extra = rnd.next(5, 15);
         while (extra--)
         {
-            int kind = rnd.next(0, 2);
-            if (kind == 0 && !segments.empty())
-                test.push_back(segments[rnd.next(0, (int)segments.size() - 1)]);
-            else if (kind == 1)
-                test.push_back(allowedInterval(l - rnd.next(0, 20), r + rnd.next(0, 20)));
-            else if (leaveHole)
-                test.push_back(randomSatisfiedAt(hole));
+            if (rnd.next(0, 2) == 0)
+                test.push_back(allowedInterval(max(-315, l - rnd.next(0, 10)),
+                                               min(315, r + rnd.next(0, 10))));
             else
-                test.push_back(makeQuad(rnd.next(1, COEF_LIM), 0, rnd.next(1, COEF_LIM)));
+                test.push_back(randomSatisfiedAt(keepOne ? victim : l));
         }
         shuffleWithRnd(test);
         addTest(std::move(test));
     }
 }
 
-void modeAllUpwardMaximum()
+void modeMaximumYes()
 {
     Test test;
     test.reserve(SUM_N_LIM);
-    test.push_back(makeQuad(1, -100000, -100000));
-    test.push_back(makeQuad(1, 100000, -100000));
-    while ((int)test.size() < SUM_N_LIM)
-        test.push_back(makeQuad(rnd.next(1, COEF_LIM),
-                                rnd.next(-COEF_LIM, COEF_LIM),
-                                rnd.next(-COEF_LIM, COEF_LIM)));
-    shuffleWithRnd(test);
-    addTest(std::move(test));
-}
-
-void modeDelayedBlocker()
-{
-    Test test;
-    test.reserve(SUM_N_LIM);
-    test.push_back(makeQuad(-1, 100000, 100000));
-    while ((int)test.size() + 1 < SUM_N_LIM)
-    {
-        int scale = rnd.next(1, COEF_LIM);
-        test.push_back(makeQuad(scale, 0, scale));
-    }
-    test.push_back(makeQuad(1, -100000, -100000));
-    addTest(std::move(test));
-}
-
-void modeMaximumCovered()
-{
-    Test test;
-    test.reserve(SUM_N_LIM);
-    test.push_back(makeQuad(-1, 0, 99856));
-    test.push_back(forbiddenInterval(-315, -200));
-    test.push_back(forbiddenInterval(-199, -1));
-    test.push_back(forbiddenInterval(0, 100));
-    test.push_back(forbiddenInterval(101, 315));
+    test.push_back(rightmostQuad(1));
+    test.push_back(leftmostQuad(1));
+    test.push_back(allowedInterval(-315, 315));
+    test.push_back(makeQuad(-100000, 0, 100000));
     while ((int)test.size() < SUM_N_LIM)
     {
-        int p = rnd.next(-315, 315);
-        int q = rnd.next(p, 315);
-        test.push_back(forbiddenInterval(p, q));
+        switch (rnd.next(0, 4))
+        {
+        case 0: test.push_back(allowedInterval(rnd.next(-315, 0), rnd.next(0, 315))); break;
+        case 1: test.push_back(randomSatisfiedAt(0)); break;
+        case 2: test.push_back(irrationalRootsQuad(rnd.next(-1, 0))); break;
+        case 3: test.push_back(integerRootsQuad(rnd.next(-315, -1), rnd.next(1, 315))); break;
+        default:
+        {
+            int l = rnd.next(-315, 0), r = rnd.next(0, 315);
+            test.push_back(allowedInterval(l, r, randomScale(l, r)));
+            break;
+        }
+        }
+    }
+    addTest(std::move(test));
+}
+
+void modeMaximumNo()
+{
+    Test test;
+    test.reserve(SUM_N_LIM);
+    bool delayed = rnd.next(0, 1);
+
+    // 逐步把可行域收窄到单点 -315
+    for (int k = 315; k >= -315; --k)
+        test.push_back(allowedInterval(-315, k));
+    test.push_back(allowedSingleton(-315));
+
+    // 一条与 -315 不相交（但自身非空）的区间，直接把交集清空
+    Quad killer = allowedInterval(-314, 316);
+    if (delayed)
+    {
+        while ((int)test.size() < SUM_N_LIM - 1)
+            test.push_back(randomSatisfiedAt(-315));
+        test.push_back(killer); // 破坏者放在最后
+    }
+    else
+    {
+        test.push_back(killer);
+        while ((int)test.size() < SUM_N_LIM)
+            test.push_back(randomSatisfiedAt(-315));
+        shuffleWithRnd(test);
+    }
+    addTest(std::move(test));
+}
+
+void modeDegenerate()
+{
+    Test test;
+    test.reserve(SUM_N_LIM);
+    bool hasImpossible = rnd.next(0, 1);
+    int killer = hasImpossible ? rnd.next(0, SUM_N_LIM - 1) : -1;
+    for (int i = 0; i < SUM_N_LIM; ++i)
+    {
+        if (i == killer)
+            test.push_back(makeQuad(-1, 0, -1)); // 判别式 < 0，直接不可能
+        else if (rnd.next(0, 1))
+            test.push_back(allowedInterval(-315, 315));
+        else
+            test.push_back(randomSatisfiedAt(0));
     }
     shuffleWithRnd(test);
     addTest(std::move(test));
 }
 
-void modeMaximumOneHole()
+void modeExtremeCoefficients()
 {
-    int hole = rnd.next(-300, 300);
-    Test test;
-    test.reserve(SUM_N_LIM);
-    test.push_back(makeQuad(-1, 0, 99856));
-    test.push_back(allowedSingleton(hole));
-    if (hole > -315)
-        test.push_back(forbiddenInterval(-315, hole - 1));
-    if (hole < 315)
-        test.push_back(forbiddenInterval(hole + 1, 315));
-    while ((int)test.size() < SUM_N_LIM)
-        test.push_back(randomSatisfiedAt(hole));
-    shuffleWithRnd(test);
-    addTest(std::move(test));
+    const int T = 600;
+    for (int tc = 0; tc < T; ++tc)
+    {
+        Test test;
+        switch (tc % 10)
+        {
+        case 0: test = {rightmostQuad(1), leftmostQuad(1)}; break;
+        case 1: test = {rightmostQuad(0), leftmostQuad(0)}; break;
+        case 2: test = {rightmostQuad(1), leftmostQuad(0)}; break;
+        case 3: test = {rightmostQuad(0), leftmostQuad(1)}; break;
+        case 4: test = {rightmostQuad(-99999), allowedInterval(-315, 315)}; break;
+        case 5: test = {leftmostQuad(-99999), allowedInterval(-315, 315)}; break;
+        case 6: test = {makeQuad(-99999, 100000, 0)}; break;
+        case 7: test = {makeQuad(-99999, 100000, -1)}; break;
+        case 8: test = {makeQuad(-100000, 100000, -1)}; break;
+        default: test = {makeQuad(-100000, 100000, 100000)}; break;
+        }
+        int extra = rnd.next(0, 6);
+        while (extra--)
+        {
+            switch (rnd.next(0, 2))
+            {
+            case 0: test.push_back(makeQuad(-rnd.next(1, COEF_LIM), rnd.next(-COEF_LIM, COEF_LIM), rnd.next(-COEF_LIM, COEF_LIM))); break;
+            default: test.push_back(randomSatisfiedAt(rnd.next(0, 1) ? 0 : rnd.next(-316, 316))); break;
+            }
+        }
+        shuffleWithRnd(test);
+        addTest(std::move(test));
+    }
 }
 
 void modeMaximumTestCount()
@@ -357,7 +453,8 @@ void modeMaximumTestCount()
         test.reserve(N);
         test.push_back(allowedSingleton(witness));
         if (!answerYes)
-            test.push_back(forbiddenInterval(witness, witness));
+            test.push_back(rnd.next(0, 1) ? allowedSingleton(witness + 1)
+                                          : integerRootsQuad(witness, witness + 1));
         while ((int)test.size() < N)
             test.push_back(randomSatisfiedAt(witness));
         shuffleWithRnd(test);
@@ -371,18 +468,10 @@ void modeExtremeIntegerWitnesses()
     {
         Test test;
         test.reserve(100000);
-        if (witness > 0)
-        {
-            test.push_back(makeQuad(-1, 100000, 100000));
-            test.push_back(forbiddenInterval(0, 99999));
-        }
-        else
-        {
-            test.push_back(makeQuad(-1, -100000, 100000));
-            test.push_back(forbiddenInterval(-99999, 0));
-        }
+        // 唯一能覆盖 ±10^5 的形式：a=-1, b=±10^5, c>0
+        test.push_back(witness > 0 ? rightmostQuad(1) : leftmostQuad(1));
         while ((int)test.size() < 100000)
-            test.push_back(randomSatisfiedAt(witness));
+            test.push_back(extremeSatisfiedAt(witness));
         shuffleWithRnd(test);
         addTest(std::move(test));
     }
@@ -398,11 +487,11 @@ int main(int argc, char *argv[])
     else if (mode == 2) modeExhaustiveSmall();
     else if (mode == 3) modePlantedTiny();
     else if (mode == 4) modeStrictArithmetic();
-    else if (mode == 5) modeIntervalUnions();
-    else if (mode == 6) modeAllUpwardMaximum();
-    else if (mode == 7) modeDelayedBlocker();
-    else if (mode == 8) modeMaximumCovered();
-    else if (mode == 9) modeMaximumOneHole();
+    else if (mode == 5) modeNestedIntervals();
+    else if (mode == 6) modeMaximumYes();
+    else if (mode == 7) modeMaximumNo();
+    else if (mode == 8) modeDegenerate();
+    else if (mode == 9) modeExtremeCoefficients();
     else if (mode == 10) modeMaximumTestCount();
     else if (mode == 11) modeExtremeIntegerWitnesses();
     else ensuref(false, "unknown mode: %d", mode);
